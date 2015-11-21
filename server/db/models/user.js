@@ -3,36 +3,51 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-   email: {
-       type: String,
-       unique: true
-   },
-   password: {
-       type: String
-   },
-   salt: {
-       type: String
-   },
-   twitter: {
-       id: String,
-       username: String,
-       token: String,
-       tokenSecret: String
-   },
-   facebook: {
-       id: String
-   },
-   google: {
-       id: String
-   },
-   phoneNum: {
-       type: String,
-       unique: true
-   },
-   groups: {
-       type: Schema.Types.ObjectId, ref: 'Group'
-   }
-});
+  email: {
+    type: String,
+    unique: true
+  },
+  password: {
+    type: String
+  },
+  salt: {
+    type: String
+  },
+  name: {
+    type: String
+  },
+  phoneNum: {
+    type: String,
+    unique: true
+  },
+  photo: {
+    type: String
+  },
+  budget: {
+    type: Number
+  },
+  location: {
+    coordinates: {
+      type: [Number],
+      index: '2dsphere'
+    }
+  },
+  // groups: {
+  //   type: mongoose.Schema.Types.ObjectId, ref: 'Group'
+  // },
+  twitter: {
+    id: String,
+    username: String,
+    token: String,
+    tokenSecret: String
+  },
+  facebook: {
+    id: String
+  },
+  google: {
+    id: String
+  }
+  });
 
 // method to remove sensitive information from user objects before sending them out
 schema.methods.sanitize =  function () {
