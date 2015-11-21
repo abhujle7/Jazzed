@@ -2,6 +2,10 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
+	group: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Group'
+	},
 	name: {
 		type: String,
 		required: true
@@ -19,7 +23,7 @@ var schema = new mongoose.Schema({
 	},
 	budget: {
 		type: Number		
-	}
+	},
 });
 
 mongoose.model('Event', schema);
