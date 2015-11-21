@@ -6,29 +6,28 @@ angular.module('starter.services', [])
   // Some fake testing data
   var chats = [{
     id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
+    name: 'Anup',
+    lastText: 'Roti is the best',
+    face: 'https://avatars3.githubusercontent.com/u/13772252?v=3&s=460'
   }, {
     id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
+    name: 'Josh',
+    lastText: 'I like guitar Hero and burritos',
+    face: 'https://avatars3.githubusercontent.com/u/13457236?v=3&s=460'
   }, {
     id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
+    name: 'Silvia',
+    lastText: 'We should go to the Financier',
+    face: 'https://avatars2.githubusercontent.com/u/13826062?v=3&s=460'
   }, {
     id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
+    name: 'David',
+    lastText: 'Lets play Avalon',
+    face: 'https://avatars3.githubusercontent.com/u/5333764?v=3&s=460'
+  //   id: 4,
+  //   name: 'to tu',
+  //   lastText: 'This is wicked good ice cream.',
+  //   face: 'img/mike.png'
   }];
 
   return {
