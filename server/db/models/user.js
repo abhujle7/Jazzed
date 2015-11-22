@@ -32,9 +32,10 @@ var schema = new mongoose.Schema({
       index: '2dsphere'
     }
   },
-  // groups: {
-  //   type: mongoose.Schema.Types.ObjectId, ref: 'Group'
-  // },
+  groups: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Group'
+  },
   twitter: {
     id: String,
     username: String,
