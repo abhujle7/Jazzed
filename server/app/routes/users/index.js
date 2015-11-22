@@ -22,13 +22,13 @@ router.get('/:id', function(req, res, next) {
     res.status(200).json(req.userToFind)
 })
 
-router.use('/:id/groups', require('./groups'));
-// router.get('/:id/groups', function(req, res, next) {
-//     req.userToFind.populate('groups')
-//         .then(function(user) {
-//             res.status(200).json(user.groups)
-//         })
-// })
+// router.use('/:id/groups', require('./groups'));
+router.get('/:id/groups', function(req, res, next) {
+    req.userToFind.populate('groups')
+        .then(function(user) {
+            res.status(200).json(user.groups)
+        })
+})
 
 router.delete('/:id', function(req, res, next) {
     req.userToFind.remove()

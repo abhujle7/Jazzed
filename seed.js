@@ -23,7 +23,7 @@ function randPhoto() {
     return 'http://api.randomuser.me/portraits/thumb/' + g + '/' + n + '.jpg';
 }
 
-function randUser(user) {
+function randUser() {
     return new User({
         name: [chance.first(), chance.last()].join(" "),
         email: emails.pop(),
@@ -36,28 +36,63 @@ function randUser(user) {
 }
 
 function randGroup(allUsers) {
-    var group = [];
+    var group = [chance.pick(allUsers)];
     var randUser;
+
     while (group.length < 6){
         randUser = chance.pick(allUsers);
-        if (group.indexOf(randUser) == -1)
-            group.push(randUser);
+        for (var i = 0; i < group.length; i++) {
+            if (_.isEqual(group[i], randUser)) {
+                randUser = chance.pick(allUsers);
+                break;
+            } else if (i == group.length - 1) {
+                group.push(randUser);
+            }
+        }
     }
+
     return new Group({
-        users: group,
+        users: group.slice(1, group.length),
         name: chance.word(),
-        admins: [chance.pick(allUsers)]
+        admins: [group[0]]
     })
-
-
 }
 
 function randEvent(allGroups) {
     var group = chance.pick(allGroups);
     return new Event({
-        group: group,
+        groups: group,
         name: chance.word(),
         time: chance.hammertime()
+    });
+}
+
+function populateUserGroups(users, groups) {
+    groups.forEach(function(group) {
+        group.users.forEach(function(userId) {
+            users.forEach(function(user) {
+                if (user._id == userId)
+                user.groups.push(group)
+            });
+        });
+        group.admins.forEach(function(userId) {
+            users.forEach(function(user) {
+                if (user._id == userId)
+                user.groups.push(group)
+            });
+        });
+    });
+}
+
+function populateGroupEvents(groups, events) {
+    events.forEach(function(oneEvent) {
+        oneEvent.groups.forEach(function(groupInEvent) {
+            groups.forEach(function(group) {
+                if (group._id == groupInEvent._id) {
+                    group.events.push(oneEvent);
+                }
+            });
+        });
     });
 }
 
@@ -71,11 +106,35 @@ function generateAll() {
     }));
     var groups = _.times(numGroups, function() {
         return randGroup(users);
-    })
+    });
     var events = _.times(numEvents, function() {
         return randEvent(groups);
-    })
+    });
 
+    populateUserGroups(users, groups);
+    populateGroupEvents(groups, events);
+
+    /*
+        Currently we have one way population
+        Groups have users
+        events have groups
+
+        Things to add
+            users have groups
+            groups have events
+            events have a creator            
+        How to add
+            We have to iterate through a group in the groups array and list each user
+                after we list each user we have to push that group object into the found user
+            To add events to groups
+                we have to list the group for each event
+                and add it to the group array
+            To add events
+                we have to pick a random person from users and admins in a group
+                and add it to the object
+
+    */
+    
     return users.concat(groups).concat(events);
 }
 
