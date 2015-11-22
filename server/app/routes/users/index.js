@@ -3,9 +3,7 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
-console.log("Hey I got into api/users");
 router.get('/', function(req, res, next) {
-
     User.find({})
         .then(function(users) {
             res.status(200).json(users)
@@ -24,7 +22,7 @@ router.get('/:id', function(req, res, next) {
     res.status(200).json(req.userToFind)
 })
 
-router.use('/:id/groups', require('./groups'))
+router.use('/:id/groups', require('./groups'));
 // router.get('/:id/groups', function(req, res, next) {
 //     req.userToFind.populate('groups')
 //         .then(function(user) {
