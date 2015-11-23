@@ -25,4 +25,9 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-});
+})
+
+.controller('LoginCtrl', function($scope) {
+  $scope.contacts = ["person1", "person2", "person3"];
+  $scope.groups = ["bart", "whiskey", "lloo"];
+})

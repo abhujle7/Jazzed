@@ -14,3 +14,18 @@ app.controller('ChatsCtrl', function($scope, Chats) {
     Chats.remove(chat);
   };
 })
+
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+  $scope.chat = Chats.get($stateParams.chatId);
+})
+
+.controller('AccountCtrl', function($scope) {
+  $scope.settings = {
+    enableFriends: true
+  };
+})
+
+.controller('LoginCtrl', function($scope) {
+  $scope.contacts = ["person1", "person2", "person3"];
+  $scope.groups = ["bart", "whiskey", "lloo"];
+})

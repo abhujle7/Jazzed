@@ -2,14 +2,14 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-	groups: {
-		type: [mongoose.Schema.Types.ObjectId],
+	groups: [{
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Group'
-	},
-	creator: {
+	}],
+	creator: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
-	},
+	}],
 	name: {
 		type: String,
 		required: true

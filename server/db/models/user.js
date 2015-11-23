@@ -23,29 +23,17 @@ var schema = new mongoose.Schema({
   photo: {
     type: String
   },
-  budget: {
-    type: Number
-  },
   location: {
     coordinates: {
       type: [Number],
       index: '2dsphere'
     }
   },
-  groups: {
-    type: [mongoose.Schema.Types.ObjectId],
+  groups: [{
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Group'
-  },
-  twitter: {
-    id: String,
-    username: String,
-    token: String,
-    tokenSecret: String
-  },
+  }],
   facebook: {
-    id: String
-  },
-  google: {
     id: String
   }
   });
