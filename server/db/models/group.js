@@ -10,20 +10,20 @@ var schema = new mongoose.Schema({
 		type: String
 		//default picture
 	},
-	users: {
-		type: [mongoose.Schema.Types.ObjectId],
+	users: [{
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
 		//add sparse: true
 			//user inside group can only be added to same group once			
-	},
-	events: {
-		type: [mongoose.Schema.Types.ObjectId],
+	}],
+	events: [{
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Event'
-	},
-	admins: {
-		type: [mongoose.Schema.Types.ObjectId],
+	}],
+	admins: [{
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
-	}
+	}]
 });
 
 mongoose.model('Group', schema);
