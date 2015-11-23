@@ -9,7 +9,6 @@ var sh = require('shelljs');
 var babel = require('gulp-babel');
 var runSeq = require('run-sequence');
 var plumber = require('gulp-plumber');
-var livereload = require('gulp-livereload');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
