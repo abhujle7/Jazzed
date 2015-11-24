@@ -9,7 +9,6 @@ var sh = require('shelljs');
 var babel = require('gulp-babel');
 var runSeq = require('run-sequence');
 var plumber = require('gulp-plumber');
-var livereload = require('gulp-livereload');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
@@ -35,14 +34,14 @@ gulp.task('default', ['sass'], function () {
     });
 
     // Run when anything inside of browser/scss changes.
-    gulp.watch('browser/scss/**', function () {
+    gulp.watch('www/css/**', function () {
         runSeq('buildCSS', 'reloadCSS');
     });
 
-    // gulp.watch('server/**/*.js', ['lintJS']);
+    gulp.watch('server/**/*.js', ['lintJS']);
 
     // Reload when a template (.html) file changes.
-    gulp.watch(['browser/**/*.html', 'server/app/views/*.html'], ['reload']);
+    gulp.watch(['www/**/*.html', 'server/app/views/*.html'], ['reload']);
 
     // Run server tests when a server file or server test file changes.
     gulp.watch(['tests/server/**/*.js'], ['testServerJS']);
@@ -92,23 +91,16 @@ gulp.task('git-check', function(done) {
 
 // Everything below is from FSG
 
-// gulp.task('lintJS', function () {
+gulp.task('lintJS', function () {
 
-//     return gulp.src(['./www/js/**/*.js', './server/**/*.js'])
-//         .pipe(plumber({
-//             errorHandler: notify.onError('Linting FAILED! Check your gulp process.')
-//         }))
-//         .pipe(eslint())
-//         .pipe(eslint.format())
-//         .pipe(eslint.failOnError());
+    return gulp.src(['./www/js/**/*.js', './server/**/*.js'])
+        .pipe(plumber({
+            errorHandler: notify.onError('Linting FAILED! Check your gulp process.')
+        }))
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failOnError());
 
-// });
-
-gulp.task('testBrowserJS', function (done) {
-    karma.start({
-        configFile: __dirname + '/tests/browser/karma.conf.js',
-        singleRun: true
-    }, done);
 });
 
 gulp.task('testBrowserJS', function (done) {
@@ -118,8 +110,15 @@ gulp.task('testBrowserJS', function (done) {
     }, done);
 });
 
-gulp.task('buildJS', function () {
-    return gulp.src(['./browser/js/app.js', './browser/js/**/*.js'])
+gulp.task('testBrowserJS', function (done) {
+    karma.start({
+        configFile: __dirname + '/tests/browser/karma.conf.js',
+        singleRun: true
+    }, done);
+});
+
+gulp.task('buildJS', ['lintJS'], function () {
+    return gulp.src(['./www/js/app.js', './www/js/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(concat('main.js'))
@@ -127,6 +126,15 @@ gulp.task('buildJS', function () {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./public'));
 });
+
+gulp.task('buildJSApp', function() {
+    return gulp.src(['./www/js/app.js', './www/js/**/*.js'])
+        .pipe(concat('main.js'))
+        .pipe(babel())
+        .pipe(ngAnnotate())
+        .pipe(uglify())
+        .pipe(gulp.dest('./www/js'));
+})
 
 gulp.task('testServerJS', function () {
     require('babel/register');

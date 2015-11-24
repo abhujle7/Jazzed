@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 require('../../../server/db/models');
 
 var User = mongoose.model('User');
+var Group = mongoose.model('Group');
 
 describe('User model', function () {
 
@@ -21,9 +22,47 @@ describe('User model', function () {
         clearDB(done);
     });
 
+    var createUser = function() {
+        return User.create({ email: 'obama@gmail.com', password: 'potus', phoneNum: '123-456-7890'});
+    }
+
     it('should exist', function () {
         expect(User).to.be.a('function');
     });
+
+    it ('should only have unique email addresses', function(done) {
+        createUser()
+            .then(function(user) {
+                var newUser = new User();
+                newUser.email = 'obama@gmail.com';
+                return new newUser.save()
+            })
+            .then(function(user) {
+                done();
+            })
+            .then(null, function(err) {
+                expect(err.message.match(/duplicate key error/g).length).to.equal(1);
+                done();
+            });
+    })
+
+    describe('groups', function() {
+        it ('should be an array', function(done) {
+            createUser().then(function(user) {
+                expect(Array.isArray(user.groups)).to.be.true;
+                done();
+            }).then(null, done);
+        })
+    })
+
+    describe('phoneNums', function() {
+        it('should be a string', function(done) {
+            createUser()
+                .then(function(user) {
+                    expect(user.phoneNum).to.be.equal('123-456-7890')
+                })
+        })
+    })
 
     describe('password encryption', function () {
 

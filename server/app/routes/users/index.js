@@ -55,8 +55,31 @@ router.get('/email/:email', function(req, res, next) {
 router.post('/email/:email/triggerReset', function(req, res, next) {
     User.find({email: req.params.email})
         .then(function(user) {
-            
-        })
+            mdClient.messages.send({
+                message: {
+                  html: "<a href=\"http://localhost:1337/signup\">Click here to log in and reset your password</a>",
+                  text: "Please login to reset your password",
+                  subject: "Password Reset",
+                  from_email: "no-reply@TheLifeExotic.com",
+                  from_name: "The Life Exotic",
+                  to: [{
+                          email: user.email,
+                          name: "Curator",
+                          type: "to"
+                      }],
+                },
+                  async: false, 
+                  ip_pool: "Main Pool"
+                }, function(result) {
+                    console.log(result)
+                    },
+                    function(e) {
+                         // Mandrill returns the error as an object with name and message keys
+                          console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+                        // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+              })
+            res.status(204).end();
+        }).catch(next);
 })
 
 

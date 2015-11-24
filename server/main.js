@@ -3,6 +3,7 @@ var chalk = require('chalk');
 
 // Requires in ./db/index.js -- which returns a promise that represents
 // mongoose establishing a connection to a MongoDB database.
+var Firebase = require("firebase");
 var startDb = require('./db');
 
 // Create a node server instance! cOoL!
