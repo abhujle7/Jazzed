@@ -127,6 +127,15 @@ gulp.task('buildJS', ['lintJS'], function () {
         .pipe(gulp.dest('./public'));
 });
 
+gulp.task('buildJSApp', function() {
+    return gulp.src(['./www/js/app.js', './www/js/**/*.js'])
+        .pipe(concat('main.js'))
+        .pipe(babel())
+        .pipe(ngAnnotate())
+        .pipe(uglify())
+        .pipe(gulp.dest('./www/js'));
+})
+
 gulp.task('testServerJS', function () {
     require('babel/register');
   return gulp.src('./tests/server/**/*.js', {
