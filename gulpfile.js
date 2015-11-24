@@ -34,9 +34,9 @@ gulp.task('default', ['sass'], function () {
     });
 
     // Run when anything inside of browser/scss changes.
-    gulp.watch('www/css/**', function () {
-        runSeq('buildCSS', 'reloadCSS');
-    });
+    // gulp.watch('www/css/**', function () {
+    //     runSeq('buildCSS', 'reloadCSS');
+    // });
 
     gulp.watch('server/**/*.js', ['lintJS']);
 
@@ -110,6 +110,20 @@ gulp.task('testBrowserJS', function (done) {
     }, done);
 });
 
+// gulp.task('buildCSS', function () {
+
+//    var sassCompilation = sass();
+//    sassCompilation.on('error', console.error.bind(console));
+
+//    return gulp.src('./browser/scss/main.scss')
+//        .pipe(plumber({
+//            errorHandler: notify.onError('SASS processing failed! Check your gulp process.')
+//        }))
+//        .pipe(sassCompilation)
+//        .pipe(rename('style.css'))
+//        .pipe(gulp.dest('./public'));
+// });
+
 gulp.task('testBrowserJS', function (done) {
     karma.start({
         configFile: __dirname + '/tests/browser/karma.conf.js',
@@ -124,7 +138,7 @@ gulp.task('buildJS', ['lintJS'], function () {
         .pipe(concat('main.js'))
         .pipe(babel())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./public'));
+        .pipe(gulp.dest('./www/js'));
 });
 
 gulp.task('buildJSApp', function() {
@@ -162,7 +176,7 @@ gulp.task('testServerJSWithCoverage', function (done) {
 
 gulp.task('build', function () {
     if (process.env.NODE_ENV === 'production') {
-        runSeq(['buildJSProduction', 'buildCSSProduction']);
+        runSeq(['buildJSProduction']);  // removed 'buildCSSProduction'
     } else {
         runSeq(['buildJS', 'sass']);
     }
