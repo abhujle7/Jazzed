@@ -3,7 +3,7 @@ app.config(function($urlRouterProvider, $stateProvider) {
   .state('tab.loginVerify', {
     url: '/login',
     views: {
-      'tab-loginVerify': {
+      'tab-signup': {
         templateUrl: 'templates/loginVerify.html',
         controller: 'LoginCtrl'
       }

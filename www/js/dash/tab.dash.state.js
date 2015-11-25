@@ -1,7 +1,5 @@
 app.config(function($stateProvider) {
-
   $stateProvider
-
   .state('tab.dash', {
     url: '/dash',
     views: {

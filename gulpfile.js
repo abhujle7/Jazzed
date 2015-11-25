@@ -132,7 +132,7 @@ gulp.task('testBrowserJS', function (done) {
 });
 
 gulp.task('buildJS', ['lintJS'], function () {
-    return gulp.src(['./www/js/app.js', './www/js/**/*.js'])
+    return gulp.src(['./www/js/app.js', './www/js/**/*.js', './www/firebase/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(concat('main.js'))
@@ -140,15 +140,6 @@ gulp.task('buildJS', ['lintJS'], function () {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./www/js'));
 });
-
-// gulp.task('buildJSApp', function() {
-//     return gulp.src(['./www/js/app.js', './www/js/**/*.js'])
-//         .pipe(concat('main.js'))
-//         .pipe(babel())
-//         .pipe(ngAnnotate())
-//         .pipe(uglify())
-//         .pipe(gulp.dest('./www/js'));
-// })
 
 gulp.task('testServerJS', function () {
     require('babel/register');

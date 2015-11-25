@@ -1,16 +1,35 @@
-app.factory("User", ["$firebaseObject",
-  function($firebaseObject) {
-    // create a new service based on $firebaseObject
-    var User = $firebaseObject.$extend({
-      // these methods exist on the prototype, so we can access the data using `this`
-      getFullName: function() {
-        return this.firstName + " " + this.lastName;
+app.factory("AuthFactory", ["$firebaseObject", "$firebaseAuth",
+  function($firebaseObject, $firebaseAuth) {
+    var ref = new Firebase('https://boiling-fire-3161.firebaseio.com')
+    var auth = $firebaseAuth(ref);
+    return {
+      signUp: function(credentials) {
+        return auth.$createUser(credentials.email, credentials.password)
+        .then(function(user) {
+          user.name = credentials.name;
+          user.phone = credentials.phone;
+          console.log('oosuer')
+          var users = new Firebase('https://boiling-fire-3161.firebaseio.com/users')
+          return users.$push(user)
+        })
+        .catch(console.error)
+      },
+      getCurrentUser: function() {
+        console.log(ref.getAuth())
+        return ref.getAuth()
+      },
+      signIn: function(credentials) {
+        var email = credentials.email;
+        var password = credentials.password;
+        auth.$authWithPassword({
+          email: email,
+          password: password
+        })
+        .then(function(user) {
+          console.log('logged in yaya')
+        })
+        .catch(console.error)
       }
-    });
-    return function(userId) {
-      var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com/users/").child(userId);
-      // create an instance of User (the new operator is required)
-      return new User(ref);
     }
   }
 ]);
