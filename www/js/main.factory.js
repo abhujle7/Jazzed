@@ -36,11 +36,12 @@ app.factory('Chats', function() {
       return chats;
     },
     remove: function(chat) {
+      // _.pull
       chats.splice(chats.indexOf(chat), 1);
     },
     get: function(chatId) {
       for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
+        if (chats[i].id === parseInt(chatId)) { // why parse?
           return chats[i];
         }
       }
