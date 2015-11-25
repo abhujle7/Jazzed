@@ -1,0 +1,13 @@
+<ion-view view-title="Jazzed">
+	<ion-content class="padding">
+		<label class="item item-input">
+	  		<span class="input-label">Name of Chat</span>
+	  <input type="text">
+		</label>
+	<h3>Select people for this group</h3>
+	<ion-list>
+			<ion-item ng-repeat="contact in contacts">
+				{{ contact }}    <button class="ion-plus-round"></button>
+			</ion-item>
+	</ion-list>
+	<button>Create Group and start chatting!  <span class="ion-ios-people-outline"></span></button>
