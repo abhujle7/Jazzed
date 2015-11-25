@@ -20,6 +20,7 @@ router.get('/all', function(req, res, next) {
     })
 });
 
+// make sure it doesn't treat "all" as an id
 router.param('eventId', function(req, res, next, eventId) {
 	Event.findById(eventId)
 		.then(function(event){

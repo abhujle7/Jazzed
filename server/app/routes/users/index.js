@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
         })
 })
 
+// make sure it doesn't think "phone" is an id
 router.param('id', function(req, res, next, id) {
     User.findById(id)
         .then(function(user) {
@@ -22,6 +23,7 @@ router.get('/:id', function(req, res, next) {
     res.status(200).json(req.userToFind)
 })
 
+// wat happened to the subrouter?
 // router.use('/:id/groups', require('./groups'));
 router.get('/:id/groups', function(req, res, next) {
     req.userToFind.populate('groups')
@@ -68,7 +70,7 @@ router.post('/email/:email/triggerReset', function(req, res, next) {
                           type: "to"
                       }],
                 },
-                  async: false, 
+                  async: false,
                   ip_pool: "Main Pool"
                 }, function(result) {
                     console.log(result)

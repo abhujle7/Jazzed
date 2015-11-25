@@ -17,6 +17,7 @@ router.get('/all', function(req, res, next) {
 	})
 });
 
+// make sure it doesn't consider "all" an id
 router.param('groupId', function(req, res, next, groupId) {
 	Group.findById(groupId)
 		.then(function(group) {
@@ -40,7 +41,7 @@ router.use('/:groupId/events', require('./events'))
 
 
 // router.use('/:id/events', require('./events'), function(req, res, next) {
-	
+
 // })
 
 
