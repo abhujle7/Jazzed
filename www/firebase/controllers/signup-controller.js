@@ -1,6 +1,9 @@
 app.controller('RegisterCtrl', function($scope, $firebaseAuth, AuthFactory, $state) {
     $scope.signUp = function(credentials) {
         AuthFactory.signUp(credentials)
+        .then(function() {
+            $state.go('tab.dash')
+        })
     }
     $scope.signIn = function(credentials) {
         AuthFactory.signIn(credentials)

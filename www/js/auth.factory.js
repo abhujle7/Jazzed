@@ -9,12 +9,20 @@ app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArr
           user.name = credentials.name;
           user.phone = credentials.phone;
           user.email = credentials.email;
-          users.push().set({
+          users.child(user.uid).set({
             name: user.name,
             phone: user.phone,
             email: user.email
           })
           return user
+        })
+        .then(function() {
+          var email = credentials.email;
+          var password = credentials.password;
+          return auth.$authWithPassword({
+            email: email,
+            password: password
+          })
         })
         .catch(console.error)
       },
