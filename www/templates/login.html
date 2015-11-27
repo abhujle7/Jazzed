@@ -1,10 +1,6 @@
 <ion-view view-title="Jazzed">
 	<ion-content class="padding">
-		<h1>Sign up for dis app lol</h1>
-	<label class="item item-input">
-		<span class="input-label">Name</span>
-  		<input type="text" ng-model="user.name" required>
-	</label>
+		<h2>Sign In</h2>
 	<label class="item item-input">
 		<span class="input-label">Email</span>
   		<input type="text" ng-model="user.email" required>
@@ -13,10 +9,24 @@
 		<span class="input-label">Password</span>
   		<input type="password" ng-model="user.password" required>
 	</label>
+	<button class="button button-full button-positive" ng-click="signIn(user)">Sign In nerd</button>
+		<h2>Create a new account</h2>
+	<label class="item item-input">
+		<span class="input-label">Name</span>
+  		<input type="text" ng-model="newUser.name" required>
+	</label>
+	<label class="item item-input">
+		<span class="input-label">Email</span>
+  		<input type="text" ng-model="newUser.email" required>
+	</label>
+	<label class="item item-input">
+		<span class="input-label">Password</span>
+  		<input type="password" ng-model="newUser.password" required>
+	</label>
 	<label class="item item-input">
 		<span class="input-label">Phone</span>
-  		<input type="tel" ng-model="user.phone" required>
+  		<input type="tel" ng-model="newUser.phone" required>
 	</label>
-	<button class="button button-full button-positive" ng-click="signUp(user)">Sign up nerd</button>
+	<button class="button button-full button-positive" ng-click="signUp(newUser)">Sign up nerd</button>
 	</ion-content>
 </ion-view>

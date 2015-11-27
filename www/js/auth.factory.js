@@ -1,7 +1,7 @@
-app.factory("AuthFactory", ["$firebaseArray", "$firebaseObject", "$firebaseAuth",
-  function($firebaseObject, $firebaseAuth) {
+app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArray) {
     var ref = new Firebase('https://boiling-fire-3161.firebaseio.com')
     var auth = $firebaseAuth(ref);
+    var users = ref.child('users')
     return {
       signUp: function(credentials) {
         return auth.$createUser({email: credentials.email, password: credentials.password})
@@ -9,6 +9,11 @@ app.factory("AuthFactory", ["$firebaseArray", "$firebaseObject", "$firebaseAuth"
           user.name = credentials.name;
           user.phone = credentials.phone;
           user.email = credentials.email;
+          users.push().set({
+            name: user.name,
+            phone: user.phone,
+            email: user.email
+          })
           return user
         })
         .catch(console.error)
@@ -20,15 +25,11 @@ app.factory("AuthFactory", ["$firebaseArray", "$firebaseObject", "$firebaseAuth"
       signIn: function(credentials) {
         var email = credentials.email;
         var password = credentials.password;
-        auth.$authWithPassword({
+        return auth.$authWithPassword({
           email: email,
           password: password
-        })
-        .then(function(user) {
-          console.log('logged in yaya')
         })
         .catch(console.error)
       }
     }
-  }
-]);
+  });
