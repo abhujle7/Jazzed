@@ -1,9 +1,22 @@
 <ion-view view-title="Jazzed">
 	<ion-content class="padding">
-		<h1>Verify your phone number</h1>
+		<h1>Sign up for dis app lol</h1>
 	<label class="item item-input">
-	  <span class="input-label">Telephone</span>
-	  <input type="tel">
+		<span class="input-label">Name</span>
+  		<input type="text" ng-model="user.name" required>
 	</label>
+	<label class="item item-input">
+		<span class="input-label">Email</span>
+  		<input type="text" ng-model="user.email" required>
+	</label>
+	<label class="item item-input">
+		<span class="input-label">Password</span>
+  		<input type="password" ng-model="user.password" required>
+	</label>
+	<label class="item item-input">
+		<span class="input-label">Phone</span>
+  		<input type="tel" ng-model="user.phone" required>
+	</label>
+	<button class="button button-full button-positive" ng-click="signUp(user)">Sign up nerd</button>
 	</ion-content>
 </ion-view>

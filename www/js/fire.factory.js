@@ -1,16 +1,15 @@
-app.factory("AuthFactory", ["$firebaseObject", "$firebaseAuth",
+app.factory("AuthFactory", ["$firebaseArray", "$firebaseObject", "$firebaseAuth",
   function($firebaseObject, $firebaseAuth) {
     var ref = new Firebase('https://boiling-fire-3161.firebaseio.com')
     var auth = $firebaseAuth(ref);
     return {
       signUp: function(credentials) {
-        return auth.$createUser(credentials.email, credentials.password)
+        return auth.$createUser({email: credentials.email, password: credentials.password})
         .then(function(user) {
           user.name = credentials.name;
           user.phone = credentials.phone;
-          console.log('oosuer')
-          var users = new Firebase('https://boiling-fire-3161.firebaseio.com/users')
-          return users.$push(user)
+          user.email = credentials.email;
+          return user
         })
         .catch(console.error)
       },
