@@ -1,5 +1,5 @@
 app.config(function($stateProvider) {
-
+// I dont know how I feel about this directory structure
   $stateProvider
   .state('tab.chats', {
     url: '/chats',

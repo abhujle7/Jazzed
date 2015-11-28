@@ -2,11 +2,11 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-	groups: [{
+	groups: [{ // multiple?
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Group'
 	}],
-	creator: [{
+	creator: [{ // why is creator an array?
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	}],
@@ -26,7 +26,7 @@ var schema = new mongoose.Schema({
 		}
 	},
 	budget: {
-		type: Number		
+		type: Number
 	},
 });
 
