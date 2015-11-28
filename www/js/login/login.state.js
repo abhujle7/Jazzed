@@ -1,9 +1,9 @@
 app.config(function($urlRouterProvider, $stateProvider) {
   $stateProvider
-  .state('tab.signup', {
-    url: '/signup',
+  .state('tab.login', {
+    url: '/login',
     views: {
-      'tab-signup': {
+      'tab-login': {
         templateUrl: 'templates/login.html',
         controller: 'RegisterCtrl'
       }
