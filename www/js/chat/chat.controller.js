@@ -1,13 +1,15 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $state) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory) {
 
   $scope.IM = {
     textMessage: ""
   };
 
-  ChatFactory.selectRoom($state.params.roomId);
+  // $scope.roomName = currentRoom.child('name')
+// console.log('this is state params id', $stateParams.id)
+  ChatFactory.selectRoom($stateParams.id);
 
   var roomName = ChatFactory.getSelectedRoomName();
-
+  
   if (roomName) {
       $scope.roomName = " - " + roomName;
       $scope.chats = ChatFactory.all();
@@ -15,7 +17,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $state) {
 
   $scope.sendMessage = function (msg) {
       console.log(msg);
-      ChatFactory.send($scope.displayName, msg);
+      ChatFactory.send(msg);
       $scope.IM.textMessage = "";
   }
 
