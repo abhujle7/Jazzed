@@ -5,3 +5,4 @@ public
 .DS_Store
 coverage
 platforms
+www/main.js
