@@ -4,8 +4,8 @@ app.config(function($stateProvider) {
   .state('tab.chats', {
     url: '/chats',
     views: {
-      'tab-chats': {
-        templateUrl: 'templates/tab-chats.html',
+      'chatsView': {
+        templateUrl: 'js/chats/chats.html',
         controller: 'ChatsCtrl'
       }
     }

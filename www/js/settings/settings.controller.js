@@ -1,5 +1,5 @@
 // angular.module('starter.controllers', [])
 
-app.controller('AccountCtrl', function($scope, currentUser) {
+app.controller('SettingsCtrl', function($scope, currentUser) {
   $scope.user = currentUser
 });

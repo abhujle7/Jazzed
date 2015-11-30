@@ -1,11 +1,11 @@
-app.config(function($stateProvider) {
+app.config(function($urlRouterProvider, $stateProvider) {
   $stateProvider
-  .state('tab.account', {
-    url: '/account/:uid',
+  .state('tab.settings', {
+    url: '/settings/:uid',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'settingsView': {
+        templateUrl: 'js/settings/userInfo.html',
+        controller: 'SettingsCtrl'
       }
     },
     resolve: {

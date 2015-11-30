@@ -3,6 +3,7 @@ app.config(function($stateProvider) {
 		.state('tab', {
 		url: '/tab',
 		abstract: true,
-		templateUrl: 'templates/tabs.html'
+		cache: false,
+		templateUrl: 'js/tabs.html'
 		})
 })
