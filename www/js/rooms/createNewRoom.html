@@ -1,0 +1,17 @@
+<ion-view view-title="Create New Room">
+	<ion-content class="padding">
+		<label class="item item-input">
+	  		<span class="input-label">Room Name</span>
+	  <input ng-model="room.name" type="text">
+		</label>
+	<h3>Select people to add to this room</h3>
+	<ion-list>
+			<ion-item ng-repeat="contact in contacts" class="item item-checkbox">
+				<label class="checkbox">
+					<input type="checkbox" ng-click="addContact(contact)" ng-model="room.contacts">
+				{{ contact }}    
+				</label>
+				<!-- <button class="ion-plus-round"></button> -->
+			</ion-item>
+	</ion-list>
+	<button ng-click="saveNewRoom(room)">Create Room and start chatting!  <span class="ion-ios-people-outline"></span></button>
