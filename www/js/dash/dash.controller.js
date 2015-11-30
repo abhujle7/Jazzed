@@ -1,5 +1,5 @@
 // angular.module('starter.controllers', [])
 
 app.controller('DashCtrl', function($scope, $state) {
-	$state.go('tab.login')
+	$state.go('tab.chats')
 })

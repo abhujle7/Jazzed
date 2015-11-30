@@ -10,6 +10,9 @@
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
         },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
+        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
         },

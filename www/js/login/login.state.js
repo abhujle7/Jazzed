@@ -1,12 +1,8 @@
-app.config(function($urlRouterProvider, $stateProvider) {
+app.config(function($stateProvider) {
   $stateProvider
-  .state('tab.login', {
+  .state('login', {
     url: '/login',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/login.html',
-        controller: 'RegisterCtrl'
-      }
-    }
+    templateUrl: 'templates/login.html', 
+    controller: 'RegisterCtrl'
   })
 });
