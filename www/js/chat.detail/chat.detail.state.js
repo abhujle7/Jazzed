@@ -2,11 +2,11 @@ app.config(function($stateProvider) {
 
   $stateProvider
 
-  .state('tab.chat-detail', {
+  .state('chat-detail', {
     url: '/chats/:chatId',
     views: {
-      'tab-chats': {
-        templateUrl: 'templates/chat-detail.html',
+      'chatDetailView': {
+        templateUrl: 'js/chat.detail/chat.detail.html',
         controller: 'ChatDetailCtrl'
       }
     }

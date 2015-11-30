@@ -3,10 +3,16 @@ app.config(function($urlRouterProvider, $stateProvider) {
   .state('tab.login', {
     url: '/login',
     views: {
-      'tab-login': {
-        templateUrl: 'templates/login.html',
+      'loginView': {
+        templateUrl: 'js/login/login.html',
         controller: 'RegisterCtrl'
       }
     }
+    // resolve: {
+    //     // controller will not be loaded until $waitForAuth resolves
+    //     "currentAuth": ["Auth",
+    //         function (Auth) {
+    //             return Auth.$waitForAuth();
+    // }]}
   })
 });

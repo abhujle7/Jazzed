@@ -8,6 +8,8 @@
 // 'starter.controllers' is found in controllers.js
 window.app = angular.module('starter', ['ionic', "firebase"])
 
+ 
+ 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -26,5 +28,5 @@ app.run(function($ionicPlatform) {
 
 app.config(function($urlRouterProvider) {
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/login');
 });

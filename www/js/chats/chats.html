@@ -1,0 +1,31 @@
+<!-- <ion-view view-title="Jazzed">
+  <ion-content class="padding">
+    <ion-list>
+      <ion-item ng-repeat="chat in chats">
+        {{ chat }}
+      </ion-item>
+    </ion-list>
+    <button class="ion-ios-people-outline"></button>
+  </ion-content>
+</ion-view> -->
+
+<ion-view view-title="Chats">
+  <ion-content>
+    <div class="list">
+      <a class="item item-avatar" ng-repeat="chat in chats">
+        <img>
+        <h2>{{chat.user}}</h2>
+        <p>{{chat.message}}</p>
+      </a>
+    </div>
+    <form>
+      <div class="list">
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="text" placeholder="Message" ng-model="chat.message">
+          </label>
+          <button class="button button-positive ion ion-ios7-chatbubble" ng-click="sendChat(chat)"></button>
+        </div>
+      </div>
+  </ion-content>
+</ion-view>
