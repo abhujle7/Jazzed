@@ -2,7 +2,7 @@ app.config(function($stateProvider) {
   $stateProvider
   .state('login', {
     url: '/login',
-    templateUrl: 'templates/login.html', 
+    templateUrl: 'js/login/login.html', 
     controller: 'RegisterCtrl'
   })
 });
