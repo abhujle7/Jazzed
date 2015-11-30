@@ -9,11 +9,9 @@
             }  
           }
         }
-      },
+      }, 
       "groups": {
-        ".write": "auth !== null",
         "$group_id": {
-          ".read": "data.child('members').child(auth.uid).exists()",
           ".validate": "newData.hasChildren(['name'])",
           "name": {
             ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length < 20"

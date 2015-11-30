@@ -1,4 +1,4 @@
-app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatsFactory, $state) {
+app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) {
 
     // $ionicModal.fromTemplateUrl('js/login/login.html', {
     //     scope: $scope,
@@ -13,12 +13,27 @@ app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatsFactory, $state)
     $scope.createRoom = function () {
         $state.go('tab.createNewRoom');
     }
-    $scope.openChatRoom = function (roomId) {
-      $state.go('chat-detail', {
+
+    $scope.openRoom = function (roomId) {
+      console.log('this is roomid', roomId)
+      $state.go('tab.chat', {
         roomId: roomId
       });
     }
 
+    $scope.addContact = function () {
+        //add to firebase array in roomsfactory
+    }
+
+    $scope.saveNewRoom = function (roomObj) {
+        console.log('this is the roomobj', roomObj)
+        return RoomsFactory.add(roomObj).then(function(id) {
+            console.log('this is the id', id)
+        })
+
+        
+        //add to firebase array in roomsfactory
+    }
 
     // $scope.sendChat = function (chat){
     //   if ($rootScope.user) {

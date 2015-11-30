@@ -1,4 +1,4 @@
-app.factory('ChatsFactory', function($firebase, RoomsFactory) {
+app.factory('ChatFactory', function($firebase, RoomsFactory) {
 
   var selectedRoomId;
   var chats;
@@ -37,7 +37,7 @@ app.factory('ChatsFactory', function($firebase, RoomsFactory) {
         console.log("selecting the room with id: " + roomId);
         selectedRoomId = roomId;
         if (!isNaN(roomId)) {
-            chats = $firebase(ref.child('rooms').child(selectedRoomId).child('chats')).$asArray();
+            chats = $firebaseArray(ref.child('rooms').child(selectedRoomId).child('chats'));
         }
     },
     send: function (from, message) {
