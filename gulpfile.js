@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var bower = require('bower');
 var concat = require('gulp-concat');
+var reload = require('gulp-livereload')
 var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
@@ -29,9 +30,7 @@ gulp.task('default', ['sass'], function () {
     gulp.start('build');
 
     // Run when anything inside of browser/js changes.
-    gulp.watch('browser/js/**', function () {
-        runSeq('buildJS', 'reload');
-    });
+    gulp.watch(['www/js/**/*.js'], ['buildJS']);
 
     // Run when anything inside of browser/scss changes.
     // gulp.watch('www/css/**', function () {
@@ -136,9 +135,9 @@ gulp.task('buildJS', ['lintJS'], function () {
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(concat('main.js'))
-        .pipe(babel())
+        // .pipe(babel())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./www/js'));
+        .pipe(gulp.dest('./www'));
 });
 
 gulp.task('testServerJS', function () {
