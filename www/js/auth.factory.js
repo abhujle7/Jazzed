@@ -27,7 +27,6 @@ app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArr
         .catch(console.error)
       },
       getCurrentUser: function() {
-        console.log(ref.getAuth())
         return ref.getAuth()
       },
       signIn: function(credentials) {
