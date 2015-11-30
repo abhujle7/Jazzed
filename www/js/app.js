@@ -6,7 +6,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-window.app = angular.module('starter', ['ionic', "firebase"])
+window.app = angular.module('starter', ['ionic', "firebase", "ui.router"])
 
  
  
@@ -28,5 +28,5 @@ app.run(function($ionicPlatform) {
 
 app.config(function($urlRouterProvider) {
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/login');
+  $urlRouterProvider.otherwise('/login');
 });
