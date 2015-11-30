@@ -1,29 +1,26 @@
-// angular.module('starter.controllers', [])
-
-app.controller('ChatsCtrl', function($scope, ChatsFactory, $state) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $state) {
 
   $scope.IM = {
     textMessage: ""
   };
 
-  ChatsFactory.selectRoom($state.params.roomId);
+  ChatFactory.selectRoom($state.params.roomId);
 
-  var roomName = ChatsFactory.getSelectedRoomName();
+  var roomName = ChatFactory.getSelectedRoomName();
 
-  // Fetching Chat Records only if a Room is Selected
   if (roomName) {
       $scope.roomName = " - " + roomName;
-      $scope.chats = Chats.all();
+      $scope.chats = ChatFactory.all();
   }
 
   $scope.sendMessage = function (msg) {
       console.log(msg);
-      Chats.send($scope.displayName, msg);
+      ChatFactory.send($scope.displayName, msg);
       $scope.IM.textMessage = "";
   }
 
   $scope.remove = function (chat) {
-      ChatsFactory.remove(chat);
+      ChatFactory.remove(chat);
   }
 
     // $scope.sendChat = function (chat){

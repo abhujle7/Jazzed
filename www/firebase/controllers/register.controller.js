@@ -11,14 +11,14 @@ app.controller('RegisterCtrl', function($scope, $firebaseAuth, AuthFactory, $sta
         AuthFactory.signUp(credentials)
         .then(function(user) {
             $rootScope.user = user;
-            $state.go('tab.chats', {uid: user.uid})
+            $state.go('tab.rooms', {uid: user.uid})
         })
     }
     $scope.signIn = function(credentials) {
         AuthFactory.signIn(credentials)
         .then(function(user) {
             $rootScope.user = user;
-            $state.go('tab.chats', {uid: user.uid})
+            $state.go('tab.rooms', {uid: user.uid})
         })
     }
 })
