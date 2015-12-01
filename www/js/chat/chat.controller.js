@@ -1,21 +1,27 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $state) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject) {
 
+  var currUser = AuthFactory.getCurrentUser().uid
+  var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
+  var userObj = $firebaseObject(userRef)
   $scope.IM = {
     textMessage: ""
   };
 
-  ChatFactory.selectRoom($state.params.roomId);
+  // $scope.roomName = currentRoom.child('name')
+// console.log('this is state params id', $stateParams.id)
+  ChatFactory.selectRoom($stateParams.id);
 
   var roomName = ChatFactory.getSelectedRoomName();
-
+  
   if (roomName) {
       $scope.roomName = " - " + roomName;
       $scope.chats = ChatFactory.all();
   }
 
   $scope.sendMessage = function (msg) {
+      console.log('this is userobj', userObj)
       console.log(msg);
-      ChatFactory.send($scope.displayName, msg);
+      ChatFactory.send(msg);
       $scope.IM.textMessage = "";
   }
 
