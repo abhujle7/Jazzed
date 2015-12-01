@@ -49,6 +49,7 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, Aut
             };
             console.log('this is chats pre', chats)
             console.log('this is chatmessage', chatMessage)
+            //removed validation of .write and $other
             chats.$add(chatMessage).then(function (data) {
                 console.log("message added and this is data returned", data);
             })

@@ -1,7 +1,9 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory) {
 
+  var user = AuthFactory.getCurrentUser()
   $scope.IM = {
-    textMessage: ""
+    textMessage: "",
+    from: user.password.email
   };
 
   // $scope.roomName = currentRoom.child('name')
@@ -16,6 +18,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.sendMessage = function (msg) {
+      console.log('this is user', user)
       console.log(msg);
       ChatFactory.send(msg);
       $scope.IM.textMessage = "";
