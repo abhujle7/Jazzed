@@ -5,7 +5,7 @@ app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArr
     var phoneNums = []
     users.once("value", function(allUsers) {
       allUsers.forEach(function(oneUser) {
-        var phone = oneUser.child('phone').val().replace(/\D/, "");
+        var phone = oneUser.child('phone').val();
         phoneNums.push(phone)
       })
     })
@@ -14,24 +14,18 @@ app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArr
         if (phoneNums.indexOf(credentials.phone.replace(/\D/, "")) === -1) {
           return auth.$createUser({email: credentials.email, password: credentials.password})
           .then(function(user) {
-            if (!user) {
-              return false
-            }
             user.name = credentials.name;
             user.phone = credentials.phone;
             user.email = credentials.email;
             users.child(user.uid).set({
               name: user.name,
-              phone: user.phone.replace(/\D/, ""),
+              phone: user.phone,
               email: user.email
             })
-            phoneNums.push(credentials.phone.replace(/\D/, ""))
+            phoneNums.push(credentials.phone)
             return user
           })
-          .then(function(input) {
-            if (!input) {
-              return false
-            } 
+          .then(function(user) {
             var email = credentials.email;
             var password = credentials.password;
             return auth.$authWithPassword({
@@ -39,10 +33,12 @@ app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArr
               password: password
             })
           })
-          .catch(console.error)
+          .then(null, function(error) {
+              console.log(error)
+          })  
         }
         else {
-          return false
+          return "Invalid phone"
         }
       },
       getCurrentUser: function() {
