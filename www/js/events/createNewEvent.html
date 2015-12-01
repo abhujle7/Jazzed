@@ -1,0 +1,37 @@
+<ion-view view-title="creating Event">
+	<ion-content>
+		<div class="list">
+			<label class="item item-input">
+				<input type="text" placeholder="Event Name" ng-model="data.name">
+			</label>
+			<label class="item item-input item-select">
+				<div class='input-label'>
+					time
+				</div>
+				<select ng-model="data.time">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+				</select>
+			</label>
+		<!-- </div>
+		<div class="list"> -->
+			<label class="item item-input">
+				<input type="text" placeholder="Location Name" ng-model="data.locationName">
+			</label>
+			<label class="item item-input item-select">
+				<div class='input-label'>
+					location
+				</div>
+				<select ng-model="data.location">
+					<option>coordinate 1</option>
+					<option>coordinate 2</option>
+					<option>geofire hashkey</option>
+				</select>
+			</label>
+		</div>
+		<button class="button button-positive" ng-click="submitEvent(data.name)">
+			Submit
+		</button>
+	</ion-content>
+</ion-view>

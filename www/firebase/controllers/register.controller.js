@@ -1,4 +1,4 @@
-app.controller('RegisterCtrl', function($scope, $firebaseAuth, AuthFactory, $state, $rootScope, $ionicModal) {
+app.controller('RegisterCtrl', function($scope, $firebaseAuth, AuthFactory, $state, $rootScope, $ionicPopup) {
     
     // $ionicModal.fromTemplateUrl('js/login/login.html', {
     // scope: $scope })
@@ -8,17 +8,41 @@ app.controller('RegisterCtrl', function($scope, $firebaseAuth, AuthFactory, $sta
 
 
     $scope.signUp = function(credentials) {
-        AuthFactory.signUp(credentials)
-        .then(function(user) {
-            $rootScope.user = user;
-            $state.go('tab.rooms', {uid: user.uid})
-        })
+        if (!AuthFactory.getCurrentUser()) {
+            $scope.error = $ionicPopup.alert({
+                title: 'Invalid email',
+                template: 'That email is either taken or invalid. Please try again :)'
+            })   
+        }        
+        else if (AuthFactory.signUp(credentials) === "Invalid phone") {
+            $scope.error = $ionicPopup.alert({
+                title: 'Invalid phone',
+                template: 'That number is already registered! Please try again :)'
+            })   
+        }
+        else {
+            AuthFactory.signUp(credentials)
+            .then(function(user) {
+                console.log('user', user.uid)
+                $state.go('tab.rooms', {uid: user.uid})
+            }) 
+            .then(null, function(error) {
+                return error
+            })   
+        }
     }
     $scope.signIn = function(credentials) {
-        AuthFactory.signIn(credentials)
-        .then(function(user) {
-            $rootScope.user = user;
-            $state.go('tab.rooms', {uid: user.uid})
-        })
+        if (!AuthFactory.getCurrentUser()) {
+            $scope.error = $ionicPopup.alert({
+                title: 'Invalid login',
+                template: 'Oops, you might have spelled something wrong! Please try again :)'
+            })   
+        }
+        else {
+            AuthFactory.signIn(credentials)
+            .then(function(user) {
+                $state.go('tab.rooms', {uid: user.uid})
+            })    
+        }
     }
 })

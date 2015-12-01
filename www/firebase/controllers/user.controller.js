@@ -1,4 +1,3 @@
-app.controller('UserCtrl', ["$scope", "$firebase", "$firebaseAuth", function($scope, $firebase, $firebaseAuth) {
-	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com')
-	
-}])
+app.controller('UserCtrl', function($scope, AuthFactory) {
+	var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + AuthFactory.getCurrentUser().uid)
+})
