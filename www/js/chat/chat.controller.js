@@ -1,21 +1,26 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $state) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory) {
 
+  var user = AuthFactory.getCurrentUser()
   $scope.IM = {
-    textMessage: ""
+    textMessage: "",
+    from: user.password.email
   };
 
-  ChatFactory.selectRoom($state.params.roomId);
+  // $scope.roomName = currentRoom.child('name')
+// console.log('this is state params id', $stateParams.id)
+  ChatFactory.selectRoom($stateParams.id);
 
   var roomName = ChatFactory.getSelectedRoomName();
-
+  
   if (roomName) {
       $scope.roomName = " - " + roomName;
       $scope.chats = ChatFactory.all();
   }
 
   $scope.sendMessage = function (msg) {
+      console.log('this is user', user)
       console.log(msg);
-      ChatFactory.send($scope.displayName, msg);
+      ChatFactory.send(msg);
       $scope.IM.textMessage = "";
   }
 
