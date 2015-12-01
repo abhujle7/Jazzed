@@ -1,9 +1,12 @@
-app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, AuthFactory) {
+app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $firebaseObject, AuthFactory) {
 
   var selectedRoomId;
   var chats;
   var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/')
   var user = AuthFactory.getCurrentUser().uid
+  var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + user)
+  var userObj = $firebaseObject(userRef)
+
   return {
     all: function() {
       return chats;
@@ -44,6 +47,7 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, Aut
             console.log('this is the user', user)
             var chatMessage = {
                 user: user,
+                from: userObj.name,
                 message: message,
                 timestamp: Firebase.ServerValue.TIMESTAMP
             };
