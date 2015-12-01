@@ -1,17 +1,30 @@
 {
     "rules": {
+      ".read": true,
       "users": {
         "$user_id": {
           ".read" : "auth !== null && $user_id === auth.uid",
+          ".write": "auth !== null",
+          "name": {".validate": "newData.isString()"},
+          "email": {".validate": "newData.isString()"},
+          "phone": {".validate": "newData.isString()"},
+          "photo": {".validate": "newData.isString()"},
           "groups": {
             "$group_id": {
               ".validate": "root.child('groups/' + $group_id).exists()"
             }  
+          },
+          "contacts": {
+            "$contact_id": {
+              ".validate": "root.child('users/' + $contact_id).exists()"
+            }
           }
         }
-      }, 
+      },
       "groups": {
+        ".write": "auth !== null",
         "$group_id": {
+          ".read": "data.child('members').child(auth.uid).exists()",
           ".validate": "newData.hasChildren(['name'])",
           "name": {
             ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length < 20"
@@ -30,15 +43,12 @@
           ".validate": "root.child('groups/' + $group_id).exists()",
           "$message_id": {
             ".write": "root.child('groups/' + $group_id + '/members/' + auth.uid).exists() && !data.exists() && newData.exists()",
-            ".validate": "newData.hasChildren(['user', 'message', 'timestamp'])",
+            ".validate": "newData.hasChildren(['user', 'message'])",
             "user": {
               ".validate": "newData.val() === auth.uid"
             },
             "message": {
                 ".validate": "newData.isString()"
-            },
-            "timestamp": {
-              ".validate": "newData.val() <= now"
             },
             "$other": {".validate": false}
           }

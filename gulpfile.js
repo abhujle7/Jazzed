@@ -23,8 +23,11 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass'], function () {
+gulp.task('reload', function() {
+    reload.reload();
+});
 
+gulp.task('default', ['sass'], function () {
   //all the following inside function is from FSG
 
     gulp.start('build');
