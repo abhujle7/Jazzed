@@ -22,9 +22,17 @@ app.controller('RegisterCtrl', function($scope, $firebaseAuth, AuthFactory, $sta
         }
     }
     $scope.signIn = function(credentials) {
-        AuthFactory.signIn(credentials)
-        .then(function(user) {
-            $state.go('tab.rooms', {uid: user.uid})
-        })
+        if (AuthFactory.signIn(credentials).error) {
+            $scope.error = $ionicPopup.alert({
+                title: 'Invalid login',
+                template: 'Oops, you might have spelled something wrong! Please try again :)'
+            })   
+        }
+        else {
+            AuthFactory.signIn(credentials)
+            .then(function(user) {
+                $state.go('tab.rooms', {uid: user.uid})
+            })    
+        }
     }
 })
