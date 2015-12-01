@@ -1,8 +1,11 @@
-app.factory('ChatFactory', function($firebase, RoomsFactory) {
+app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $firebaseObject, AuthFactory) {
 
   var selectedRoomId;
   var chats;
-  var ref = new Firebase('https://boiling-fire-3161.firebaseio.com')
+  var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/')
+  var user = AuthFactory.getCurrentUser().uid
+  var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + user)
+  var userObj = $firebaseObject(userRef)
 
   return {
     all: function() {
@@ -36,21 +39,27 @@ app.factory('ChatFactory', function($firebase, RoomsFactory) {
     selectRoom: function (roomId) {
         console.log("selecting the room with id: " + roomId);
         selectedRoomId = roomId;
-        if (!isNaN(roomId)) {
-            chats = $firebaseArray(ref.child('rooms').child(selectedRoomId).child('chats'));
-        }
+        chats = $firebaseArray(ref.child('messages').child(selectedRoomId));
     },
-    send: function (from, message) {
-        console.log("sending message from :" + from.displayName + " & message is " + message);
-        if (from && message) {
+    send: function (message) {
+        console.log("sending message from (insert user here) & message is " + message);
+        if (message) {
+            console.log('this is the user', user)
             var chatMessage = {
-                from: from.displayName,
+                user: user,
+                from: userObj.name,
                 message: message,
-                createdAt: Firebase.ServerValue.TIMESTAMP
+                timestamp: Firebase.ServerValue.TIMESTAMP
             };
+            console.log('this is chats pre', chats)
+            console.log('this is chatmessage', chatMessage)
+            //removed validation of .write and $other
             chats.$add(chatMessage).then(function (data) {
-                console.log("message added");
-            });
+                console.log("message added and this is data returned", data);
+            })
+            .catch(function(error) {
+              console.error("Error:", error);
+            })
         }
     }
   };
