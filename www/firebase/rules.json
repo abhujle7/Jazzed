@@ -32,8 +32,13 @@
           "members": {
             ".write": "root.child('users/' + auth.uid + '/groups/' + $group_id).exists()",
             "$user_id": {
-              ".validate": "root.child('users/' + $user_id).exists()"
+              //".validate": "root.child('users/' + $user_id).exists()"
             }
+          },
+          "events": {
+            "$event_id": {
+              ".validate": "root.child('events/' + $event_id).exists()"
+            } 
           }
         }
       },
@@ -42,15 +47,16 @@
           ".read": "root.child('groups/' + $group_id + '/members/' + auth.uid).exists()",
           ".validate": "root.child('groups/' + $group_id).exists()",
           "$message_id": {
-            ".write": "root.child('groups/' + $group_id + '/members/' + auth.uid).exists() && !data.exists() && newData.exists()",
+            ".write": true,
+            //".write": "root.child('groups/' + $group_id + '/members/' + auth.uid).exists() && !data.exists() && newData.exists()",
             ".validate": "newData.hasChildren(['user', 'message'])",
             "user": {
               ".validate": "newData.val() === auth.uid"
             },
             "message": {
                 ".validate": "newData.isString()"
-            },
-            "$other": {".validate": false}
+            }
+            //"$other": {".validate": false}
           }
         }
       },
@@ -80,32 +86,31 @@
       },
       "events": {
         "fixed": {
-          "$event_id": {
-            ".validate": "(data.child('name').exists()) && (newData.exists() && newData.hasChildren(['time', 'location']))",
-            "name": {
-              ".validate": "newData.val().length < 20 && newData.val().length > 0"
-            },
-            "time": {
-              ".validate": "newData.val() <= now"
-            },
-            "location": {
-              ".validate": "newData.hasChildren(['name', 'coordinates'])",
-              "name": {".validate": "newData.isString() && newData.val().length < 20"},
-              "coordinates": {
-                ".validate": "newData.val().length === 2  || data.val().length === 2"
-              } 
+        ".write": "auth !== null",
+          "name": {
+            ".validate": "newData.val().length < 20 && newData.val().length > 0",            
+            "$event_id": {
+              ".validate": "(data.child('name').exists()) && (newData.exists() && newData.hasChildren(['time', 'location']))",
+              "time": {
+                ".validate": "newData.val() <= now"
+              },
+              "location": {
+                ".validate": "newData.hasChildren(['name'])",
+                "name": {".validate": "newData.isString() && newData.val().length < 20"},
+                "coordinates": {
+                  ".validate": "newData.val().length < 20 && newData.val().length > 0"
+                }
+              }
             }
           }
         },
         "custom": {
-          "$group_id": {
-            ".write": "root.child('groups/' + $group_id + '/members/' + auth.uid).exists()",
-            ".validate": "root.child('groups/' + $group_id).exists()",
-            "$event_id": {
-              ".validate": "(data.child('name').exists()) || (!data.exists() && newData.exists() && newData.hasChildren(['name', 'time', 'location']))",
-              "name": {
-                ".validate": "newData.val().length < 20 && newData.val().length > 0"
-              },
+          ".write": true,
+          "name": {
+            ".validate": "newData.val().length < 20 && newData.val().length > 0",
+            "$group_id": {
+              ".write": "root.child('groups/' + $group_id + '/members/' + auth.uid).exists()",
+              ".validate": "root.child('groups/' + $group_id).exists()",
               "time": {
                 ".validate": "newData.val() <= now"
               },

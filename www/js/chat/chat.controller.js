@@ -1,4 +1,4 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory) {
 
   var currUser = AuthFactory.getCurrentUser().uid
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
@@ -42,6 +42,22 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
       ChatFactory.remove(chat);
   }
 
+  $scope.createCustomEvent = function() {
+    //take this chat_id and send it to eventFactory
+    EventFactory.addCustomEvent();
+
+  }
+
+    // $scope.sendChat = function (chat){
+    //   if ($rootScope.user) {
+    //     // console.log('this is user', $rootScope.user)
+    //     $scope.chats.$add({
+    //       user: $rootScope.user,
+    //       message: chat.message
+    //     });
+    //   chat.message = "";
+    //   }
+    // }
 
  })
 
