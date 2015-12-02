@@ -1,20 +1,22 @@
-app.controller('RegisterCtrl', function($scope, $firebaseAuth, AuthFactory, $state, $rootScope, $ionicPopup) {
+app.controller('RegisterCtrl', function($scope, AuthFactory, $state, $ionicPopup) {
     
     // $ionicModal.fromTemplateUrl('js/login/login.html', {
     // scope: $scope })
     // .then(function (modal) {
     // $scope.modal = modal;
     // });
+    $scope.emails = AuthFactory.existingEmails();
+    $scope.phones = AuthFactory.existingPhones()
 
 
     $scope.signUp = function(credentials) {
-        if (AuthFactory.signUp(credentials) === "Invalid email") {
+        if ($scope.emails.indexOf(credentials.email) !== -1) {
             $scope.error = $ionicPopup.alert({
                 title: 'Invalid email',
                 template: 'That email is either taken or invalid. Please try again :)'
             })   
         }        
-        else if (AuthFactory.signUp(credentials) === "Invalid phone") {
+        else if ($scope.phones.indexOf(credentials.phone.replace(/\D/, "")) !== -1) {
             $scope.error = $ionicPopup.alert({
                 title: 'Invalid phone',
                 template: 'That number is already registered! Please try again :)'
