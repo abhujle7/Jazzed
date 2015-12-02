@@ -8,7 +8,7 @@ app.controller('RegisterCtrl', function($scope, $firebaseAuth, AuthFactory, $sta
 
 
     $scope.signUp = function(credentials) {
-        if (!AuthFactory.getCurrentUser()) {
+        if (AuthFactory.signUp(credentials) === "Invalid email") {
             $scope.error = $ionicPopup.alert({
                 title: 'Invalid email',
                 template: 'That email is either taken or invalid. Please try again :)'
@@ -23,12 +23,8 @@ app.controller('RegisterCtrl', function($scope, $firebaseAuth, AuthFactory, $sta
         else {
             AuthFactory.signUp(credentials)
             .then(function(user) {
-                console.log('user', user.uid)
                 $state.go('tab.rooms', {uid: user.uid})
-            }) 
-            .then(null, function(error) {
-                return error
-            })   
+            })  
         }
     }
     $scope.signIn = function(credentials) {
