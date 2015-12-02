@@ -8,5 +8,4 @@ var ref = new Firebase('https://boiling-fire-3161.firebaseio.com')
   $scope.settings = {
     enableFriends: true
   };
- 
 });
