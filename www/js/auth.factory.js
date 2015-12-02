@@ -56,9 +56,6 @@ app.factory("AuthFactory", function($firebaseAuth) {
             email: email,
             password: password
           })   
-          .then(null, function(error) {
-            console.log(error)
-          })
         }
       },
       existingPhones: function() {
