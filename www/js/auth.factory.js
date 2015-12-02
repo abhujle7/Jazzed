@@ -11,6 +11,7 @@ app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArr
     })
     return {
       signUp: function(credentials) {
+        console.log(credentials)
         if (phoneNums.indexOf(credentials.phone.replace(/\D/, "")) === -1) {
           return auth.$createUser({email: credentials.email, password: credentials.password})
           .then(function(user) {
