@@ -47,11 +47,21 @@ app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArr
       signIn: function(credentials) {
         var email = credentials.email;
         var password = credentials.password;
-        return auth.$authWithPassword({
+        if (!auth.$authWithPassword({
           email: email,
           password: password
-        })
-        .catch(console.error)
+        })) {
+          return "Invalid login"
+        }
+        else {
+          return auth.$authWithPassword({
+            email: email,
+            password: password
+          })   
+          .then(null, function(error) {
+            console.log(error)
+          })
+        }
       }
     }
   });
