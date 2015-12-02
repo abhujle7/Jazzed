@@ -28,13 +28,5 @@ app.run(function($ionicPlatform) {
 
 app.config(function($urlRouterProvider) {
   // if none of the above states are matched, use this as the fallback
-<<<<<<< HEAD
-<<<<<<< HEAD
   $urlRouterProvider.otherwise('/login');
-=======
-  $urlRouterProvider.otherwise('/tab/login');
->>>>>>> a9af6b0ca13c19d85c4da3e8eebe6df41e34da6c
-=======
-  $urlRouterProvider.otherwise('/login');
->>>>>>> 6a6378a124e0546a39e962037488126ba21b3b32
 });
