@@ -29,6 +29,14 @@
 					<option>geofire hashkey</option>
 				</select>
 			</label>
+			<label class="item item-input item-select">
+				<div class='input-label'>
+					group
+				</div>
+				<select ng-model="data.group_id">
+					<option ng-repeat="room in rooms">{{room.$id}}</option>
+				</select>
+			</label>
 		</div>
 		<button class="button button-positive" ng-click="submitEvent(data.name)">
 			Submit

@@ -20,6 +20,7 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory)
     },
 
     add: function(roomObj) {
+      console.log(roomObj);
       return roomsArr.$add(roomObj)
       .then(function (ref) {
         var id = ref.key();
@@ -30,11 +31,9 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory)
         }).then(function (data) {
           console.log('this the data', data)
         })
-     
         return id;
       })
         //state.go to chat detail with new id
-
     }
   };
 });
