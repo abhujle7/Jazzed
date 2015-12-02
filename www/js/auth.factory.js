@@ -1,4 +1,4 @@
-app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArray) {
+app.factory("AuthFactory", function($firebaseAuth) {
     var ref = new Firebase('https://boiling-fire-3161.firebaseio.com')
     var auth = $firebaseAuth(ref);
     var users = ref.child('users')
@@ -14,39 +14,30 @@ app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArr
     })
     return {
       signUp: function(credentials) {
-        if (phoneNums.indexOf(credentials.phone.replace(/\D/, "")) === -1 && emails.indexOf(credentials.email) === -1) {
-          return auth.$createUser({email: credentials.email, password: credentials.password})
-          .then(function(user) {
-            var email = credentials.email;
-            var password = credentials.password;
-            return auth.$authWithPassword({
-              email: email,
-              password: password
-            })
+        return auth.$createUser({email: credentials.email, password: credentials.password})
+        .then(function(user) {
+          user.name = credentials.name;
+          user.phone = credentials.phone;
+          user.email = credentials.email;
+          users.child(user.uid).set({
+            name: user.name,
+            phone: user.phone,
+            email: user.email,
+            photo: 'https://stampaspot.com/Pics/default.jpeg'
           })
-          .then(function(user) {
-            user.name = credentials.name;
-            user.phone = credentials.phone;
-            user.email = credentials.email;
-            users.child(user.uid).set({
-              name: user.name,
-              phone: user.phone,
-              email: user.email
-            })
-            emails.push(credentials.email)
-            phoneNums.push(credentials.phone)
-            return user
+          emails.push(credentials.email)
+          phoneNums.push(credentials.phone)
+          return user
+        })
+        .then(function(user) {
+          var email = credentials.email;
+          var password = credentials.password;
+          return auth.$authWithPassword({
+            email: email,
+            password: password
           })
-          .catch(console.error)  
-        }
-        else {
-          if (phoneNums.indexOf(credentials.phone.replace(/\D/, "")) !== -1) {
-            return "Invalid phone"
-          }
-          if (emails.indexOf(credentials.email) !== -1) {
-            return "Invalid email"
-          }
-        }
+        })
+        .catch(console.error) 
       },
       getCurrentUser: function() {
         return ref.getAuth()
@@ -69,6 +60,12 @@ app.factory("AuthFactory", function($firebaseObject, $firebaseAuth, $firebaseArr
             console.log(error)
           })
         }
+      },
+      existingPhones: function() {
+        return phoneNums
+      },
+      existingEmails: function() {
+        return emails
       }
     }
   });
