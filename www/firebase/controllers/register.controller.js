@@ -32,11 +32,11 @@ app.controller('RegisterCtrl', function($scope, $firebaseAuth, AuthFactory, $sta
         }
     }
     $scope.signIn = function(credentials) {
-        if (!AuthFactory.getCurrentUser()) {
+        if (AuthFactory.signIn(credentials) === "Invalid login") {
             $scope.error = $ionicPopup.alert({
                 title: 'Invalid login',
                 template: 'Oops, you might have spelled something wrong! Please try again :)'
-            })   
+            })
         }
         else {
             AuthFactory.signIn(credentials)
