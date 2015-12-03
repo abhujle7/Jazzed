@@ -5,8 +5,8 @@ app.config(function($stateProvider) {
     views: {
       'searchView': {
         templateUrl: 'js/search/results.html',
-        controller: 'SearchCtrl'
-      }
+        controller: 'ResultsCtrl'
+       }
     }
    })
 });
