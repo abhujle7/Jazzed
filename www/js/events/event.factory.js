@@ -1,4 +1,4 @@
-app.factory('EventFactory', function($q, $state, $firebase, $firebaseArray, $ionicHistory, AuthFactory) {
+app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHistory, AuthFactory) {
 	
 	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com');
 	var events = $firebaseArray(ref.child('events'));
