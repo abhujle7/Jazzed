@@ -1,4 +1,4 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state) {
 
   var currUser = AuthFactory.getCurrentUser().uid
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
@@ -13,6 +13,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     'yelp',
     'movies'
   ]
+    // $scope.events = EventFactory.all();
 
   $scope.listVisibility = false;
 
@@ -42,11 +43,15 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
       ChatFactory.remove(chat);
   }
 
-  $scope.createCustomEvent = function() {
-    //take this chat_id and send it to eventFactory
-    EventFactory.addCustomEvent();
 
+  $scope.createEvent = function() {
+      $state.go('tab.createNewEvent');
   }
+  // $scope.createCustomEvent = function() {
+  //   //take this chat_id and send it to eventFactory
+  //   EventFactory.addCustomEvent();
+
+  // }
 
     // $scope.sendChat = function (chat){
     //   if ($rootScope.user) {

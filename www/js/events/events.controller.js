@@ -1,4 +1,4 @@
-app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory) {
+app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory, $ionicHistory) {
 
 	$scope.rooms = RoomsFactory.all();
 	$scope.events = EventFactory.all();
@@ -18,5 +18,9 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	$scope.submitEvent = function() {
 		console.log("sup");
 		EventFactory.addEvent($scope.data)
+	}
+
+	$scope.goBack = function () {
+		$ionicHistory.goBack();
 	}
  })
