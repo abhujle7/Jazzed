@@ -1,0 +1,13 @@
+<ion-view view-title="Live Polls">
+  <ion-content>
+    <ion-list>
+    	<ion-item ng-click="createNewPoll()">
+    		<p>Create a new Event</p>
+    	</ion-item>
+    	<ion-item ng-repeat="event in events" href="#">
+    		<h2>{{event.name}}</h2>
+    		<p>At time {{event.time}} located at the place called {{event.location.name}} located at {{event.location.coordinates}} with key {{event.groups}}</p>
+    	</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
