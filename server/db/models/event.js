@@ -1,4 +1,9 @@
 'use strict'
+
+// if you're not using mongoose anymore, you should remove all these
+// files before employers look at the repo
+
+
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
@@ -26,7 +31,7 @@ var schema = new mongoose.Schema({
 		}
 	},
 	budget: {
-		type: Number		
+		type: Number
 	},
 });
 

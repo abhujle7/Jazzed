@@ -1,5 +1,5 @@
 app.factory('EventFactory', function($q, $state, $firebase, $firebaseArray, $ionicHistory, AuthFactory) {
-	
+
 	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com');
 	var events = $firebaseArray(ref.child('events'));
 
@@ -13,9 +13,11 @@ app.factory('EventFactory', function($q, $state, $firebase, $firebaseArray, $ion
 	function convertToArray(eventsList) {
 		var eventsArr = [];
 		for (var key in eventsList) {
+      // redundant condition (oh wait... null...)
+      // but what would it be if not an object?
 			if (typeof eventsList[key] == "object" && eventsList[key])
 				eventsArr.push(eventsList[key]);
-		}	
+		}
 		return eventsArr;
 	}
 
@@ -28,9 +30,11 @@ app.factory('EventFactory', function($q, $state, $firebase, $firebaseArray, $ion
 				var fixedEventsArr = convertToArray(eventsList[0]);
 				var customEventArr = convertToArray(eventsList[1]);
 				deferred.resolve(fixedEventsArr.concat(customEventArr));
-			});		
-			return deferred.promise; 
+			});
+			return deferred.promise;
 		},
+
+    // what's a fixed event vs a custom event?
 		addFixedEvent: function(eventName, eventTime, eventLocation, locationName) {
 			console.log("Fixed happened");
 			fixedEvents.$add({
@@ -38,10 +42,11 @@ app.factory('EventFactory', function($q, $state, $firebase, $firebaseArray, $ion
 				time: eventTime,
 				location: {
 					name: locationName,
-					coordinates: eventLocation
+					coordinates: eventLocation // why does this not need a group?
 				}
 			})
 			.then(function() {
+        // why does this one go back and custom event doesnt?
 				$ionicHistory.goBack(); //goes back to previous view
 			})
 		},
@@ -109,7 +114,7 @@ app.factory('EventFactory', function($q, $state, $firebase, $firebaseArray, $ion
               "name": {".validate": "newData.isString() && newData.val().length < 20"},
               "coordinates": {
                 ".validate": "newData.val().length === 2  || data.val().length === 2"
-              } 
+              }
             },
             "groups": {
               "$group_id": {
@@ -133,7 +138,7 @@ app.factory('EventFactory', function($q, $state, $firebase, $firebaseArray, $ion
   "events": {
     "$event_id": {
       ".validate": "root.child('events/' + $event_id).exists()"
-  } 
+  }
 
   note that we have a get function
   	if this gets the current room
@@ -176,7 +181,7 @@ switch name and id for custom
       //         "name": {".validate": "newData.isString() && newData.val().length < 20"},
       //         "coordinates": {
       //			".validate": "newData.val().length < 20 && newData.val().length > 0"
-      //         } 
+      //         }
       //       }
       //     }
       //   },
@@ -199,7 +204,7 @@ switch name and id for custom
           "groups": {
             "$group_id": {
               ".validate": "root.child('groups/' + $group_id).exists()"
-            }  
+            }
           },
           "contacts": {
             "$contact_id": {
@@ -225,7 +230,7 @@ switch name and id for custom
           "events": {
             "$event_id": {
               ".validate": "root.child('events/' + $event_id).exists()"
-            } 
+            }
           }
         }
       },
@@ -275,7 +280,7 @@ switch name and id for custom
         "fixed": {
       	".write": "auth !== null",
           "name": {
-            ".validate": "newData.val().length < 20 && newData.val().length > 0",            
+            ".validate": "newData.val().length < 20 && newData.val().length > 0",
             "$event_id": {
               ".validate": "(data.child('name').exists()) && (newData.exists() && newData.hasChildren(['time', 'location']))",
               "time": {
@@ -297,7 +302,7 @@ switch name and id for custom
             ".validate": "newData.val().length < 20 && newData.val().length > 0",
             "name": {
               ".write": "root.child('groups/' + $group_id + '/members/' + auth.uid).exists()"
-//              ".validate": "root.child('groups/' + $group_id).exists()"   
+//              ".validate": "root.child('groups/' + $group_id).exists()"
             },
             "time": {
               ".validate": "newData.val() <= now"
@@ -307,7 +312,7 @@ switch name and id for custom
               "name": {".validate": "newData.isString() && newData.val().length < 20"},
               "coordinates": {
                 ".validate": "newData.val().length === 2  || data.val().length === 2"
-              } 
+              }
             },
             "groups": {
               "$group_id": {
@@ -318,7 +323,7 @@ switch name and id for custom
           }
         }
       }
-    }  
+    }
   }
 
 
