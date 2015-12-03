@@ -16,8 +16,8 @@
             <ion-item ng-if="chats.length == 0" class="textCenter">
                 <h4>No messages in this room. Send message to start.</h4>
             </ion-item>
-            <ion-item class="" ng-if="!listVisibility" ng-repeat="chat in chats | orderBy:'!timestamp':true" type="item-text-wrap">
-                <p><h4>{{chat.from}} :</h4><h3 am-time-ago="chat.timestamp" class="item-note">{{chat.timestamp}}
+            <ion-item class="item-text-wrap" ng-if="!listVisibility" ng-repeat="chat in chats | orderBy:'!timestamp':true">
+                <p><h4>{{chat.from}} :</h4><h3 am-time-ago="chat.timestamp" class="item-note">{{chat.userFriendlyTime}}
                 </h3></p>
                 
                 <p>{{chat.message}}</p>

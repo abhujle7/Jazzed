@@ -40,6 +40,14 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
         console.log("selecting the room with id: " + roomId);
         selectedRoomId = roomId;
         chats = $firebaseArray(ref.child('messages').child(selectedRoomId));
+
+        chats.$loaded(function(chatsList) {
+          console.log("chats from the factory is", chatsList);
+          for (var i = 0; i < chatsList.length; i++) {
+            var date = new Date(chatsList[i].timestamp);
+            chatsList[i].userFriendlyTime = date.getHours() + ":" + date.getMinutes();
+          }
+        })
     },
     send: function (message) {
         console.log("sending message from (insert user here) & message is " + message);
