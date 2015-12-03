@@ -8,17 +8,23 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     textMessage: ""
   };
 
-  $scope.events = [
-    'ball',
-    'yelp',
-    'movies'
-  ]
+  $scope.events = EventFactory.all()
+  // $scope.events = [
+  //   'ball',
+  //   'yelp',
+  //   'movies'
+  // ]
     // $scope.events = EventFactory.all();
+
 
   $scope.listVisibility = false;
 
   $scope.revealList = function () {
     $scope.listVisibility = true;
+  }
+
+  $scope.hideList = function () {
+    $scope.listVisibility = false;
   }
 
   // $scope.roomName = currentRoom.child('name')
@@ -52,6 +58,11 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   //   EventFactory.addCustomEvent();
 
   // }
+
+  $scope.goToPoll = function (event) {
+    console.log('go to poll function', event)
+    $state.go('tab.polls', {event: event})
+  }
 
     // $scope.sendChat = function (chat){
     //   if ($rootScope.user) {

@@ -3,7 +3,7 @@
         <ion-list ng-show="roomName">
                 <ion-list ng-if="listVisibility">
                 Saved Events
-                    <ion-item ng-repeat="event in events | filter: IM.textMessage">{{event}}</ion-item>
+                    <ion-item ng-repeat="event in events | filter: IM.textMessage" ng-click="goToPoll(event)">{{event.name}}</ion-item>
                     New
                     <ion-item ng-click="createEvent()">Showtimes</ion-item>
                     <ion-item ng-click="createEvent()">Yelp</ion-item>
@@ -29,8 +29,11 @@
                         <label class="item-input-wrapper">
                             <input type="text" ng-model="IM.textMessage" placeholder="Type in your message...">
                         </label>
-                        <button ng-click="revealList()" class="button button-small button-balanced">
-                            Suggest Event 
+                        <button ng-hide="listVisibility" ng-click="revealList()" class="button button-small button-balanced">
+                            <span>Suggest Event</span>
+                        </button>
+                        <button ng-show="listVisibility" ng-click="hideList()" class="button button-small button-balanced">
+                             <span>Return to Chat</span>
                         </button>
                         <button ng-click="sendMessage(IM.textMessage)" class="button button-small button-balanced">
                             Send 
