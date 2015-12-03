@@ -1,4 +1,12 @@
 {
+    "cordova-plugin-contacts": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-contacts@~1.1.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
     "cordova-plugin-device": {
         "source": {
             "type": "registry",
@@ -43,22 +51,6 @@
         "source": {
             "type": "registry",
             "id": "ionic-plugin-keyboard"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-contacts": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-contacts"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-camera": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-camera"
         },
         "is_top_level": true,
         "variables": {}

@@ -7,13 +7,16 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
-        },
         "cordova-plugin-contacts": {
             "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
         },
         "cordova-plugin-splashscreen": {
@@ -22,13 +25,7 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
         },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
-        },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
-        },
-        "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
         }
     },
