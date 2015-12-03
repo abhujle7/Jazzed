@@ -1,10 +1,11 @@
 app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory) {
 
-	var promise = EventFactory.all();
+	// var promise = EventFactory.all();
 	$scope.rooms = RoomsFactory.all();
-	promise.then(function(eventList) {
-		$scope.events = eventList;
-	})
+	$scope.events = EventFactory.all();
+	// promise.then(function(eventList) {
+	// 	$scope.events = eventList;
+	// })
 
 	$scope.data = {
 		name: null,
@@ -19,10 +20,12 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	}
 
 	$scope.submitEvent = function() {
-		if ($scope.data.group_id)
-			EventFactory.addCustomEvent($scope.data.name, $scope.data.time, $scope.data.location, $scope.data.locationName, $scope.data.group_id);
-		else
-			EventFactory.addFixedEvent($scope.data.name, $scope.data.time, $scope.data.location, $scope.data.locationName);
+		console.log("sup");
+		EventFactory.addEvent($scope.data)
+		// if ($scope.data.group_id)
+		// 	EventFactory.addCustomEvent($scope.data.name, $scope.data.time, $scope.data.location, $scope.data.locationName, $scope.data.group_id);
+		// else
+		// 	EventFactory.addFixedEvent($scope.data.name, $scope.data.time, $scope.data.location, $scope.data.locationName);
 	}
  })
 
