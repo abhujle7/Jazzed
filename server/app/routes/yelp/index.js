@@ -3,6 +3,7 @@ var router = require('express').Router();
 module.exports = router;
 var Yelp = require('yelp');
 
+// maybe put these in a gitignored file
 var yelp = new Yelp({
   consumer_key: 'P7V5Ey4mu4NW6QVC9HMI2w',
   consumer_secret: 'PI_8nsiPnZ6kYizsrmxI7ngCoBw',

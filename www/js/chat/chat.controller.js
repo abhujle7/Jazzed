@@ -3,7 +3,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   var currUser = AuthFactory.getCurrentUser().uid
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
   var userObj = $firebaseObject(userRef)
-  
+
   $scope.IM = {
     textMessage: ""
   };
@@ -25,7 +25,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   ChatFactory.selectRoom($stateParams.id);
 
   var roomName = ChatFactory.getSelectedRoomName();
-  
+
   if (roomName) {
       $scope.roomName = " - " + roomName;
       $scope.chats = ChatFactory.all();
@@ -35,6 +35,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
       console.log('this is userobj', userObj)
       console.log(msg);
       ChatFactory.send(msg);
+      // wait for promise
       $scope.IM.textMessage = "";
   }
 
