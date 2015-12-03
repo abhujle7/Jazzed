@@ -6,6 +6,7 @@ app.controller('SettingsCtrl', function($scope, $state, $firebaseObject, AuthFac
 	var currentUser = $firebaseObject(userRef)
 	$scope.user = currentUser;
 	userRef.on("value", function (snapshot) {
+    // is there a lodash method for this?
 		$scope.name = snapshot.val().name;
 		$scope.email = snapshot.val().email;
 		$scope.phone = snapshot.val().phone;
