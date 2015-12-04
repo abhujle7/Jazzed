@@ -28,18 +28,7 @@ app.factory('ContactsFactory', function(AuthFactory, $firebaseObject, $q) {
 			    	.flatten()
 			    	.pluck('value')
 			    	.value();
-
-
-			    // for (var i = 0; i<contacts.length; i++) {
-			    // 	// console.log(contacts[i]);
-			    // 	// console.log(contacts[i].phoneNumbers);
-			    // 	if (contacts[i].phoneNumbers[0])
-			    // 		userContacts.push(contacts[i].phoneNumbers[0].value)
-			    // }
-
-			    // console.log("making sure we return after all the console.logs in the loop", userContacts);
-			    console.log("this is deviceonready")
-			    deferred.resolve(userContacts); //this could be wrong
+			    deferred.resolve(userContacts);
 			}
 
 			function onError(contactError) {
@@ -56,23 +45,3 @@ app.factory('ContactsFactory', function(AuthFactory, $firebaseObject, $q) {
 	 	}
 	}
 })
-
-/*
-Why is nothing showing up?
-	We ran a console.log in the for loop and i printed out to 525
-
-------------------TO-DO-------------
-console.log(this)?
-general local storage as soon as this loads
-*/
-
-
-
-
-			    // window.localStorage.setItem('contacts', JSON.stringify(userContacts))
-
-
-			    // return deferred.promise;
-			    // console.log("the array is", userContacts);
-			    // console.log("Is this an array?", [].isArray(userContacts));
-			    // console.log("Does it have a element 0?", userContacts[0], userContacts['0']);
