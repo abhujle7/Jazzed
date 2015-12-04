@@ -31,6 +31,7 @@ app.factory("AuthFactory", function($firebaseAuth) {
           })
           emails.push(credentials.email)
           phoneNums.push(credentials.phone)
+          phoneToUserHash[credentials.phone.replace(/\D/, "")] = user.uid
           return user
         })
         .then(function(user) {

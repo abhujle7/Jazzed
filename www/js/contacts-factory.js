@@ -1,9 +1,7 @@
-app.factory('ContactsFactory', function(AuthFactory, $firebaseObject) {
+app.factory('ContactsFactory', function(AuthFactory, $firebaseObject, $q) {
 	var userContacts = [];
-	var contactRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + AuthFactory.getCurrentUser().uid + '/contacts')
-	var phones = AuthFactory.existingPhones()
-	var usersRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/')
 	var phoneToUserHash = AuthFactory.phoneToUser()
+	var deferred = $q.defer();
 
 
 	function parsePhone(number) {
@@ -13,50 +11,68 @@ app.factory('ContactsFactory', function(AuthFactory, $firebaseObject) {
 	    }
 	    return killDigits
 	}
-
-	document.addEventListener("deviceready", onDeviceReady, false)
-
-
 		
-	function onDeviceReady () {
-		function onSuccess(contacts) {
-		    alert('Loading contacts, please be patient :)');
-		    for (var i = 0; i<contacts.length; i++) {
-			    var contact = contacts[i].phoneNumbers;
-			    if (contact.length) {
-				    for (var j = 0; j<contact.length; j++) {
-				    	var number = parsePhone(contact[j].value);
-				    	if (phoneToUserHash[number] && phoneToUserHash[number] !== AuthFactory.getCurrentUser().uid) {
-				    		var contactId = phoneToUserHash[number]
-				    		contactRef.child(contactId).set(null)
-				    		var contactBase = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + contactId)
-				    		userContacts.push({
-				    			name: contactBase.child('name'),
-				    			phone: contactBase.child('phone'),
-				    			photo: contactBase.child('photo')
-				    		})
-				    	}
-				    }
-			    }
-		    }
-		};
+	return {
+		getPromise: function() {
+			// deferred.promise.then(function(contactList) {
+				// console.log(contactList);
+			// });
+			return deferred.promise;
+		},
+		onDeviceReady: function () {
+			function onSuccess(contacts) {
+			    alert('Loading contacts, please be patient :)');
 
-		function onError(contactError) {
-		    alert('onError!');
-		};
+			    userContacts = _(contacts)
+			    	.pluck('phoneNumbers')
+			    	.flatten()
+			    	.pluck('value')
+			    	.value();
 
-		var options      = new ContactFindOptions();
-		options.filter   = "";
-		options.multiple = true;
-		options.desiredFields = ['phoneNumbers', 'displayName', 'name']
-		options.hasPhoneNumber = true; //android only
-		var fields       = ['displayName', 'phoneNumbers'];
-		navigator.contacts.find(fields, onSuccess, onError, options)
- 	}
- 	return {
- 		getContacts: function() {
- 			return userContacts
- 		}
- 	}
-	
+
+			    // for (var i = 0; i<contacts.length; i++) {
+			    // 	// console.log(contacts[i]);
+			    // 	// console.log(contacts[i].phoneNumbers);
+			    // 	if (contacts[i].phoneNumbers[0])
+			    // 		userContacts.push(contacts[i].phoneNumbers[0].value)
+			    // }
+
+			    // console.log("making sure we return after all the console.logs in the loop", userContacts);
+			    console.log("this is deviceonready")
+			    deferred.resolve(userContacts); //this could be wrong
+			}
+
+			function onError(contactError) {
+			    alert('onError!');
+			}
+
+			var options      = new ContactFindOptions();
+			options.filter   = "";
+			options.multiple = true;
+			options.desiredFields = ['phoneNumbers', 'displayName', 'name']
+			// options.hasPhoneNumber = true; //android only
+			var fields       = ['displayName', 'phoneNumbers'];
+			navigator.contacts.find(fields, onSuccess, onError, options)
+	 	}
+	}
 })
+
+/*
+Why is nothing showing up?
+	We ran a console.log in the for loop and i printed out to 525
+
+------------------TO-DO-------------
+console.log(this)?
+general local storage as soon as this loads
+*/
+
+
+
+
+			    // window.localStorage.setItem('contacts', JSON.stringify(userContacts))
+
+
+			    // return deferred.promise;
+			    // console.log("the array is", userContacts);
+			    // console.log("Is this an array?", [].isArray(userContacts));
+			    // console.log("Does it have a element 0?", userContacts[0], userContacts['0']);
