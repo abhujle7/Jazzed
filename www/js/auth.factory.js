@@ -4,10 +4,14 @@ app.factory("AuthFactory", function($firebaseAuth) {
     var users = ref.child('users')
     var emails = []
     var phoneNums = []
+    var phoneToUserHash = {};
     users.once("value", function(allUsers) {
+      for (var uid in allUsers.val()) {
+        phoneToUserHash[allUsers.val()[uid].phone] = uid
+      }
       allUsers.forEach(function(oneUser) {
         var phone = oneUser.child('phone').val();
-        var email = oneUser.child('email').val()
+        var email = oneUser.child('email').val();
         phoneNums.push(phone)
         emails.push(email)
       })
@@ -63,6 +67,9 @@ app.factory("AuthFactory", function($firebaseAuth) {
       },
       existingEmails: function() {
         return emails
+      },
+      phoneToUser: function() {
+        return phoneToUserHash
       }
     }
   });

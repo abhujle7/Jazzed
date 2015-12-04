@@ -1,16 +1,16 @@
 app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHistory, AuthFactory) {
 	
 	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com');
-	var events = $firebaseArray(ref.child('events'));
+	var polls = $firebaseArray(ref.child('consensus'));
 	var currentUser = AuthFactory.getCurrentUser();
 
 	return {
     all: function() {
-      console.log(events);
-      return events;
+      console.log(polls);
+      return polls;
     },
-    addEvent: function(event) {
-      events.$add({
+    addPoll: function(event) {
+      polls.$add({
         name: event.name,
         time: event.time,
         location: {

@@ -1,10 +1,10 @@
 <ion-view view-title="Jazzed">
 	<ion-content class="padding">
+		<button>Sync Contacts</button>
 		<ion-list>
 			<ion-item ng-repeat="contact in contacts">
-				{{ contact }}
+				{{contact}}
 			</ion-item>
 		</ion-list>
-		<button ng-click="getContacts()">Sync Contacts</button>
 	</ion-content>
 </ion-view>

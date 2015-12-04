@@ -1,10 +1,7 @@
-app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory) {
+app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup) {
 
-	var promise = EventFactory.all();
 	$scope.rooms = RoomsFactory.all();
-	promise.then(function(eventList) {
-		$scope.events = eventList;
-	})
+	$scope.events = EventFactory.all();
 
 	$scope.data = {
 		name: null,
@@ -19,11 +16,26 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	}
 
 	$scope.submitEvent = function() {
-		if ($scope.data.group_id)
-			EventFactory.addCustomEvent($scope.data.name, $scope.data.time, $scope.data.location, $scope.data.locationName, $scope.data.group_id);
-		else
-			EventFactory.addFixedEvent($scope.data.name, $scope.data.time, $scope.data.location, $scope.data.locationName);
+		console.log("sup");
+		EventFactory.addEvent($scope.data)
+	}
+
+	$scope.saveEventPopup = function () {
+		$ionicPopup.show({
+			title: 'Would you like to create a new poll for this event?',
+			scope: $scope,
+			buttons: [
+				{text: 'Yes, I want to create a live poll'},
+				{
+				text: 'No, just save this event for future use',
+				onTap: $scope.submitEvent
+				},
+				{text: 'Cancel'}
+			]
+		})
+	}
+
+	$scope.goBack = function () {
+		$ionicHistory.goBack();
 	}
  })
-
-//needs to talk to the back

@@ -2,8 +2,13 @@
     <ion-content>
         <ion-list ng-show="roomName">
                 <ion-list ng-if="listVisibility">
-                Events
-                    <ion-item ng-repeat="event in events | filter: IM.textMessage">{{event}}</ion-item>
+                Saved Events
+                    <ion-item ng-repeat="event in events | filter: IM.textMessage" ng-click="goToPoll(event)">{{event.name}}</ion-item>
+                    New
+                    <ion-item ng-click="createEvent()">Showtimes</ion-item>
+                    <ion-item ng-click="createEvent()">Yelp</ion-item>
+                    <ion-item ng-click="createEvent()">SeatGeek</ion-item>
+                    <ion-item ng-click="createEvent()">Create Custom Event</ion-item>
                 </ion-list>
             <ion-item ng-hide="chats" class="textCenter">
                 <i class="icon ion-loading-c"></i> Loading Chats
@@ -11,10 +16,10 @@
             <ion-item ng-if="chats.length == 0" class="textCenter">
                 <h4>No messages in this room. Send message to start.</h4>
             </ion-item>
-            <ion-item class="" ng-if="!listVisibility" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
-                <h4>{{chat.from}} :</h4>
-                <span am-time-ago="chat.createdAt" class="item-note">
-                </span>
+            <ion-item class="item-text-wrap" ng-if="!listVisibility" ng-repeat="chat in chats | orderBy:'!timestamp':true">
+                <p><h4>{{chat.from}} :</h4><h3 am-time-ago="chat.timestamp" class="item-note">{{chat.userFriendlyTime}}
+                </h3></p>
+                
                 <p>{{chat.message}}</p>
                 <ion-option-button class="button-assertive" ng-click="remove(chat)">
                     Delete
@@ -24,8 +29,11 @@
                         <label class="item-input-wrapper">
                             <input type="text" ng-model="IM.textMessage" placeholder="Type in your message...">
                         </label>
-                        <button ng-click="revealList()" class="button button-small button-balanced">
-                            Poll 
+                        <button ng-hide="listVisibility" ng-click="revealList()" class="button button-small button-balanced">
+                            <span>Suggest Event</span>
+                        </button>
+                        <button ng-show="listVisibility" ng-click="hideList()" class="button button-small button-balanced">
+                             <span>Return to Chat</span>
                         </button>
                         <button ng-click="sendMessage(IM.textMessage)" class="button button-small button-balanced">
                             Send 
@@ -37,7 +45,6 @@
                 <h4>Please select a room to chat first.</h4>
             </ion-item>
         </ion-list>
-        <button class="button button-full button-positive" ng-click="createCustomEvent()">Create Custom Event</button>
     </ion-content>
       
 
