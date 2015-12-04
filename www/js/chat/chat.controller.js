@@ -45,6 +45,14 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
       $state.go('tab.createNewEvent');
   }
 
+  $scope.goToSeatgeek = function() {
+    $state.go('tab.search')
+  }
+
+  $scope.goToShowtimes = function() {
+    $state.go('tab.movies')
+  }
+
   $scope.goToPoll = function (event) {
     console.log('go to poll function', event.$id)
     $state.go('tab.polls', {eventid: event.$id})

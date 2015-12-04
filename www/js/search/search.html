@@ -1,8 +1,13 @@
-<ion-view view-title="Search Event">
+<ion-view view-title="Search Concert or Sporting Event">
 	<ion-content class="padding">
 	<label class="item item-input">
-		<span class="input-label">Performer</span>
+		<span class="input-label">Artist/Sport Team</span>
   		<input type="text" ng-model="searching.performer">
+	</label>
+
+	<label class="item item-input">
+		<span class="input-label">On or After</span>
+  		<input type="date" ng-model="searching.date">
 	</label>
 
 	<div class="list">
@@ -71,5 +76,6 @@
 	<button class="button button-assertive" ng-click="search(searching)">
   Search
 </button>
+<p>{{searching}}</p>
 	</ion-content>
 </ion-view>
