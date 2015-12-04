@@ -2,7 +2,7 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
 	
 	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com');
 	var events = $firebaseArray(ref.child('events'));
-	var currentUser = AuthFactory.getCurrentUser();
+	var currentUser = AuthFactory.getCurrentUser().uid;
 
 	return {
     all: function() {
@@ -15,6 +15,7 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
         description: event.description,
         date: event.date,
         time: event.time,
+        creator: currentUser,
         location: {
           name: event.locationName,
           coordinates: event.location
