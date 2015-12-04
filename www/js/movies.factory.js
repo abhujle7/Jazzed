@@ -1,16 +1,19 @@
 app.factory('MoviesFactory', function($http) {
-	var data;
+	var movies;
 	return {
 		get: function(zip) {
+			if (zip.toString().length < 5) {
+				zip = '0' + zip
+			}
 			return $http.get('/api/movies/' + zip)
-				.then(function(movies) {
-					data = movies
+				.then(function(response) {
+					movies = response.data.slice(0, 10)
 					return movies
 				})
 		},
 
 		result: function() {
-			return data;
+			return movies;
 		}
 	}
 })
