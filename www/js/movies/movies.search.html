@@ -2,9 +2,15 @@
 	<ion-content class="padding">
 	<label class="item item-input">
 		<span class="input-label">Zip Code</span>
-  		<input type="number" ng-model="zipcode" maxlength="5">
+  		<input type="number" ng-model="data.zipcode" maxlength="5">
 	</label>
-		<button class="button button-assertive" ng-click="search(zipcode)">
+	{{zipcode}}
+	<label class="item item-input">
+		<span class="input-label">On or After</span>
+  		<input type="date" ng-model="data.date">
+	</label>
+	{{date}}
+		<button class="button button-assertive" ng-click="search(data)">
   Search
 </button>
 </ion-content>
