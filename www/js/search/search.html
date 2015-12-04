@@ -5,6 +5,11 @@
   		<input type="text" ng-model="searching.performer">
 	</label>
 
+	<label class="item item-input">
+		<span class="input-label">On or After</span>
+  		<input type="date" ng-model="searching.date">
+	</label>
+
 	<div class="list">
   <label class="item item-input item-select">
     <div class="input-label">
@@ -71,5 +76,6 @@
 	<button class="button button-assertive" ng-click="search(searching)">
   Search
 </button>
+<p>{{searching}}</p>
 	</ion-content>
 </ion-view>
