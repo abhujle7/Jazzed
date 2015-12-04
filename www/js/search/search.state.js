@@ -3,7 +3,7 @@ app.config(function($stateProvider) {
   .state('tab.search', {
     url: '/search',
     views: {
-      'searchView': {
+      'roomsView': {
         templateUrl: 'js/search/search.html',
         controller: 'SearchCtrl'
       }

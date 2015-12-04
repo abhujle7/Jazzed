@@ -5,9 +5,9 @@
                 Saved Events
                     <ion-item ng-repeat="event in events | filter: IM.textMessage" ng-click="goToPoll(event)">{{event.name}}</ion-item>
                     New
-                    <ion-item ng-click="createEvent()">Showtimes</ion-item>
+                    <ion-item ng-click="goToShowtimes()">Showtimes</ion-item>
                     <ion-item ng-click="createEvent()">Yelp</ion-item>
-                    <ion-item ng-click="createEvent()">SeatGeek</ion-item>
+                    <ion-item ng-click="goToSeatgeek()">SeatGeek</ion-item>
                     <ion-item ng-click="createEvent()">Create Custom Event</ion-item>
                 </ion-list>
             <ion-item ng-hide="chats" class="textCenter">

@@ -25,6 +25,9 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
       }
       return null;
     },
+    getRoomId: function () {
+      return selectedRoomId;
+    },
     getSelectedRoomName: function () {
       var selectedRoom;
       if (selectedRoomId && selectedRoomId != null) {
