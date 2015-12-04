@@ -1,22 +1,40 @@
 <ion-view view-title="Create Poll">
 	<ion-content>
 		<div class="list">
-			<label class="item item-input">
-				<span>Event:{{event.name}}</span>
+			<label class="item">
+				<span>Event: {{event.name}}</span>
 			</label>
-			<label class="item item-input">
-				<span>Description:{{event.description}}</span>
+			<label class="item">
+				<span>Description: {{event.description}}</span>
 			</label>
-			<label class="item item-input">
-				<span>When:{{event.date}}{{event.time}}</span>
+			<label class="item">
+				<span>When: {{event.date}}{{event.time}}</span>
 			</label>
-			<label class="item item-input">
+			<label ng-show="eventLocation()" class="item">
+				<span>Location: {{event.location}}</span>
+			</label>
+			<label ng-hide="eventLocation()" class="item item-input">
 				<input type="text" placeholder="Location Name" ng-model="data.location">
 			</label>
-			<ion-radio class="item item-input" ng-model="data.responses.attending" ng-value="1">Attending
+			<label>End Poll at:</label>
+			<label class="item item-input">
+				<input type="date" ng-model="data.expiration.date">
+			</label>
+			<label class="item item-input">
+				<input type="time" ng-model="data.expiration.time">
+			</label>
+			<label class="item">
+				<input type="date" ng-model=testdate>
+				{{testdate}}
+			</label>
+			<label class="item">
+				{{formattedDate}}
+			</label>
+
+		<!-- 	<ion-radio class="item item-input" ng-model="data.responses.attending" ng-value="1">Attending
 			</ion-radio>
 			<ion-radio class="item item-input" ng-model="data.responses.notAttending" ng-value="1">Not Attending
-			</ion-radio>
+			</ion-radio> -->
 			<label class="item item-input item-select">
 				<div class='input-label'>
 					group
