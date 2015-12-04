@@ -12,6 +12,8 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
     addEvent: function(event) {
       events.$add({
         name: event.name,
+        description: event.description,
+        date: event.date,
         time: event.time,
         location: {
           name: event.locationName,
@@ -19,10 +21,13 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
         },
         groups: event.group_id
       })
-      .then(function() {
-        // $ionicHistory.goBack(); //goes back to previous view
-        $state.go('tab.events');
+      .then(function(data) {
+        console.log('added event', data)
+        // $state.go('tab.events');
       })
+    },
+    get: function (eventId) {
+      return events.$getRecord(eventId)
     }
   }
 })

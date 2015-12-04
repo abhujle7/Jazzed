@@ -1,27 +1,26 @@
-app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHistory, AuthFactory) {
+app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHistory, AuthFactory, ChatFactory, $firebaseObject) {
 	
+  var selectedRoomId = ChatFactory.getRoomId();
 	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com');
-	var polls = $firebaseArray(ref.child('consensus'));
+	var polls = $firebaseArray(ref.child('poll').child(selectedRoomId));
 	var currentUser = AuthFactory.getCurrentUser();
+  var user = AuthFactory.getCurrentUser().uid
+  var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + user)
+  var userObj = $firebaseObject(userRef)
 
 	return {
     all: function() {
       console.log(polls);
       return polls;
     },
-    addPoll: function(event) {
-      polls.$add({
-        name: event.name,
-        time: event.time,
-        location: {
-          name: event.locationName,
-          coordinates: event.location
-        },
-        groups: event.group_id
-      })
-      .then(function() {
+    addPoll: function(pollData) {
+      console.log('this is polldata', pollData)
+      pollData.timestamp = Firebase.ServerValue.TIMESTAMP;
+      pollData.creator = user;
+      polls.$add(pollData)
+      .then(function(data) {
         // $ionicHistory.goBack(); //goes back to previous view
-        $state.go('tab.events');
+        console.log('poll saved', data);
       })
     }
   }

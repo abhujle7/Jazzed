@@ -46,8 +46,8 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.goToPoll = function (event) {
-    console.log('go to poll function', event)
-    $state.go('tab.polls', {event: event})
+    console.log('go to poll function', event.$id)
+    $state.go('tab.polls', {eventid: event.$id})
   }
  })
 
