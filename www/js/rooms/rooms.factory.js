@@ -8,6 +8,7 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory)
   var currUser = AuthFactory.getCurrentUser().uid
   var currUserRooms = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser + '/groups')
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
+  var currUserRoomsArr = $firebaseArray(currUserRooms)
 
   return {
 
@@ -34,6 +35,9 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory)
         return id;
       })
         //state.go to chat detail with new id
+    },
+    findUserRooms: function() {
+      return currUserRoomsArr;
     }
   };
 });

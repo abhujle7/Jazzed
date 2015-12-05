@@ -10,6 +10,9 @@ app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) 
 
     $scope.rooms = RoomsFactory.all();
 
+    //$scope.rooms = RoomsFactory.findUserRooms()
+    //use this instead of all
+
     $scope.createRoom = function () {
         $state.go('tab.createNewRoom');
     }
