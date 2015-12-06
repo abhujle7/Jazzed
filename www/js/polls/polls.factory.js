@@ -1,19 +1,19 @@
 app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHistory, AuthFactory, ChatFactory, $firebaseObject) {
 	
-  var selectedRoomId = ChatFactory.getRoomId();
 	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com');
-	var polls = $firebaseArray(ref.child('polls').child(selectedRoomId));
-	var currentUser = AuthFactory.getCurrentUser();
+	var pollsRef = new Firebase('https://boiling-fire-3161.firebaseio.com/polls/');
+  var polls = $firebaseArray(pollsRef);
+  var currentUser = AuthFactory.getCurrentUser();
   var user = AuthFactory.getCurrentUser().uid
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + user)
   var userObj = $firebaseObject(userRef)
 
 	return {
     all: function() {
-      console.log(polls);
+      console.log('these are polls in fac', polls);
       return polls;
     },
-    addPoll: function(pollData) {
+    addPoll: function(pollData, roomId, eventId) {
       console.log('this is polldata', pollData)
       pollData.timestamp = Firebase.ServerValue.TIMESTAMP;
       pollData.creator = user;
@@ -21,6 +21,11 @@ app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHi
       pollData.expiration.time = moment(pollData.expiration.time).unix();
       pollData.live = true;
       console.log('this is polldata modified', pollData)
+      console.log('this is roomId', roomId)
+      console.log('this is polls', polls)
+      pollData.groups = roomId;
+      pollData.event = eventId;
+      console.log('this is pollData as added', pollData)
       polls.$add(pollData)
       .then(function(data) {
         // $ionicHistory.goBack(); //goes back to previous view
