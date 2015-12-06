@@ -1,4 +1,4 @@
-app.controller('ContactsCtrl', function($scope, contacts, ContactsFactory, AuthFactory, $firebaseObject){
+app.controller('ContactsCtrl', function($scope, contacts, ContactsFactory, AuthFactory){
 	document.addEventListener("deviceready", ContactsFactory.onDeviceReady, false)
 	var userContacts = contacts;
 	var phoneToUserHash = AuthFactory.phoneToUser();
@@ -15,6 +15,7 @@ app.controller('ContactsCtrl', function($scope, contacts, ContactsFactory, AuthF
 		for (var i = 0; i < userContacts.length; i++) {
 			var number = parsePhone(userContacts[i])
 			if (phoneToUserHash[number]) {
+				console.log(number)
 				var uid = phoneToUserHash[number];
 				userRef.child(uid).on("value", function(snapshot) {
 					var name = snapshot.val().name

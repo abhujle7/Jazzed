@@ -6,3 +6,4 @@ public
 coverage
 platforms
 www/main.js
+server/app/routes/yelp/variables.js

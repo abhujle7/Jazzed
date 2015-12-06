@@ -7,15 +7,17 @@ app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) 
     // .then(function (modal) {
     // $scope.modal = modal;
     // });
+    var userRooms = RoomsFactory.findUserRooms()
 
-    $scope.rooms = RoomsFactory.all();
+    var allRooms = RoomsFactory.all();
+
+    $scope.rooms = userRooms
 
     $scope.createRoom = function () {
         $state.go('tab.createNewRoom');
     }
 
     $scope.openRoom = function (id) {
-      console.log('this is id in open', id)
       $state.go('tab.chat', {
         id: id
       });
@@ -26,11 +28,8 @@ app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) 
     }
 
     $scope.saveNewRoom = function (roomObj) {
-        console.log('this is the roomobj in save', roomObj)
         return RoomsFactory.add(roomObj).then(function(id) {
-            console.log('this is the id in save', id)
             $scope.openRoom(id);
-            // $state.go('tab.chat', {id: id})
         })
 
         

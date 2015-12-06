@@ -5,7 +5,7 @@ var showtimes = require('showtimes');
 var s = showtimes(10001, {});
  
 router.get('/:id', function(req, res, next) {
-	var s = showtimes(req.params.id, {});
+	var s = showtimes(req.params.id, {date: req.query.date});
 	s.getTheaters(function (err, theaters) {
 		res.status(200).json(theaters);
 	})

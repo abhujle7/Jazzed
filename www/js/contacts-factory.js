@@ -14,15 +14,10 @@ app.factory('ContactsFactory', function(AuthFactory, $firebaseObject, $q) {
 		
 	return {
 		getPromise: function() {
-			// deferred.promise.then(function(contactList) {
-				// console.log(contactList);
-			// });
 			return deferred.promise;
 		},
 		onDeviceReady: function () {
 			function onSuccess(contacts) {
-			    alert('Loading contacts, please be patient :)');
-
 			    userContacts = _(contacts)
 			    	.pluck('phoneNumbers')
 			    	.flatten()
