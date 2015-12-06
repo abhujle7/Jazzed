@@ -36,6 +36,14 @@ app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHi
     updatePoll: function (id, data) {
       
       pollsRef.child(id).update({responses: data.responses})
+    },
+    getPoll: function (id) {
+      return polls.$getRecord(id)
+      // return pollsRef.child(id).once("value", function (data) {
+      //   var pollData = data.val();
+      //   console.log('this is getpoll in fac polldata', pollData)
+      //   return pollData;
+      // })
     }
   }
 })

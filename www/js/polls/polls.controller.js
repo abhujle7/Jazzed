@@ -1,11 +1,13 @@
-app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory, $ionicHistory, PollsFactory, eventDetails, $interval, $firebase, $stateParams) {
+app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory, $ionicHistory, PollsFactory, eventDetails, $interval, $firebase, $stateParams, pollDetails) {
 
 	$scope.rooms = RoomsFactory.all();
 	$scope.polls = PollsFactory.all();
 	$scope.event = eventDetails;
+	$scope.currentPoll = pollDetails;
+	console.log('in pollsctrl this is current poll', $scope.currentPoll)
 	var roomId = $scope.event.groups
+	var pollId = $stateParams.id
 	var pollsRef = new Firebase('https://boiling-fire-3161.firebaseio.com/polls/');
-	// var polls = $firebaseArray(ref.child('polls'));
 
 	$scope.data = {
 		location: null,  //if event has location, display and void this field in poll
@@ -32,26 +34,28 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 	}
 
 	$scope.submitPoll = function () {
-		console.log('do you need to invoke', $scope.event.$id)
-		console.log('this is data', $scope.data)
-		console.log('this is event groups', roomId)
+		// console.log('do you need to invoke', $scope.event.$id)
+		// console.log('this is data', $scope.data)
+		// console.log('this is event groups', roomId)
 		PollsFactory.addPoll($scope.data, roomId, $scope.event)
 		$ionicHistory.goBack();
 	}
 	
 	$scope.updatePoll = function () {
-		// console.log('this is data in update', data)
-		var pollId = $stateParams.id
-		console.log('this is pollid', pollId)
+		pollId = $stateParams.id
 		PollsFactory.updatePoll(pollId, $scope.data);
 	}
 	$scope.eventLocation = function () {
+		if (!$scope.event.location) {
+			return false;
+		}
 		if ($scope.event.location.name) {
 			return true;
 		}
 		return false;
 	}
 
+	
 
 	// $interval(function(){
 	      
