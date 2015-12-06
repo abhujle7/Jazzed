@@ -6,7 +6,6 @@ app.factory('SportsFactory', function($http) {
 			if (info.performer) {
 				var person = info.performer.toLowerCase().split(' ').join('-');
 				baseUrl += '&q=' + person
-				console.log(baseUrl)
 			}
 			if (info.date) {
 				console.log(info.date)
