@@ -7,7 +7,7 @@
 			<label class="item item-input">
 				<input type="text" placeholder="Description" ng-model="data.description">
 			</label>
-		<!-- 	<label class="item item-input item-select">
+			<label class="item item-input item-select">
 				<div class='input-label'>
 					date
 				</div>
@@ -26,7 +26,7 @@
 					<option>2</option>
 					<option>3</option>
 				</select>
-			</label> -->
+			</label>
 		<!-- </div>
 		<div class="list"> -->
 			<label class="item item-input">
@@ -47,7 +47,7 @@
 					group
 				</div>
 				<select ng-model="data.group_id">
-					<option ng-repeat="room in rooms">{{room.$id}}</option>
+					<option ng-repeat="room in rooms">{{room.name}}</option>
 				</select>
 			</label>
 		</div>

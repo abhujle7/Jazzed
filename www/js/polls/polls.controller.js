@@ -1,4 +1,4 @@
-app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory, $ionicHistory, PollsFactory, eventDetails, $interval, $firebase) {
+app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory, $ionicHistory, PollsFactory, eventDetails, $interval, $firebase, $stateParams) {
 
 	$scope.rooms = RoomsFactory.all();
 	$scope.polls = PollsFactory.all();
@@ -16,6 +16,10 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 		responses: {
 			attending: 0,
 			notAttending: 0
+		},
+		event: {
+			id: null,
+			name: null
 		}
 	}
 
@@ -31,9 +35,16 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 		console.log('do you need to invoke', $scope.event.$id)
 		console.log('this is data', $scope.data)
 		console.log('this is event groups', roomId)
-		PollsFactory.addPoll($scope.data, roomId, $scope.event.$id)
+		PollsFactory.addPoll($scope.data, roomId, $scope.event)
+		$ionicHistory.goBack();
 	}
 	
+	$scope.updatePoll = function () {
+		// console.log('this is data in update', data)
+		var pollId = $stateParams.id
+		console.log('this is pollid', pollId)
+		PollsFactory.updatePoll(pollId, $scope.data);
+	}
 	$scope.eventLocation = function () {
 		if ($scope.event.location.name) {
 			return true;
