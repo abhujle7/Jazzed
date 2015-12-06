@@ -7,11 +7,11 @@ app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) 
     // .then(function (modal) {
     // $scope.modal = modal;
     // });
+    var userRooms = RoomsFactory.findUserRooms()
 
-    $scope.rooms = RoomsFactory.all();
+    var allRooms = RoomsFactory.all();
 
-    //$scope.rooms = RoomsFactory.findUserRooms()
-    //use this instead of all
+    $scope.rooms = userRooms
 
     $scope.createRoom = function () {
         $state.go('tab.createNewRoom');
