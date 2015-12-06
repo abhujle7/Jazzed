@@ -12,7 +12,6 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   $scope.events = EventFactory.all()
   $scope.listVisibility = false;
   $scope.pollVisibility = false;
-
   $scope.revealPolls = function () {
     console.log('reveal!')
     console.log('these are polls', $scope.polls)

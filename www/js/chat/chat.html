@@ -3,7 +3,7 @@
         <ion-list ng-show="roomName">
                 <ion-list ng-if="pollVisibility">
                 Live Polls
-                    <ion-item ng-repeat="poll in polls | filter: IM.textMessage" ng-click="goToPollDetail(poll)">Poll for {{poll.event.name}}</ion-item>
+                    <ion-item ng-repeat="poll in polls | filter: IM.textMessage" ng-click="goToPollDetail(poll)"><span>Poll for {{poll.event.name}}</span><span> Expires on {{poll.expiration.date}} at {{poll.expiration.time}}</span></ion-item>
                 </ion-list>
                 <ion-list ng-if="listVisibility">
                 Saved Events
