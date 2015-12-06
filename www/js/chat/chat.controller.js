@@ -53,6 +53,10 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     $state.go('tab.movies')
   }
 
+  $scope.goToYelp = function() {
+    $state.go('tab.yelp')
+  }
+
   $scope.goToPoll = function (event) {
     console.log('go to poll function', event.$id)
     $state.go('tab.polls', {eventid: event.$id})

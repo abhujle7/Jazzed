@@ -1,0 +1,18 @@
+<ion-view view-title="Yelp Search">
+	<ion-content class="padding">
+	<form name="yelp">
+		<h1></h1>
+		<h4>Search for top restaurants, nightlife, and other businesses!</h4>
+		<label class="item item-input">
+			<span class="input-label">Find (e.g. Chinese Food, Sports Bar)</span>
+  			<input type="text" ng-model="find.query" required>
+		</label>
+		<label class="item item-input">
+			<span class="input-label">Zip Code</span>
+  			<input type="text" ng-model="find.location"  required>
+		</label>
+		<button class="button button-assertive" ng-click="search(find)" ng-disabled="yelp.$invalid">
+			  Search
+		</button>
+	</ion-content>
+</ion-view>

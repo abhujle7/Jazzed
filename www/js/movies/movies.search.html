@@ -1,16 +1,16 @@
 <ion-view view-title="Search For a Movie">
 	<ion-content class="padding">
+	<form name="movie">
 	<label class="item item-input">
 		<span class="input-label">Zip Code</span>
-  		<input type="number" ng-model="data.zipcode" maxlength="5">
+  		<input type="number" ng-model="data.zipcode" maxlength="5" required>
 	</label>
-	{{zipcode}}
 	<label class="item item-input">
-		<span class="input-label">On or After</span>
+		<span class="input-label">Date</span>
   		<input type="date" ng-model="data.date">
 	</label>
-	{{date}}
-		<button class="button button-assertive" ng-click="search(data)">
+	</form>
+	<button class="button button-assertive" ng-click="search(data)" ng-disabled="movie.$invalid">
   Search
 </button>
 </ion-content>
