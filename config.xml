@@ -19,9 +19,15 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
+    <feature name="http://api.phonegap.com/1.0/geolocation"/>
     <feature name="Contacts">
         <param name="ios-package" value="CDVContacts" />
     </feature>
+    <feature name="Camera">
+        <param name="ios-package" value="CDVCamera" />
+    </feature>
+    <feature name="http://api.phonegap.com/1.0/file"/>
+    <feature name="http://api.phonegap.com/1.0/camera"/>
     <platform name="ios">
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
@@ -71,6 +77,7 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <plugin name="cordova-plugin-contacts" spec="~1.1.0" />
+    <plugin name="cordova-plugin-camera" />
     <allow-intent href="*.firebaseio.com" />
     <allow-intent href="auth.firebase.com" />
 </widget>
