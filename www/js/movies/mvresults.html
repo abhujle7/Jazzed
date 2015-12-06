@@ -1,8 +1,14 @@
 <ion-view view-title="Event Results">
 <h1>Results</h1>
-<p>{{results}}</p>
-<ul>
-	<li>
-	</li>
+<h2 ng-show="!results.length">No nearby theaters found. Please try a different zipcode!</h2>
+<h3 ng-show="results.length">These are nearby theaters. Click on one to see movies and showtimes.</h3>
+<ul ng-repeat="(theaterIndex, theater) in results">
+	<li ng-click="showFull(theaterIndex)">{{theater.name}}- <span>{{theater.address}}</span></li>
+	<ul ng-show="show(theaterIndex)" ng-repeat="movie in theater.movies">
+		<a ng-href="{{movie.trailer}}">{{movie.name}}</a>
+		<ul ng-repeat="time in movie.showtimes">
+			<li>{{time}}</li>
+		</ul>
+	</ul>
 </ul>
 </ion-view>
