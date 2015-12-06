@@ -13,7 +13,7 @@ app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHi
       console.log('these are polls in fac', polls);
       return polls;
     },
-    addPoll: function(pollData, roomId, eventId) {
+    addPoll: function(pollData, roomId, eventObj) {
       console.log('this is polldata', pollData)
       pollData.timestamp = Firebase.ServerValue.TIMESTAMP;
       pollData.creator = user;
@@ -21,16 +21,21 @@ app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHi
       pollData.expiration.time = moment(pollData.expiration.time).unix();
       pollData.live = true;
       console.log('this is polldata modified', pollData)
-      console.log('this is roomId', roomId)
+      console.log('this is event obj', pollData.event)
       console.log('this is polls', polls)
       pollData.groups = roomId;
-      pollData.event = eventId;
+      pollData.event.id = eventObj.$id;
+      pollData.event.name = eventObj.name;
       console.log('this is pollData as added', pollData)
       polls.$add(pollData)
       .then(function(data) {
         // $ionicHistory.goBack(); //goes back to previous view
         console.log('poll saved', data);
       })
+    },
+    updatePoll: function (id, data) {
+      
+      pollsRef.child(id).update({responses: data.responses})
     }
   }
 })

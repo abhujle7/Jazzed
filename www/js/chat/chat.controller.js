@@ -47,7 +47,6 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
       ChatFactory.remove(chat);
   }
 
-
   $scope.createEvent = function() {
       $state.go('tab.createNewEvent');
   }
@@ -62,6 +61,11 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
 
   $scope.goToYelp = function() {
     $state.go('tab.yelp')
+  }
+
+  $scope.goToPollDetail = function (pollObj) {
+    console.log('in gotopolldetail with pollid', pollObj)
+    $state.go('tab.pollDetail', {id: pollObj.$id, eventid: pollObj.event.id})
   }
 
   $scope.goToPoll = function (event) {
