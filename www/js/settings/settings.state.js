@@ -1,6 +1,6 @@
 app.config(function($urlRouterProvider, $stateProvider) {
   $stateProvider
-  .state('tab.settings', {
+  .state('app.tab.settings', {
     url: '/settings/:uid',
     views: {
       'settingsView': {

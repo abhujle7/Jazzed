@@ -45,27 +45,27 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.createEvent = function() {
-      $state.go('tab.createNewEvent');
+      $state.go('app.tab.createNewEvent');
   }
 
   $scope.goToSeatgeek = function() {
-    $state.go('tab.search')
+    $state.go('app.tab.search')
   }
 
   $scope.goToShowtimes = function() {
-    $state.go('tab.movies')
+    $state.go('app.tab.movies')
   }
 
   $scope.goToYelp = function() {
-    $state.go('tab.yelp')
+    $state.go('app.tab.yelp')
   }
 
   $scope.goToPollDetail = function (pollObj) {
-    $state.go('tab.pollDetail', {id: pollObj.$id, eventid: pollObj.event.id})
+    $state.go('app.tab.pollDetail', {id: pollObj.$id, eventid: pollObj.event.id})
   }
 
   $scope.goToPoll = function (event) {
-    $state.go('tab.polls', {eventid: event.$id})
+    $state.go('app.tab.polls', {eventid: event.$id})
   }
 
   $scope.goToAddContacts = function() {
