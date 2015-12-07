@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var bower = require('bower');
+// var bower = require('bower');
 var concat = require('gulp-concat');
 var reload = require('gulp-livereload')
 var sass = require('gulp-sass');
@@ -72,10 +72,10 @@ gulp.task('watch', function() {
 });
 
 gulp.task('install', ['git-check'], function() {
-  return bower.commands.install()
-    .on('log', function(data) {
-      gutil.log('bower', gutil.colors.cyan(data.id), data.message);
-    });
+  // return bower.commands.install()
+  //   .on('log', function(data) {
+  //     gutil.log('bower', gutil.colors.cyan(data.id), data.message);
+  //   });
 });
 
 gulp.task('git-check', function(done) {
