@@ -4,6 +4,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	$scope.events = EventFactory.all();
 
 	
+
 	var currEventId;
 	$scope.data = {
 		name: null,
@@ -45,7 +46,8 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 			group_id: null
 		}
 		$state.go('app.tab.events')
-	
+	}
+
 
 	$scope.submitAndPoll = function () {
 		console.log('hello?', $scope.events)
@@ -54,7 +56,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 			console.log('first')
 		})
 		.then(function () {
-		$state.go('app.tab.polls', {eventid: currEventId})
+		$state.go('app.tab.chat-polls', {eventid: currEventId, id: $scope.data.group_id})
 		console.log('second')
 		})
 	}

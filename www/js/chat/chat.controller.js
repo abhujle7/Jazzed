@@ -74,11 +74,11 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.goToPollDetail = function (pollObj) {
-    $state.go('app.tab.pollDetail', {id: pollObj.$id, eventid: pollObj.event.id})
+    $state.go('app.tab.chat-pollDetail', {pollid: pollObj.$id, eventid: pollObj.event.id, id: currentRoomId})
   }
 
   $scope.goToPoll = function (event) {
-    $state.go('app.tab.polls', {eventid: event.$id})
+    $state.go('app.tab.chat-polls', {id: currentRoomId, eventid: event.$id})
   }
 
   $scope.goToAddContacts = function() {
