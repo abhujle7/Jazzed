@@ -1,6 +1,6 @@
 app.config(function($stateProvider) {
 	$stateProvider
-		.state('tab.apiEvent'),  {
+		.state('tab.apiEvent',  {
 			url: '/apiEvent',
 			views: {
 				'roomsView': {
@@ -9,4 +9,5 @@ app.config(function($stateProvider) {
 				}
 			}
 		}
+	)
 })

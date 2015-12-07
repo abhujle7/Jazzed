@@ -1,4 +1,4 @@
-app.controller('ResultsCtrl', function($scope, SportsFactory) {
+app.controller('ResultsCtrl', function($scope, SportsFactory, ApiFactory, $state) {
 
 	function change() {
 		SportsFactory.result().forEach(function(event) {
@@ -7,5 +7,10 @@ app.controller('ResultsCtrl', function($scope, SportsFactory) {
 		return SportsFactory.result()
 	}
 	$scope.results = change()
+
+	$scope.apiEvent = function(a, b, c) {
+		ApiFactory.set(a, b, c)
+		$state.go('tab.apiEvent')
+	}
 
 })

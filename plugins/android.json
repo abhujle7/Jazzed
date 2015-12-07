@@ -36,6 +36,9 @@
         },
         "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.capstonejazzed375133"
         }
     },
     "dependent_plugins": {}
