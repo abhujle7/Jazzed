@@ -30,9 +30,9 @@ app.controller('ContactsCtrl', function($scope, contacts, ContactsFactory, AuthF
 			}
 		}
 		return arr
-		// .filter(function(member) {
-		// 	return !isContactMember(member.uid)
-		// })
+		.filter(function(member) {
+			return !isContactMember(member.uid)
+		})
 	})()
 
 	$scope.addMember = function(id) {

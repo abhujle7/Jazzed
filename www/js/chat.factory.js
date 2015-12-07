@@ -40,12 +40,10 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
           return null;
     },
     selectRoom: function (roomId) {
-        console.log("selecting the room with id: " + roomId);
         selectedRoomId = roomId;
         chats = $firebaseArray(ref.child('messages').child(selectedRoomId));
 
         chats.$loaded(function(chatsList) {
-          console.log("chats from the factory is", chatsList);
           for (var i = 0; i < chatsList.length; i++) {
             var date = new Date(chatsList[i].timestamp);
             chatsList[i].userFriendlyTime = date.getHours() + ":" + date.getMinutes();
@@ -53,20 +51,14 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
         })
     },
     send: function (message) {
-        console.log("sending message from (insert user here) & message is " + message);
         if (message) {
-            console.log('this is the user', user)
             var chatMessage = {
                 user: user,
                 from: userObj.name,
                 message: message,
                 timestamp: Firebase.ServerValue.TIMESTAMP
             };
-            console.log('this is chats pre', chats)
-            console.log('this is chatmessage', chatMessage)
-            //removed validation of .write and $other
             chats.$add(chatMessage).then(function (data) {
-                console.log("message added and this is data returned", data);
             })
             .catch(function(error) {
               console.error("Error:", error);

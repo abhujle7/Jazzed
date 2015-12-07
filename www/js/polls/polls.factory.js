@@ -10,32 +10,35 @@ app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHi
 
 	return {
     all: function() {
-      console.log('these are polls in fac', polls);
       return polls;
     },
     addPoll: function(pollData, roomId, eventObj) {
-      console.log('this is polldata', pollData)
       pollData.timestamp = Firebase.ServerValue.TIMESTAMP;
       pollData.creator = user;
       pollData.expiration.date = moment(pollData.expiration.date).unix();
       pollData.expiration.time = moment(pollData.expiration.time).unix();
+      console.log('this is the date', pollData.expiration.date)
+      console.log('this is the time', pollData.expiration.time)
+      console.log('this is the moment', moment().unix())
+      console.log('this is the combined datetime', pollData.expiration.date + pollData.expiration.time)
       pollData.live = true;
-      console.log('this is polldata modified', pollData)
-      console.log('this is event obj', pollData.event)
-      console.log('this is polls', polls)
       pollData.groups = roomId;
       pollData.event.id = eventObj.$id;
       pollData.event.name = eventObj.name;
-      console.log('this is pollData as added', pollData)
       polls.$add(pollData)
       .then(function(data) {
-        // $ionicHistory.goBack(); //goes back to previous view
-        console.log('poll saved', data);
       })
     },
     updatePoll: function (id, data) {
       
       pollsRef.child(id).update({responses: data.responses})
+    },
+    expirePoll: function (id) {
+      pollsRef.child(id).update({live: false})
+    },
+    getPoll: function (id) {
+      return polls.$getRecord(id)
+     
     }
   }
 })

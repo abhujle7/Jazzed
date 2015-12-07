@@ -12,6 +12,9 @@ app.config(function($stateProvider) {
     resolve: {
       eventDetails: function ($stateParams, EventFactory) {
         return EventFactory.get($stateParams.eventid)
+      },
+      pollDetails: function () {
+        return null;
       }
 
 

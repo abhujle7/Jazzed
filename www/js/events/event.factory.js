@@ -6,7 +6,6 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
 
 	return {
     all: function() {
-      console.log(events);
       return events;
     },
     addEvent: function(event) {
@@ -24,9 +23,7 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
       })
       .then(function(data) { 
         var currEventId = data.key()
-        console.log('added event', data.key())
         return currEventId;
-        // $state.go('tab.events');
       })
     },
     get: function (eventId) {
