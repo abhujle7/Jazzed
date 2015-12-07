@@ -19,7 +19,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	// }
 
 	$scope.editEvent = function(event) {
-		$state.go('tab.eventDetails',{eventId: event.$id});
+		$state.go('app.tab.eventDetails',{eventId: event.$id});
 	}
 	
 	$scope.createEvent = function() {

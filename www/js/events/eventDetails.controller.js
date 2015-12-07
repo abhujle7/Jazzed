@@ -1,4 +1,4 @@
-app.controller('EventDetailCtrl', function($scope, eventDetails, EventFactory, RoomsFactory, $ionicHistory) {	
+app.controller('EventDetailCtrl', function($scope, $state, eventDetails, EventFactory, RoomsFactory, $ionicHistory) {	
 	
 	$scope.currentEvent = eventDetails;
 	$scope.rooms = RoomsFactory.all();
@@ -28,9 +28,7 @@ app.controller('EventDetailCtrl', function($scope, eventDetails, EventFactory, R
 	}
 
 	$scope.submitEvent = function() {
-		console.log("sup");
-		EventFactory.addEvent($scope.data)
-		$state.go('tab.events')
+		EventFactory.addEvent($scope.data);
 	}
 
 
