@@ -10,12 +10,9 @@ app.config(function($stateProvider) {
       }
     },
     resolve: {
-      // currentRoom: function ($stateParams, $firebaseObj) {
-      //   var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/groups/' + $stateParams.id)
-      //   return $firebaseObj(ref)
-      // }
-
-
+      currentRoomId: function($stateParams) {
+        return $stateParams.id
+      }
     }
   })
 });

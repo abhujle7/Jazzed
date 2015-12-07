@@ -1,4 +1,4 @@
-<ion-view view-title="Chat Room {{ roomName }}">
+<ion-view view-title="{{ roomName }}">
     <ion-content>
         <ion-list ng-show="roomName">
                 <ion-list ng-if="pollVisibility">
@@ -46,14 +46,13 @@
                         </button>
                     </ion-item>
         </ion-list>
+        <button ng-click="goToAddContacts()">Add Contacts</button>
         <ion-list ng-hide="roomName">
             <ion-item class="textCenter">
                 <h4>Please select a room to chat first.</h4>
             </ion-item>
         </ion-list>
     </ion-content>
-      
-
 </ion-view>
 
 

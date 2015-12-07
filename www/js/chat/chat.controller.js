@@ -1,4 +1,4 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory, currentRoomId) {
 
   var currUser = AuthFactory.getCurrentUser().uid
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
@@ -69,10 +69,11 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.goToPoll = function (event) {
-    console.log('go to poll function', event.$id)
     $state.go('tab.polls', {eventid: event.$id})
   }
 
-
- })
+  $scope.goToAddContacts = function() {
+    $state.go('contacts', {roomid: currentRoomId})
+  }
+})
 

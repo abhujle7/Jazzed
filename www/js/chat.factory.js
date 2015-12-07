@@ -72,6 +72,9 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
               console.error("Error:", error);
             })
         }
+    },
+    getMembers: function() {
+      return $firebaseArray(ref.child('messages').child(selectedRoomId).child('members'))
     }
   };
 });
