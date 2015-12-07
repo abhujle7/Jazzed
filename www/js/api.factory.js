@@ -6,8 +6,6 @@ app.factory('ApiFactory', function() {
 			event.location = location;
 			if (time) {
 				event.date = moment(time).format('ll hh:mm a')
-				console.log(event.date)
-				// event.time = moment(time).format('hh:mm a')
 			}
 			else {
 				event.date = null;
@@ -15,7 +13,6 @@ app.factory('ApiFactory', function() {
 			}
 		},
 		get: function() {
-			console.log(event)
 			return event;
 		}
 	}

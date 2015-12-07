@@ -9,7 +9,6 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
       return events;
     },
     addEvent: function(event) {
-      console.log(event)
       return events.$add({
         name: event.name,
         description: event.description,
@@ -32,7 +31,6 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
     },
     save: function(event) {
       events.$save(event).then(function(ref) {
-        console.log("We edited it!");
         $ionicHistory.goBack()
       })
     }
