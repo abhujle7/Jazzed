@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
 	$stateProvider
-	.state('tab.contacts', {
-		url: '/contacts/:uid',
+	.state('contacts', {
+		url: '/contacts/:roomid',
 		views: {
 			'contactsView': {
 				templateUrl: 'js/contacts/contacts.html',
@@ -15,6 +15,9 @@ app.config(function($stateProvider) {
 			contacts: function(blah, ContactsFactory) {
 				return ContactsFactory.getPromise()
 					.then(null, console.error)
+			},
+			currentRoomId: function($stateParams) {
+				return $stateParams.id
 			}
 		}
 	})

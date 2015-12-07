@@ -1,4 +1,8 @@
 <ion-view view-title="{{ roomName }}">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-compose" ng-click="openPopover($event)">
+        </button>
+      </ion-nav-buttons>
     <ion-content>
         <ion-list ng-show="roomName">
                 <ion-list ng-if="pollVisibility">
@@ -43,16 +47,20 @@
                         <button ng-click="sendMessage(IM.textMessage)" class="button button-small button-balanced">
                             Send 
                         </button>
-                         <button ng-hide="pollVisibility" ng-click="revealPolls()" class="button button-small button-balanced">
+                    <!--      <button ng-hide="pollVisibility" ng-click="revealPolls()" class="button button-small button-balanced">
                             <span>Live Polls</span>
                         </button>
                         <button ng-hide="listVisibility" ng-click="revealList()" class="button button-small button-balanced">
                             <span>Suggest Event</span>
-                        </button>
+                        </button> -->
                         <button ng-show="listVisibility" ng-click="hideList()" class="button button-small button-balanced">
                              <span>Return to Chat</span>
                         </button>
                     </ion-footer-bar>
+<!--         <button ng-click="goToAddContacts()">Add Contacts</button>
+ -->    
+    </ion-content>
+</ion-footer-bar>
 
 </ion-view>
 

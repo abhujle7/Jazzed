@@ -1,9 +1,17 @@
 app.config(function($stateProvider) {
 	$stateProvider
-		.state('tab', {
+		.state('app.tab', {
 		url: '/tab',
 		abstract: true,
 		cache: false,
-		templateUrl: 'js/tabs.html'
-		})
+		views: {
+            'menu-content': {
+                templateUrl: 'js/tabs.html'
+            },
+            'menu-left': {
+                templateUrl: 'js/sidemenu.html'
+                // controller: 'MenuCtrl'
+            }
+		}
+	})
 })

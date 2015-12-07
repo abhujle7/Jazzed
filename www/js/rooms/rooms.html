@@ -1,7 +1,7 @@
 <ion-view view-title="Rooms">
     <ion-content>
         <ion-item>
-            <button ng-click="createRoom()">Create a New Room</button>
+            <label ng-click="createRoom()">Create a New Room</label>
         </ion-item>
         <ion-list ng-show="rooms">
             <ion-item class="item-icon-left" ng-repeat="room in rooms" type="item-text-wrap" ng-click="openRoom(room.$id)">

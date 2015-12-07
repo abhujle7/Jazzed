@@ -1,6 +1,6 @@
 app.config(function($stateProvider) {
   $stateProvider
-  .state('tab.results', {
+  .state('app.tab.results', {
     url: '/results',
     views: {
       'roomsView': {
