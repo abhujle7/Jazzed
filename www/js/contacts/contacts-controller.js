@@ -1,4 +1,5 @@
 app.controller('ContactsCtrl', function($scope, contacts, ContactsFactory, AuthFactory, currentRoomId, RoomsFactory, ChatFactory){
+	console.log('inn contacts ctrl')
 	document.addEventListener("deviceready", ContactsFactory.onDeviceReady, false)
 	var userContacts = contacts;
 	var phoneToUserHash = AuthFactory.phoneToUser();
