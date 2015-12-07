@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
 	$stateProvider
-	.state('contacts', {
-		url: '/contacts/:roomid',
+	.state('app.tab.contacts', {
+		url: '/contacts',
 		views: {
 			'contactsView': {
 				templateUrl: 'js/contacts/contacts.html',
@@ -9,15 +9,8 @@ app.config(function($stateProvider) {
 			}
 		},
 		resolve: {
-			blah: function(ContactsFactory) {
+			registerListener: function(ContactsFactory) {
 				document.addEventListener("deviceready", ContactsFactory.onDeviceReady, false)
-			},
-			contacts: function(blah, ContactsFactory) {
-				return ContactsFactory.getPromise()
-					.then(null, console.error)
-			},
-			currentRoomId: function($stateParams) {
-				return $stateParams.id
 			}
 		}
 	})

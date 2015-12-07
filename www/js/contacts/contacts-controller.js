@@ -1,6 +1,7 @@
-app.controller('ContactsCtrl', function($scope, contacts, ContactsFactory, AuthFactory, currentRoomId, RoomsFactory, ChatFactory){
-	document.addEventListener("deviceready", ContactsFactory.onDeviceReady, false)
-	var userContacts = contacts;
+app.controller('ContactsCtrl', function($scope, ContactsFactory, AuthFactory, RoomsFactory, ChatFactory, registerListener){
+	var userContacts = function() {
+		return ContactsFactory.getPromise().then(null, console.error)
+	}
 	var phoneToUserHash = AuthFactory.phoneToUser();
 	var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users')
 	function parsePhone(number) {
@@ -11,6 +12,7 @@ app.controller('ContactsCtrl', function($scope, contacts, ContactsFactory, AuthF
 		return digits
 	}
 	$scope.contacts = (function() {
+		console.log(userContacts())
 		var arr = [];
 		for (var i = 0; i < userContacts.length; i++) {
 			var number = parsePhone(userContacts[i])
@@ -30,14 +32,14 @@ app.controller('ContactsCtrl', function($scope, contacts, ContactsFactory, AuthF
 			}
 		}
 		return arr
-		.filter(function(member) {
-			return !isContactMember(member.uid)
-		})
+		// .filter(function(member) {
+		// 	return !isContactMember(member.uid)
+		// })
 	})()
 
-	$scope.addMember = function(id) {
-		return RoomsFactory.addMember(id, currentRoomId)
-	}
+	// $scope.addMember = function(id) {
+	// 	return RoomsFactory.addMember(id, currentRoomId)
+	// }
 
 	// $scope.isContactMember = function(uid) {
 	// 	if (ChatFactory.getMembers().indexOf(uid) > -1) {

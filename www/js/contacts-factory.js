@@ -17,7 +17,9 @@ app.factory('ContactsFactory', function(AuthFactory, $firebaseObject, $q) {
 			return deferred.promise;
 		},
 		onDeviceReady: function () {
+			alert('device is ready to give you contacts')
 			function onSuccess(contacts) {
+			    alert('userContacts')
 			    userContacts = _(contacts)
 			    	.pluck('phoneNumbers')
 			    	.flatten()
@@ -30,12 +32,13 @@ app.factory('ContactsFactory', function(AuthFactory, $firebaseObject, $q) {
 			    alert('onError!');
 			}
 
-			var options      = new ContactFindOptions();
-			options.filter   = "";
+			var options = new ContactFindOptions();
+			options.filter = "";
 			options.multiple = true;
 			options.desiredFields = ['phoneNumbers', 'displayName', 'name']
 			// options.hasPhoneNumber = true; //android only
-			var fields       = ['displayName', 'phoneNumbers'];
+			var fields = ['displayName', 'phoneNumbers'];
+			alert(navigator.contacts)
 			navigator.contacts.find(fields, onSuccess, onError, options)
 	 	}
 	}
