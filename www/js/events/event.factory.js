@@ -28,6 +28,12 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
     },
     get: function (eventId) {
       return events.$getRecord(eventId)
+    },
+    save: function(event) {
+      events.$save(event).then(function(ref) {
+        console.log("We edited it!");
+        $ionicHistory.goBack()
+      })
     }
   }
 })

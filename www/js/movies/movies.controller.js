@@ -6,7 +6,7 @@ app.controller('MoviesCtrl', function($scope, $state, MoviesFactory) {
 		var movieDays = data.date.diff(now, "days");
 		return MoviesFactory.get(data.zipcode, movieDays)
 		 	.then(function(movies) {
-				$state.go('tab.mvresults')
+				$state.go('app.tab.mvresults')
 		 	})
 	}
 })

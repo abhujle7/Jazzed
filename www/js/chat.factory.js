@@ -46,7 +46,11 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
         chats.$loaded(function(chatsList) {
           for (var i = 0; i < chatsList.length; i++) {
             var date = new Date(chatsList[i].timestamp);
-            chatsList[i].userFriendlyTime = date.getHours() + ":" + date.getMinutes();
+            var minutes = String(date.getMinutes());
+            if (minutes.length < 2) {
+              minutes += "0";
+            }
+            chatsList[i].userFriendlyTime = date.getHours() + ":" + minutes;
           }
         })
     },
@@ -64,6 +68,9 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
               console.error("Error:", error);
             })
         }
+    },
+    getMembers: function() {
+      return $firebaseArray(ref.child('messages').child(selectedRoomId).child('members'))
     }
   };
 });

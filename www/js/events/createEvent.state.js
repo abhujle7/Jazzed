@@ -1,6 +1,6 @@
 app.config(function($stateProvider) {
 	$stateProvider
-	.state('tab.createNewEvent', {
+	.state('app.tab.createNewEvent', {
 		url: '/createNewEvent',
 		views: {
 			'eventsView': {

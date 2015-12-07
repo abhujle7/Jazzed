@@ -1,6 +1,6 @@
 // angular.module('starter.controllers', [])
 
-app.controller('SettingsCtrl', function($scope, $state, $firebaseObject, AuthFactory) {
+app.controller('SettingsCtrl', function($scope, $state, $firebaseObject, AuthFactory, $ionicActionSheet) {
 	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com')
 	var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + AuthFactory.getCurrentUser().uid)
 	var currentUser = $firebaseObject(userRef)
@@ -17,7 +17,19 @@ app.controller('SettingsCtrl', function($scope, $state, $firebaseObject, AuthFac
 		$state.go('login')
 	}
 
-	$scope.changePhoto = function() {
-		
+	$scope.pullUpPhotoMenu = function() {
+		var photoOptions = $ionicActionSheet.show({
+			buttons: [
+		       { text: 'Upload Photo' },
+		       { text: 'Take Picture' }
+		    ],
+		    cancelText: 'Cancel',
+		    cancel: function() {
+		    	return true
+		    },
+		    buttonPressed: function(index) {
+		    	
+		    }
+		})
 	}
 });
