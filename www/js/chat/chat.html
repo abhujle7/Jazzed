@@ -1,3 +1,4 @@
+
 <ion-view view-title="{{ roomName }}">
     <ion-nav-buttons side="right">
         <button class="button button-icon button-clear ion-compose" ng-click="openPopover($event)">
@@ -39,8 +40,38 @@
             </ion-item>
         </ion-list>
     </ion-content>
-        
-                    <ion-footer-bar class="item item-input-inset">
+                    <ion-footer-bar ng-show="listVisibility" class="item item-input-inset">
+                        <label class="item-input-wrapper">
+                            <input type="text" ng-model="IM.textMessage" placeholder="Filter Events">
+                        </label>
+                    <!--      <button ng-hide="pollVisibility" ng-click="revealPolls()" class="button button-small button-balanced">
+                            <span>Live Polls</span>
+                        </button>
+                        <button ng-hide="listVisibility" ng-click="revealList()" class="button button-small button-balanced">
+                            <span>Suggest Event</span>
+                        </button> -->
+                        <button ng-click="hideList()" class="button button-small button-balanced">
+                             <span>Return to Chat</span>
+                        </button>
+                    </ion-footer-bar>
+                    
+                     <ion-footer-bar ng-show="pollVisibility" class="item item-input-inset">
+                        <label class="item-input-wrapper">
+                            <input type="text" ng-model="IM.textMessage" placeholder="Filter Live Polls">
+                        </label>
+                    <!--      <button ng-hide="pollVisibility" ng-click="revealPolls()" class="button button-small button-balanced">
+                            <span>Live Polls</span>
+                        </button>
+                        <button ng-hide="listVisibility" ng-click="revealList()" class="button button-small button-balanced">
+                            <span>Suggest Event</span>
+                        </button> -->
+                        <button ng-click="hidePoll()" class="button button-small button-balanced">
+                             <span>Return to Chat</span>
+                        </button>
+                    </ion-footer-bar>
+
+
+                    <ion-footer-bar ng-show="chatVisibility" class="item item-input-inset">
                         <label class="item-input-wrapper">
                             <input type="text" ng-model="IM.textMessage" placeholder="Type in your message...">
                         </label>
@@ -53,9 +84,6 @@
                         <button ng-hide="listVisibility" ng-click="revealList()" class="button button-small button-balanced">
                             <span>Suggest Event</span>
                         </button> -->
-                        <button ng-show="listVisibility" ng-click="hideList()" class="button button-small button-balanced">
-                             <span>Return to Chat</span>
-                        </button>
                     </ion-footer-bar>
 <!--         <button ng-click="goToAddContacts()">Add Contacts</button>
  -->    
