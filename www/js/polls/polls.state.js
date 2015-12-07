@@ -1,6 +1,6 @@
 app.config(function($stateProvider) {
   $stateProvider
-  .state('tab.polls', {
+  .state('app.tab.polls', {
     cache: false,
     url: '/polls/:eventid',
     views: {

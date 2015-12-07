@@ -7,7 +7,7 @@ app.controller('SearchCtrl', function($scope, SportsFactory, $state) {
 
 		 return SportsFactory.get(eventInfo)
 		 	.then(function(data) {
-				$state.go('tab.results')
+				$state.go('app.tab.results')
 		 	})
 	}
 

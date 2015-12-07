@@ -1,6 +1,6 @@
 app.config(function($stateProvider) {
   $stateProvider
-  .state('tab.yelp', {
+  .state('app.tab.yelp', {
     url: '/yelp',
     views: {
       'roomsView': {

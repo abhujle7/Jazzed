@@ -14,11 +14,11 @@ app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) 
     $scope.rooms = userRooms
 
     $scope.createRoom = function () {
-        $state.go('tab.createNewRoom');
+        $state.go('app.tab.createNewRoom');
     }
 
     $scope.openRoom = function (id) {
-      $state.go('tab.chat', {
+      $state.go('app.tab.chat', {
         id: id
       });
     }

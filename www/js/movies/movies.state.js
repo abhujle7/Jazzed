@@ -1,6 +1,6 @@
 app.config(function($stateProvider) {
   $stateProvider
-  .state('tab.movies', {
+  .state('app.tab.movies', {
     url: '/movies',
     views: {
       'roomsView': {

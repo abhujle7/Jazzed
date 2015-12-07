@@ -14,13 +14,13 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	};
 
 	$scope.createEvent = function() {
-		$state.go('tab.createNewEvent');
+		$state.go('app.tab.createNewEvent');
 	}
 
 	$scope.submitEvent = function() {
 		console.log("sup");
 		EventFactory.addEvent($scope.data)
-		$state.go('tab.events')
+		$state.go('app.tab.events')
 	}
 
 	$scope.submitAndPoll = function () {
@@ -30,7 +30,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 			console.log('first')
 		})
 		.then(function () {
-		$state.go('tab.polls', {eventid: currEventId})
+		$state.go('app.tab.polls', {eventid: currEventId})
 		console.log('second')
 		})
 		// console.log('in function')

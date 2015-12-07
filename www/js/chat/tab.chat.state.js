@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
 
   $stateProvider
-  .state('tab.chat', {
+  .state('app.tab.chat', {
     url: '/chat/:id',
     views: {
       'roomsView': {

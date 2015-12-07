@@ -6,17 +6,18 @@ navigation history that also transitions its views in and out.
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
   <!-- Account Tab -->
-  <ion-tab title="Profile" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" ui-sref="tab.settings({uid: uid})">
+ <!--  <ion-tab title="Profile" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" ui-sref="app.tab.settings({uid: uid})">
     <ion-nav-view name="settingsView"></ion-nav-view>
-  </ion-tab>
+  </ion-tab> -->
+
 
     <!-- Events Tab -->
-  <ion-tab title="Upcoming Events" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="tab.events({uid: uid})">
+  <ion-tab title="Upcoming Events" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="app.tab.events({uid: uid})">
     <ion-nav-view name="eventsView"></ion-nav-view>
   </ion-tab>
 
    <!-- Rooms Tab -->
-  <ion-tab title="Rooms" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/rooms">
+  <ion-tab title="Rooms" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/app/tab/rooms">
     <ion-nav-view name="roomsView"></ion-nav-view>
   </ion-tab>
 
@@ -29,8 +30,8 @@ navigation history that also transitions its views in and out.
   </ion-tab> -->
 
 <!-- Polls tab -->
-  <ion-tab title="Live Polls" icon-off="ion-pie-graph" icon-on="ion-pie-graph" ui-sref="tab.polls">
+  <!-- <ion-tab title="Live Polls" icon-off="ion-pie-graph" icon-on="ion-pie-graph" ui-sref="app.tab.polls">
     <ion-nav-view name="pollsView"></ion-nav-view>
-  </ion-tab>
+  </ion-tab> -->
 
 </ion-tabs>

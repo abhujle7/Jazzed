@@ -26,7 +26,7 @@ app.controller('RegisterCtrl', function($scope, AuthFactory, $state, $ionicPopup
         else {
             AuthFactory.signUp(credentials)
             .then(function(user) {
-                $state.go('tab.rooms', {uid: user.uid})
+                $state.go('app.tab.rooms', {uid: user.uid})
             })  
         }
     }
@@ -40,7 +40,7 @@ app.controller('RegisterCtrl', function($scope, AuthFactory, $state, $ionicPopup
         else {
             AuthFactory.signIn(credentials)
             .then(function(user) {
-                $state.go('tab.rooms', {uid: user.uid})
+                $state.go('app.tab.rooms', {uid: user.uid})
             })    
         }
     }
