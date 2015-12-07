@@ -1,5 +1,5 @@
 app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory, $ionicHistory, PollsFactory, eventDetails, $interval, $firebase, $stateParams, pollDetails) {
-
+	console.log('inside pollsctrl')
 	$scope.rooms = RoomsFactory.all();
 	$scope.polls = PollsFactory.all();
 	$scope.event = eventDetails;

@@ -15,15 +15,27 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   $scope.events = EventFactory.all()
   $scope.listVisibility = false;
   $scope.pollVisibility = false;
+  $scope.chatVisibility = true;
+  
   $scope.revealPolls = function () {
     $scope.pollVisibility = true;
+    $scope.listVisibility = false;
+    $scope.chatVisibility = false;
   }
   $scope.revealList = function () {
     $scope.listVisibility = true;
+    $scope.pollVisibility = false;
+    $scope.chatVisibility = false;
   }
 
   $scope.hideList = function () {
     $scope.listVisibility = false;
+    $scope.chatVisibility = true;
+  }
+
+   $scope.hidePoll = function () {
+    $scope.pollVisibility = false;
+    $scope.chatVisibility = true;
   }
 
   ChatFactory.selectRoom($stateParams.id);
@@ -70,14 +82,15 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.goToAddContacts = function() {
-    $state.go('contacts', {roomid: currentRoomId})
+    $state.go('app.tab.contacts', {roomid: currentRoomId})
   }
 
-  $ionicPopover.fromTemplateUrl('js/popover.html', {
-    scope: $rootScope,
-  }).then(function(popover) {
-    $scope.popover = popover;
-  });
+  var template = '<ion-popover-view><ion-header-bar><h1 class="title">Group Settings</h1></ion-header-bar><ion-content><div class="list"><label class="item" ng-click="revealPolls()">View Live Polls</label><label class="item" ng-click="revealList()">Suggest Event</label><label class="item" ng-click="goToAddContacts()">Invite Contacts to Group</label></div></ion-content></ion-popover-view>';
+
+
+  $scope.popover = $ionicPopover.fromTemplate(template, {
+    scope: $scope,
+  })
 
    $scope.openPopover = function($event) {
     $scope.popover.show($event);
