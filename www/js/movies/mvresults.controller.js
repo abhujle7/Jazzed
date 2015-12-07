@@ -12,6 +12,6 @@ app.controller('MvCtrl', function($scope, MoviesFactory, ApiFactory, $state) {
 
 	$scope.apiEvent = function(a, b, c) {
 		ApiFactory.set(a, b, c)
-		$state.go('tab.apiEvent')
+		$state.go('app.tab.apiEvent')
 	}
 })

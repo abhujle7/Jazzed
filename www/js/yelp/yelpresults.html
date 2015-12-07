@@ -3,8 +3,9 @@
 	<h2 ng-show="!results.length">No results found! Try again.</h2>
 	<h4 ng-show="results.length">Here are some nearby businesses that match your search!</h4>
 	<ul ng-repeat="result in results">
-		<a ng-href="{{result.mobile_url}}">{{result.name}}</a> <li>Address: {{result.location.display_address[0]}}, {{result.location.display_address[1]}}, {{result.location.display_address[2]}}</li>
+		<a ng-href="{{result.mobile_url}}">{{result.name}}</a> <li>Address: {{result.location.display_address}}</li>
 		<li>Phone: {{result.display_phone}}</li>
 		<span>Average Rating: </span><img src="{{result.rating_img_url}}">
 		<li>Sample Review: {{result.snippet_text}}</li>
+		<h5 ng-click="apiEvent(result.name, result.location.display_address)">Create Event</h5>
 </ion-view>

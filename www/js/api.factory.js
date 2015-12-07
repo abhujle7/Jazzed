@@ -3,11 +3,15 @@ app.factory('ApiFactory', function() {
 	return {
 		set: function(name, location, time) {
 			event.name = name;
-			if (event.time) {
+			event.location = location;
+			if (time) {
 				event.date = moment(time).format('L')
 				event.time = moment(time).format('hh:mm a')
 			}
-			event.location = location;
+			else {
+				event.date = null;
+				event.time = null;
+			}
 		},
 		get: function() {
 			return event;

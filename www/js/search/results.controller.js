@@ -10,7 +10,7 @@ app.controller('ResultsCtrl', function($scope, SportsFactory, ApiFactory, $state
 
 	$scope.apiEvent = function(a, b, c) {
 		ApiFactory.set(a, b, c)
-		$state.go('tab.apiEvent')
+		$state.go('app.tab.apiEvent')
 	}
 
 })
