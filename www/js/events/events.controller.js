@@ -2,13 +2,15 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 
 	$scope.rooms = RoomsFactory.all();
 	$scope.events = EventFactory.all();
+
 	
 	var currEventId;
 	$scope.data = {
 		name: null,
 		description: null,
-		date: null,
+		day: null,
 		time: null,
+		date: null,
 		location: null,
 		locationName: null,
 		group_id: null
@@ -27,7 +29,12 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	}
 
 	$scope.submitEvent = function() {
-		console.log("sup");
+	if ($scope.data.time) {
+		$scope.hours = $scope.data.time.getHours();
+		$scope.minutes = $scope.data.time.getMinutes();
+		$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
+	}
+		console.log($scope.data)
 		EventFactory.addEvent($scope.data)
 		$state.go('app.tab.events')
 	}
@@ -42,9 +49,6 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 		$state.go('app.tab.polls', {eventid: currEventId})
 		console.log('second')
 		})
-		// console.log('in function')
-		// console.log('past submitevent')
-		// console.log('end of func')
 	}
 	$scope.saveEventPopup = function () {
 		$ionicPopup.show({

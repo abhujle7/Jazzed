@@ -9,6 +9,7 @@
 		<ul ng-repeat="time in movie.showtimes">
 			<li>{{time}}</li>
 		</ul>
+		<h5 ng-click="apiEvent(movie.name, theater.name)">Create Event</h5>
 	</ul>
 </ul>
 </ion-view>
