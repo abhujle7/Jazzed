@@ -43,6 +43,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   var roomName = ChatFactory.getSelectedRoomName();
   
   if (roomName) {
+      console.log('roomName is', roomName)
       $scope.roomName = roomName;
       $scope.chats = ChatFactory.all();
   }

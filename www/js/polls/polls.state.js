@@ -15,8 +15,6 @@ app.config(function($stateProvider) {
       pollDetails: function () {
         return null;
       }
-
-
     }
   })
 });
