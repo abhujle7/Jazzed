@@ -5,8 +5,9 @@
 			<p>Location: {{event.location}}</p>
 			<p>Date: {{event.date}}</p>
 			<label ng-show="!event.date" class="item item-input">
-				<input type="date" ng-model="data.date">
+				<input type="date" ng-model="data.day">
 			</label>
+			<p ng-show="!event.date">Time: </p>
 			<label ng-show="!event.date"class="item item-input">
 				<input type="time" ng-model="data.time">
 			</label>

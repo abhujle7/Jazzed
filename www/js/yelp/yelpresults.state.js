@@ -1,6 +1,7 @@
 app.config(function($stateProvider) {
 	$stateProvider
 		.state('app.tab.yresults', {
+			cache: false,
 			url: '/yresults',
 			views: {
 				'roomsView': {

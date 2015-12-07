@@ -33,8 +33,20 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 		$scope.minutes = $scope.data.time.getMinutes();
 		console.log($scope.hours, $scope.minutes);
 		$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
-		console.log($scope.data.date);
+
+	}
+
 		EventFactory.addEvent($scope.data)
+		$scope.data = {
+			name: null,
+			description: null,
+			day: null,
+			time: null,
+			date: null,
+			location: null,
+			locationName: null,
+			group_id: null
+	}
 		$state.go('app.tab.events')
 	}
 

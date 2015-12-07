@@ -5,7 +5,7 @@ app.factory('ApiFactory', function() {
 			event.name = name;
 			event.location = location;
 			if (time) {
-				event.date = moment(time).format('L hh:mm a')
+				event.date = moment(time).format('ll hh:mm a')
 				console.log(event.date)
 				// event.time = moment(time).format('hh:mm a')
 			}

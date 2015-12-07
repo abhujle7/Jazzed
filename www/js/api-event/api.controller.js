@@ -1,38 +1,20 @@
 app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup, $state) {
-	$scope.event = ApiFactory.get()
+	$scope.event = ApiFactory.get();
 
 	$scope.data = {
-		name: null,
+		name: $scope.event.name,
 		description: null,
 		day: null,
 		time: null,
-		date: null,
+		date: $scope.event.date || null,
 		location: null,
-		locationName: null,
+		locationName: $scope.event.location,
 		group_id: null
 	};
 
 	$scope.data.name = $scope.event.name;
-	$scope.data.location = $scope.event.location;
+	$scope.data.locationName = $scope.event.location;
 	$scope.data.date = $scope.event.date;
-
-
-	// function formatTime() {
-	// 	var day = $scope.data.date;
-	// 		day = day.split("/");
-	// 		day.forEach(function(unitTime) {
-	// 			return Number(unitTime);
-	// 		})
-
-	// 		var time = $scope.data.time;
-	// 		time = time.slice(0, -3);
-	// 		time = time.split(":");
-	// 		time.forEach(function(unitTime) {
-	// 			return Number(unitTime);
-	// 		})
-	// 	var d = new Date(unitTime[2],unitTime[0], unitTime[1], time[0], time[1]);
-	// 	$scope.data.date = d;
-	// }
 
 	$scope.saveEventPopup = function () {
 		$ionicPopup.show({
@@ -63,7 +45,15 @@ app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup
 	}
 
 	$scope.submitEvent = function() {
-		EventFactory.addEvent($scope.data)
+		if ($scope.data.time) {
+		$scope.hours = $scope.data.time.getHours();
+		$scope.minutes = $scope.data.time.getMinutes();
+		$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
+		$scope.data.time = null;
+		$scope.data.day = null;
+	}
+		EventFactory.addEvent($scope.data);
+		$scope.data.description = null;
 		$state.go('app.tab.events')
 	}
 })
