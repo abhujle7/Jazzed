@@ -1,4 +1,4 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory, $ionicScrollDelegate, currentRoomId) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory, $ionicScrollDelegate, currentRoomId, $ionicPopover, $rootScope) {
 
   $ionicScrollDelegate.scrollBottom();
 
@@ -71,5 +71,24 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   $scope.goToAddContacts = function() {
     $state.go('contacts', {roomid: currentRoomId})
   }
+
+  $ionicPopover.fromTemplateUrl('js/popover.html', {
+    scope: $rootScope,
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+   $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+  };
+
+  $scope.closePopover = function() {
+    $scope.popover.hide();
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+  });
+
 })
 
