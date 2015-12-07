@@ -16,4 +16,8 @@ app.controller('SettingsCtrl', function($scope, $state, $firebaseObject, AuthFac
 		ref.unauth();
 		$state.go('login')
 	}
+
+	$scope.changePhoto = function() {
+		
+	}
 });

@@ -32,7 +32,7 @@
 			<label class="item item-input">
 				<input type="text" placeholder="Location Name" ng-model="data.locationName">
 			</label>
-			<label class="item item-input item-select">
+		<!-- 	<label class="item item-input item-select">
 				<div class='input-label'>
 					location
 				</div>
@@ -42,12 +42,12 @@
 					<option>geofire hashkey</option>
 				</select>
 			</label>
-			<label class="item item-input item-select">
+ -->			<label class="item item-input item-select">
 				<div class='input-label'>
 					group
 				</div>
 				<select ng-model="data.group_id">
-					<option ng-repeat="room in rooms">{{room.$id}}</option>
+					<option ng-repeat="room in rooms">{{room.name}}</option>
 				</select>
 			</label>
 		</div>

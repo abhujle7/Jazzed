@@ -2,7 +2,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 
 	$scope.rooms = RoomsFactory.all();
 	$scope.events = EventFactory.all();
-
+	var currEventId;
 	$scope.data = {
 		name: null,
 		description: null,
@@ -24,9 +24,15 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	}
 
 	$scope.submitAndPoll = function () {
-		console.log('hello?')
-		EventFactory.addEvent($scope.data)
-		$state.go('tab.polls', {event: event})
+		console.log('hello?', $scope.events)
+		EventFactory.addEvent($scope.data).then(function(eventId) {
+			currEventId = eventId;
+			console.log('first')
+		})
+		.then(function () {
+		$state.go('tab.polls', {eventid: currEventId})
+		console.log('second')
+		})
 		// console.log('in function')
 		// console.log('past submitevent')
 		// console.log('end of func')

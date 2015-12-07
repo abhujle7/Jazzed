@@ -1,4 +1,4 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory) {
 
   var currUser = AuthFactory.getCurrentUser().uid
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
@@ -8,9 +8,15 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     textMessage: ""
   };
 
+  $scope.polls = PollsFactory.all()
   $scope.events = EventFactory.all()
   $scope.listVisibility = false;
-
+  $scope.pollVisibility = false;
+  $scope.revealPolls = function () {
+    console.log('reveal!')
+    console.log('these are polls', $scope.polls)
+    $scope.pollVisibility = true;
+  }
   $scope.revealList = function () {
     $scope.listVisibility = true;
   }
@@ -40,7 +46,6 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
       ChatFactory.remove(chat);
   }
 
-
   $scope.createEvent = function() {
       $state.go('tab.createNewEvent');
   }
@@ -57,9 +62,16 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     $state.go('tab.yelp')
   }
 
+  $scope.goToPollDetail = function (pollObj) {
+    console.log('in gotopolldetail with pollid', pollObj)
+    $state.go('tab.pollDetail', {id: pollObj.$id, eventid: pollObj.event.id})
+  }
+
   $scope.goToPoll = function (event) {
     console.log('go to poll function', event.$id)
     $state.go('tab.polls', {eventid: event.$id})
   }
+
+
  })
 
