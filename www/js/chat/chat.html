@@ -1,4 +1,4 @@
-<ion-view view-title="Chat Room {{ roomName }}">
+<ion-view view-title="{{ roomName }}">
     <ion-content>
         <ion-list ng-show="roomName">
                 <ion-list ng-if="pollVisibility">
@@ -28,10 +28,21 @@
                     Delete
                 </ion-option-button>
             </ion-item>
-                    <ion-item class="item item-input-inset">
+        </ion-list>
+        <ion-list ng-hide="roomName">
+            <ion-item class="textCenter">
+                <h4>Please select a room to chat first.</h4>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+        
+                    <ion-footer-bar class="item item-input-inset">
                         <label class="item-input-wrapper">
                             <input type="text" ng-model="IM.textMessage" placeholder="Type in your message...">
                         </label>
+                        <button ng-click="sendMessage(IM.textMessage)" class="button button-small button-balanced">
+                            Send 
+                        </button>
                          <button ng-hide="pollVisibility" ng-click="revealPolls()" class="button button-small button-balanced">
                             <span>Live Polls</span>
                         </button>
@@ -41,18 +52,7 @@
                         <button ng-show="listVisibility" ng-click="hideList()" class="button button-small button-balanced">
                              <span>Return to Chat</span>
                         </button>
-                        <button ng-click="sendMessage(IM.textMessage)" class="button button-small button-balanced">
-                            Send 
-                        </button>
-                    </ion-item>
-        </ion-list>
-        <ion-list ng-hide="roomName">
-            <ion-item class="textCenter">
-                <h4>Please select a room to chat first.</h4>
-            </ion-item>
-        </ion-list>
-    </ion-content>
-      
+                    </ion-footer-bar>
 
 </ion-view>
 
