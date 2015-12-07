@@ -31,10 +31,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	$scope.submitEvent = function() {
 		$scope.hours = $scope.data.time.getHours();
 		$scope.minutes = $scope.data.time.getMinutes();
-		console.log($scope.hours, $scope.minutes);
 		$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
-
-	}
 
 		EventFactory.addEvent($scope.data)
 		$scope.data = {
