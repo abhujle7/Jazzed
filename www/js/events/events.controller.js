@@ -3,6 +3,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	$scope.rooms = RoomsFactory.all();
 	$scope.events = EventFactory.all();
 	
+
 	var currEventId;
 	$scope.data = {
 		name: null,
@@ -28,8 +29,14 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 
 	$scope.submitEvent = function() {
 		console.log("sup");
+		new Firebase('https://boiling-fire-3161.firebaseio.com/groups')
+		.startAt($scope.groupName)
+		.endAt($scope.groupName)
+		.once('value', function (snap) {
+		$scope.data.group_id = snap.key();
 		EventFactory.addEvent($scope.data)
 		$state.go('app.tab.events')
+	})
 	}
 
 	$scope.submitAndPoll = function () {
@@ -39,7 +46,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 			console.log('first')
 		})
 		.then(function () {
-		$state.go('app.tab.polls', {eventid: currEventId})
+		$state.go('app.tab.chat-polls', {eventid: currEventId, id: $scope.data.group_id})
 		console.log('second')
 		})
 		// console.log('in function')

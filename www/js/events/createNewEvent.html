@@ -32,8 +32,8 @@
 				<div class='input-label'>
 					group
 				</div>
-				<select ng-model="data.group_id">
-					<option ng-repeat="room in rooms">{{room.name}}</option>
+				<select ng-model="data.group_id"> //should be group name
+					<option ng-repeat="room in rooms">{{room.$id}}</option>
 				</select>
 			</label>
 		</div>

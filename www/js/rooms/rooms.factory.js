@@ -10,7 +10,6 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
   var currUserRoomsArr = $firebaseArray(currUserRooms)
 
   return {
-
     all: function() {
       return roomsArr;
     },

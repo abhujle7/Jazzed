@@ -37,8 +37,7 @@ app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHi
       pollsRef.child(id).update({live: false})
     },
     getPoll: function (id) {
-      return polls.$getRecord(id)
-     
+      return polls.$getRecord(id) 
     }
   }
 })
