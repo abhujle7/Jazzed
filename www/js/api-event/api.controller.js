@@ -1,5 +1,5 @@
 app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup, $state) {
-	$scope.event = ApiFactory.get()
+	$scope.event = ApiFactory.get();
 
 	$scope.data = {
 		name: $scope.event.name,
@@ -52,17 +52,8 @@ app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup
 		$scope.data.time = null;
 		$scope.data.day = null;
 	}
-		EventFactory.addEvent($scope.data)
-		$scope.data = {
-			name: null,
-			description: null,
-			day: null,
-			time: null,
-			date: null,
-			location: null,
-			locationName: null,
-			group_id: null
-	};
+		EventFactory.addEvent($scope.data);
+		$scope.data.description = null;
 		$state.go('app.tab.events')
 	}
 })
