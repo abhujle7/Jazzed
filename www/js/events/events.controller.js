@@ -46,9 +46,9 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 			location: null,
 			locationName: null,
 			group_id: null
-	}
+		}
 		$state.go('app.tab.events')
-	}
+	
 
 	$scope.submitAndPoll = function () {
 		console.log('hello?', $scope.events)
