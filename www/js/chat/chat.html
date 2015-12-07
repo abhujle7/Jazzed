@@ -52,7 +52,19 @@
                         <button ng-show="listVisibility" ng-click="hideList()" class="button button-small button-balanced">
                              <span>Return to Chat</span>
                         </button>
-                    </ion-footer-bar>
+                        <button ng-click="sendMessage(IM.textMessage)" class="button button-small button-balanced">
+                            Send 
+                        </button>
+                    </ion-item>
+        </ion-list>
+        <button ng-click="goToAddContacts()">Add Contacts</button>
+        <ion-list ng-hide="roomName">
+            <ion-item class="textCenter">
+                <h4>Please select a room to chat first.</h4>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-footer-bar>
 
 </ion-view>
 

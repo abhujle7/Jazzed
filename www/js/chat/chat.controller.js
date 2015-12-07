@@ -1,4 +1,4 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory, $ionicScrollDelegate) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory, $ionicScrollDelegate, currentRoomId) {
 
   $ionicScrollDelegate.scrollBottom();
 
@@ -68,6 +68,8 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     $state.go('tab.polls', {eventid: event.$id})
   }
 
-
- })
+  $scope.goToAddContacts = function() {
+    $state.go('contacts', {roomid: currentRoomId})
+  }
+})
 

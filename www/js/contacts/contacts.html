@@ -6,6 +6,7 @@
 			<ion-item ng-repeat="contact in contacts">
 				<h2>{{contact.name}}</h2>
 				<p>{{contact.phone}}</p>
+				<ion-item class="item-text-wrap" ng-click="addMember(contact.uid)"
 			</ion-item>
 		</ion-list>
 	</ion-content>
