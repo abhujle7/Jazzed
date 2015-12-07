@@ -3,6 +3,7 @@ app.controller('ResultsCtrl', function($scope, SportsFactory, ApiFactory, $state
 	function change() {
 		SportsFactory.result().forEach(function(event) {
 			event.datetime_local = moment(event.datetime_local).format('llll')
+			console.log(event.datetime_local)
 		})
 		return SportsFactory.result()
 	}
