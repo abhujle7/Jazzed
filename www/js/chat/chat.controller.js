@@ -81,14 +81,14 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.goToAddContacts = function() {
-    $state.go('contacts', {roomid: currentRoomId})
+    $state.go('app.tab.contacts', {roomid: currentRoomId})
   }
 
   var template = '<ion-popover-view><ion-header-bar><h1 class="title">Group Settings</h1></ion-header-bar><ion-content><div class="list"><label class="item" ng-click="revealPolls()">View Live Polls</label><label class="item" ng-click="revealList()">Suggest Event</label><label class="item" ng-click="goToAddContacts()">Invite Contacts to Group</label></div></ion-content></ion-popover-view>';
 
 
   $scope.popover = $ionicPopover.fromTemplate(template, {
-    scope: $scope
+    scope: $scope,
   })
 
    $scope.openPopover = function($event) {
