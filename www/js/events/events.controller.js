@@ -2,6 +2,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 
 	$scope.rooms = RoomsFactory.all();
 	$scope.events = EventFactory.all();
+	
 	var currEventId;
 	$scope.data = {
 		name: null,
@@ -13,8 +14,12 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 		group_id: null
 	};
 
-	$scope.createEvent = function() {
-		$state.go('tab.createNewEvent');
+	// $scope.createEvent = function() {
+	// 	$state.go('tab.createNewEvent');
+	// }
+
+	$scope.editEvent = function(event) {
+		$state.go('tab.eventDetails',{eventId: event.$id});
 	}
 
 	$scope.submitEvent = function() {
