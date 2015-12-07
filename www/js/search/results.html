@@ -5,7 +5,7 @@
 <li>{{result.title}}</li>
 <li>{{result.datetime_local}}</li>
 <li>{{result.venue.name}}, {{result.venue.city}}</li>
-<a ng-href={{result.url}}>Buy Tickets</a> or <span><h5 ng-click="apiEvent(result.title, result.venue.name, result.datetime_local)">Create Event</h5></span>
+<a ng-href={{result.url}}>Buy Tickets</a> or <span><a ng-click="apiEvent(result.title, result.venue.name, result.datetime_local)">Create Event</a></span>
 <br/>
 </ul>
 </ion-view>
