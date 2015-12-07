@@ -63,6 +63,23 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
                 timestamp: Firebase.ServerValue.TIMESTAMP
             };
             chats.$add(chatMessage).then(function (data) {
+ 
+
+              chats.$loaded(function(chatsList) {
+                  var i = chatsList.length - 1;
+                  var date = new Date(chatsList[i].timestamp);
+                  var minutes = String(date.getMinutes());
+                  if (minutes.length < 2) {
+                    minutes += "0";
+                  }
+                  chatsList[i].userFriendlyTime = date.getHours() + ":" + minutes;
+              })
+              // var date = new Date(data.timestamp);
+              // var minutes = String(date.getMinutes());
+              // if (minutes.length < 2) {
+              //   minutes += "0";
+              // }
+              // data.userFriendlyTime = date.getHours() + ":" + minutes;
             })
             .catch(function(error) {
               console.error("Error:", error);
