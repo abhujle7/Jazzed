@@ -1,4 +1,17 @@
 <ion-view view-title="Contacts">
+    <ion-content class="padding">
+        <h2>Contacts</h2>
+        <ion-list>
+            <ion-item ng-repeat="contact in contacts">
+                <h2>{{contact.name}}</h2>
+                <p>{{contact.phone}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
+
+<!-- <ion-view view-title="Contacts">
 	<ion-content class="padding">
 		<h2>Contacts</h2>
 		<p ng-show="contacts.length === 0">No contacts</p>
@@ -10,4 +23,5 @@
 			</ion-item>
 		</ion-list>
 	</ion-content>
-</ion-view>
+</ion-view> -->
+

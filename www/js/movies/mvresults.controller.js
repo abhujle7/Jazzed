@@ -1,4 +1,4 @@
-app.controller('MvCtrl', function($scope, MoviesFactory) {
+app.controller('MvCtrl', function($scope, MoviesFactory, ApiFactory, $state) {
 	$scope.results = MoviesFactory.result()
 	$scope.currentTheater;
 
@@ -8,5 +8,10 @@ app.controller('MvCtrl', function($scope, MoviesFactory) {
 
 	$scope.show = function(index) {
 		return $scope.currentTheater === index;
+	}
+
+	$scope.apiEvent = function(a, b, c) {
+		ApiFactory.set(a, b, c)
+		$state.go('app.tab.apiEvent')
 	}
 })

@@ -31,7 +31,6 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
     },
     save: function(event) {
       events.$save(event).then(function(ref) {
-        console.log("We edited it!");
         $ionicHistory.goBack()
       })
     }

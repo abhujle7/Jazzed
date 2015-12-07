@@ -2,14 +2,16 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 
 	$scope.rooms = RoomsFactory.all();
 	$scope.events = EventFactory.all();
+
 	
 
 	var currEventId;
 	$scope.data = {
 		name: null,
 		description: null,
-		date: null,
+		day: null,
 		time: null,
+		date: null,
 		location: null,
 		locationName: null,
 		group_id: null
@@ -28,16 +30,24 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	}
 
 	$scope.submitEvent = function() {
-		console.log("sup");
-		new Firebase('https://boiling-fire-3161.firebaseio.com/groups')
-		.startAt($scope.groupName)
-		.endAt($scope.groupName)
-		.once('value', function (snap) {
-		$scope.data.group_id = snap.key();
+		$scope.hours = $scope.data.time.getHours();
+		$scope.minutes = $scope.data.time.getMinutes();
+		$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
+
 		EventFactory.addEvent($scope.data)
+		$scope.data = {
+			name: null,
+			description: null,
+			day: null,
+			time: null,
+			date: null,
+			location: null,
+			locationName: null,
+			group_id: null
+		}
 		$state.go('app.tab.events')
-	})
 	}
+
 
 	$scope.submitAndPoll = function () {
 		console.log('hello?', $scope.events)
@@ -49,9 +59,6 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 		$state.go('app.tab.chat-polls', {eventid: currEventId, id: $scope.data.group_id})
 		console.log('second')
 		})
-		// console.log('in function')
-		// console.log('past submitevent')
-		// console.log('end of func')
 	}
 	$scope.saveEventPopup = function () {
 		$ionicPopup.show({

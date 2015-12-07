@@ -4,6 +4,7 @@ app.config(function($stateProvider) {
 		url: '/createNewEvent',
 		views: {
 			'eventsView': {
+				cache: false,
 				templateUrl: 'js/events/createNewEvent.html',
 				controller: 'EventsCtrl'
 			}

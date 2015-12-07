@@ -6,6 +6,8 @@ app.controller('EventDetailCtrl', function($scope, $state, eventDetails, EventFa
 	$scope.data = {
 		name: null,
 		description: null,
+		day: null,
+		time: null,
 		date: null,
 		time: null,
 		location: {
@@ -16,6 +18,11 @@ app.controller('EventDetailCtrl', function($scope, $state, eventDetails, EventFa
 	};
 
 	$scope.saveEvent = function() {
+		$scope.hours = $scope.data.time.getHours();
+		$scope.minutes = $scope.data.time.getMinutes();
+		console.log($scope.hours, $scope.minutes);
+		$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
+		console.log("time is", $scope.data.date);
 		for (var key in $scope.data) {
 			if ($scope.data[key] && key != "location") {
 				eventDetails[key] = $scope.data[key];
@@ -24,6 +31,7 @@ app.controller('EventDetailCtrl', function($scope, $state, eventDetails, EventFa
 				eventDetails.location = $scope.data.location;
 			}
 		}
+		console.log("event is", eventDetails);
 		EventFactory.save(eventDetails);
 	}
 
