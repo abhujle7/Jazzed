@@ -3,6 +3,63 @@
 	font-weight: bold;
 }
 
+* {
+	font-family: Lato;
+}
+
+/*for chat.html*/
+.center {
+	text-align: center;
+	padding: 10px;
+	color: #E97C30;
+	padding-top: 15px;
+	font-weight: bold;
+}
+
+
+/*for movie results*/
+
+.orange {
+	color: white;
+	background-color: #E97C30;
+}
+
+.mvheading {
+	text-align: center;
+}
+
+.mvresults {
+	display: inline-block;
+	padding-left: 5px;
+	margin-left: 10px;
+
+}
+
+.trailer {
+	display: block;
+	margin-left: 10px;
+}
+
+.theater {
+	font-weight: bold;
+	margin-left: 10px;
+	font-size: 1.2em;
+	color: grey;
+}
+
+.shift {
+	margin-left: 10px;
+	font-size: 0.9em;
+	margin-bottom: 5px;
+}
+
+.confirm {
+	display: block;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	margin-top: 3px;
+}
+
 .triangle-isosceles {
   position: relative;
   padding: 15px;
@@ -13,7 +70,7 @@
   background: linear-gradient(top, #f9d835, #f3961c);
 }
 
-/* creates triangle */
+/* creates triangle 
 .triangle-isosceles:after {
   content: "";
   display: block; /* reduce the damage in FF3.0 */
@@ -67,5 +124,6 @@
     display:block;
     max-width:65%;
     border-radius:.75rem;
+<<<<<<< HEAD
 }
 */

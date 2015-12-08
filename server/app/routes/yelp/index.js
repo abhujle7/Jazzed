@@ -2,7 +2,7 @@
 var router = require('express').Router();
 module.exports = router;
 var Yelp = require('yelp');
-var keys = require('./variables.js')
+var keys = require('../../../env').YELP
 
 var yelp = new Yelp({
   consumer_key: keys.key,

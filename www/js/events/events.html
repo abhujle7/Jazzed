@@ -1,17 +1,16 @@
 <ion-view view-title="Events">
   <ion-content>
     <ion-list>
-    	<!-- <ion-item ng-click="createEvent()"> -->
         <ion-item ui-sref="app.tab.createNewEvent">
-    		<p>Create a new Event</p>
-    	</ion-item>
-    	<ion-item ng-repeat="event in events" ng-click="editEvent(event)">
-    		<h2>{{event.name}}</h2>
-    		<p>At time {{event.time}} located at the place called {{event.location.name}} located at {{event.location.coordinates}} with key {{event.groups}}</p>
-    	</ion-item>
+            <p>Create a new Event</p>
+        </ion-item>
+        <ion-item ng-repeat="event in events" ng-click="editEvent(event)">
+            <a class="item item-thumbnail-left item-text-wrap" href="#">
+                <img ng-src="http://lorempixel.com/400/200/sports/{{$index}}" alt="Event Picture">
+                <h2>{{event.name}}</h2>
+                <p>Meet at {{event.location.name || "TBD"}} on {{event.date || "TBD"}}</p>
+            </a>
+        </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
-
-
-        <!-- <ion-item ng-repeat="event in events" ui-sref="tab.createNewEvent{{eventId: event.$id}}"> -->

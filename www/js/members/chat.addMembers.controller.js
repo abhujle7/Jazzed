@@ -21,24 +21,26 @@ app.controller('AddMembersCtrl', function($scope, AuthFactory, $firebaseObject, 
 	        $scope.contacts = (function() {
 		        var arr = [];
 		        for (var i = 0; i < userContacts.length; i++) {
-		            var number = parsePhone(userContacts[i])
-		            if (phoneToUserHash[number]) {
-		                var uid = phoneToUserHash[number];
-		                userRef.child(uid).on("value", function(snapshot) {
-		                    var name = snapshot.val().name
-		                    var phone = number
-		                    var photo = snapshot.val().photo
-		                    arr.push({
-		                        name: name,
-		                        phone: phone,
-		                        photo: photo,
-		                        uid: uid
-		                    })
-		                })
-		            }
+		        	if (userContacts[i]) {
+			            var number = parsePhone(userContacts[i])
+			            if (phoneToUserHash[number]) {
+			                var uid = phoneToUserHash[number];
+			                userRef.child(uid).on("value", function(snapshot) {
+			                    var name = snapshot.val().name
+			                    var phone = snapshot.val().phone
+			                    var photo = snapshot.val().photo
+			                    arr.push({
+			                        name: name,
+			                        phone: phone,
+			                        photo: photo,
+			                        uid: uid
+			                    })
+			                })
+			            }	
+		        	}
 		        }
 		        return arr
-		    })()    
+		    })()
 	    }
 
 	    function onError(contactError) {
@@ -52,7 +54,7 @@ app.controller('AddMembersCtrl', function($scope, AuthFactory, $firebaseObject, 
 	    // options.hasPhoneNumber = true; //android only
 	    var fields       = ['displayName', 'phoneNumbers'];
 	    navigator.contacts.find(fields, onSuccess, onError, options)
-	}
+	 }
 
 	$scope.addMember = function(id) {
 		return RoomsFactory.addMember(id, currentRoomId)

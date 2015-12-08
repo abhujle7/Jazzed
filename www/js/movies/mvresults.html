@@ -1,15 +1,18 @@
-<ion-view view-title="Event Results">
+<ion-view id="header" view-title="Theater Results">
 <h1>Results</h1>
 <h2 ng-show="!results.length">No nearby theaters found. Please try a different zipcode!</h2>
-<h3 ng-show="results.length">These are nearby theaters. Click on one to see movies and showtimes.</h3>
+<h4 class="mvheading" ng-show="results.length">Here are some nearby theaters. Click on one to see movies and showtimes.</h4>
 <ul ng-repeat="(theaterIndex, theater) in results">
-	<li ng-click="showFull(theaterIndex)">{{theater.name}}- <span>{{theater.address}}</span></li>
+	<li class="theater" ng-click="showFull(theaterIndex)">{{theater.name}}</li>
+	<li class="shift">Address: {{theater.address}}</li>
 	<ul ng-show="show(theaterIndex)" ng-repeat="movie in theater.movies">
-		<a ng-href="{{movie.trailer}}">{{movie.name}}</a>
-		<ul ng-repeat="time in movie.showtimes">
-			<li>{{time}}</li>
-		</ul>
-		<h5 ng-click="apiEvent(movie.name, theater.name)">Create Event</h5>
+		<li class="trailer">{{movie.name}} <a ng-href="{{movie.trailer}}">(trailer) </a> </li>
+		<div class="shift"><span>Showtimes: </span>
+		<div class="mvresults" ng-repeat="time in movie.showtimes">
+			<span>{{time}}</span>
+		</div>
+	</div>
+		<button class="button button-small button-calm confirm" ng-click="apiEvent(movie.name, theater.name)">Create Event</button>
 	</ul>
 </ul>
 </ion-view>

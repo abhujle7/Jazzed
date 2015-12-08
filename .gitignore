@@ -7,3 +7,4 @@ coverage
 platforms
 www/main.js
 server/app/routes/yelp/variables.js
+server/env/variables.js
