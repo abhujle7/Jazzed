@@ -1,12 +1,11 @@
 <ion-view view-title="Edit Event">
 	<ion-content>
-	<!-- <h1>{{currentEvent}}</h1> -->
 		<div class="list">
 			<label class="item item-input">
-				<input type="text" placeholder="{{currentEvent.name}}" ng-model="data.name">
+				<input type="text" ng-model="data.name" ng-init="data.name=currentEvent.name">
 			</label>
 			<label class="item item-input">
-				<input type="text" placeholder="{{currentEvent.description}}" ng-model="data.description">
+				<input type="text" ng-model="data.description" ng-init="data.description=currentEvent.description">
 			</label>
 			<label class="item item-input">
 				<input type="date" ng-model="data.day" placeholder="{{currentEvent.date}}">
@@ -14,33 +13,17 @@
 			<label class="item item-input">
 				<input type="time" ng-model="data.time">
 			</label>
-		<!-- </div>
-		<div class="list"> -->
 			<label class="item item-input">
-				<input type="text" placeholder="{{currentEvent.location.name}}" ng-model="data.location.name">
+				<input type="text" ng-model="data.location.name"  ng-init="data.location.name=currentEvent.location.name">
 			</label>
-		<!-- 	<label class="item item-input item-select">
+ 			<label class="item item-input item-select">
 				<div class='input-label'>
-					location
+					Groups
 				</div>
-				<select ng-model="data.location.coordinate">
-					<option>coordinate 1</option>
-					<option>coordinate 2</option>
-					<option>geofire hashkey</option>
-				</select>
-			</label>
- -->			<label class="item item-input item-select">
-				<div class='input-label'>
-					{{currentEvent.groups}}
-				</div>
-				<select ng-model="data.group_id">
-					<option ng-repeat="room in rooms">{{room.name}}</option>
+				<select ng-model="data.group_id" ng-init="data.group_id=rooms[0].$id" ng-options="room.$id as room.name for room in rooms">
 				</select>
 			</label>
 		</div>
-		<!-- <button class="button button-positive" ng-click="submitEvent(data.name)">
-			Submit
-		</button> -->
 		<button class="button button-positive" ng-click="saveEvent()">
 			Save
 		</button>
@@ -49,3 +32,8 @@
 		</button>
 	</ion-content>
 </ion-view>
+
+
+
+			<!-- <select ng-model="data.group_id" ng-init="data.group_id=currentEvent.groups || room[2].name" ng-options="room.$id as room.name for room in rooms">
+				</select> -->
