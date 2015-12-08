@@ -7,9 +7,19 @@
 			<label class="item item-text-wrap">
 				<span class="heading">Description: </span><span class="item-text-wrap">{{event.description}}</span>
 			</label>
-			<label class="item">
-				<span class="heading">When: </span><span> {{event.date}}{{event.time}}</span>
+			<label ng-show="eventDate()" class="item">
+				<span class="heading">When: </span><span> {{event.date}}</span>
 			</label>
+			<div ng-hide="eventDate()">
+			<label class="item item-input">
+				<span class="input-label">Date</span>
+				<input type="date" ng-model="data.date">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Time</span>
+				<input type="time" ng-model="data.time">
+			</label>
+			</div>
 			<label ng-show="eventLocation()" class="item">
 				<span class="heading">Location: </span><span>{{event.location.name}}</span>
 			</label>

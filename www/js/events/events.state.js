@@ -8,6 +8,7 @@ app.config(function($stateProvider) {
         templateUrl: 'js/events/events.html',
         controller: 'EventsCtrl'
       }
+     
     }
   })
 });
