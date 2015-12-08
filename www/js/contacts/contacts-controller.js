@@ -1,7 +1,7 @@
 app.controller('ContactsCtrl', function($scope, AuthFactory, $firebaseObject){
     var userContacts = []
     var phoneToUserHash = AuthFactory.phoneToUser();
-    var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users')
+    var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/')
     function parsePhone(number) {
         var digits = number.replace(/\D/g, "");
         if (digits[0] == '1') {
