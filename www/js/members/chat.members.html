@@ -1,0 +1,10 @@
+<ion-view view-title="Members">
+	<ion-content>
+		<ion-list>
+			<ion-item ng-repeat="member in members">
+				<h3>{{member.name}}</h3>
+			</ion-item>
+		</ion-list>
+	<button class="button button-full button-positive" ng-click="goToAddMembers()">Add Contacts</button>
+	</ion-content>
+</ion-view>

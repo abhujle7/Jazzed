@@ -11,7 +11,6 @@ app.controller('RegisterCtrl', function($scope, AuthFactory, $state, $ionicPopup
 
 
     $scope.signUp = function(credentials) {
-        console.log(AuthFactory.phoneToUser())
         if ($scope.emails.indexOf(credentials.email) !== -1) {
             $scope.error = $ionicPopup.alert({
                 title: 'Invalid email',
