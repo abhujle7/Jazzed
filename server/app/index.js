@@ -11,10 +11,6 @@ require('./configure')(app);
 // Routes that will be accessed via AJAX should be prepended with
 // /api so they are isolated from our GET /* wildcard.
 
-app.use(function(req, res, next) {
-	console.log(req.path)
-	next();
-})
 app.use('/api', require('./routes'));
 
 /*

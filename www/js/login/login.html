@@ -1,8 +1,7 @@
-<ion-view>
-	<ion-content class="padding">
-		<h1>Jazzed</h1>
-		
-		<h3>Login</h3>
+<ion-view hide-nav-bar="true">
+	<ion-content class="jtitle">
+		<h1 class="jazzed">Who's In?</h1>	
+		<h3 class="jtitle">Login</h3>
 	<label class="item item-input">
 		<span class="input-label">Email</span>
   		<input type="text" ng-model="user.email" required>
@@ -11,8 +10,8 @@
 		<span class="input-label">Password</span>
   		<input type="password" ng-model="user.password" required>
 	</label>
-	<button class="button button-full button-positive" ng-click="signIn(user)">Sign In</button>
-		<h3>Create a new account</h3>
+	<button class="button custom-button" ng-click="signIn(user)">Sign In</button>
+		<h3 class="jtitle">Create a new account</h3>
 	<label class="item item-input">
 		<span class="input-label">Name</span>
   		<input type="text" ng-model="newUser.name" required>
@@ -29,6 +28,6 @@
 		<span class="input-label">Phone</span>
   		<input type="tel" ng-model="newUser.phone" required>
 	</label>
-	<button class="button button-full button-positive" ng-click="signUp(newUser)">Sign Up</button>
+	<button class="button custom-button" ng-click="signUp(newUser)">Sign Up</button>
 	</ion-content>
 </ion-view>

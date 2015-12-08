@@ -4,14 +4,39 @@
 }
 
 * {
-	font-family: Lato;
+	font-family: Arial
+
+;
 }
+/*login page*/
+
+.jazzed {
+	padding-top: 25px;
+	font-family: Lobster;
+	color: white;
+}
+
+.jtitle {
+	background-color: #7bdfff;
+	color: white;
+	text-align: center;
+	font-family: Optima
+}
+
+.custom-button {
+	background-color: white;
+	color: grey;
+	margin-top: 10px;
+	border-radius: 5px;
+	width: 100px;
+}
+
 
 /*for chat.html*/
 .center {
 	text-align: center;
 	padding: 10px;
-	color: #E97C30;
+	color: #7bdfff;;
 	padding-top: 15px;
 	font-weight: bold;
 }
@@ -19,11 +44,6 @@
 /*for movie search*/
 
 /*for movie results*/
-
-.orange {
-	color: white;
-	background-color: #E97C30;
-}
 
 .mvheading {
 	text-align: center;
