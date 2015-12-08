@@ -3,8 +3,14 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 	$scope.polls = PollsFactory.all();
 	$scope.event = eventDetails;
 	$scope.currentPoll = pollDetails
-	$scope.currentPollFormattedDate = moment.unix($scope.currentPoll.expiration.date).format("MM/DD/YYYY")
-	$scope.currentPollFormattedTime = moment.unix($scope.currentPoll.expiration.time).format("hh:mm A")
+	console.log('in polls ctrl and this is eventDetials', eventDetails)
+	$scope.currentPollFormattedDate;
+	$scope.currentPollFormattedTime;
+	
+	if(pollDetails) {
+		$scope.currentPollFormattedDate = moment.unix($scope.currentPoll.expiration.date).format("MM/DD/YYYY")
+		$scope.currentPollFormattedTime = moment.unix($scope.currentPoll.expiration.time).format("hh:mm A")
+	}
 	var roomId = $scope.event.groups
 	var pollId = $stateParams.pollid
 	var pollsRef = new Firebase('https://boiling-fire-3161.firebaseio.com/polls/');
