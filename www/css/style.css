@@ -16,6 +16,7 @@
 	font-weight: bold;
 }
 
+/*for movie search*/
 
 /*for movie results*/
 
@@ -44,7 +45,6 @@
 	font-weight: bold;
 	margin-left: 10px;
 	font-size: 1.2em;
-	color: grey;
 }
 
 .shift {
