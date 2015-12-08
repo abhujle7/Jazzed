@@ -31,7 +31,8 @@ app.controller('AddMembersCtrl', function($scope, AuthFactory, $firebaseObject, 
 		                    arr.push({
 		                        name: name,
 		                        phone: phone,
-		                        photo: photo
+		                        photo: photo,
+		                        uid: uid
 		                    })
 		                })
 		            }
