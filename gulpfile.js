@@ -1,12 +1,12 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var bower = require('bower');
+// var bower = require('bower');
 var concat = require('gulp-concat');
 var reload = require('gulp-livereload')
 var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
-var sh = require('shelljs');
+// var sh = require('shelljs');
 var babel = require('gulp-babel');
 var runSeq = require('run-sequence');
 var plumber = require('gulp-plumber');
@@ -72,10 +72,10 @@ gulp.task('watch', function() {
 });
 
 gulp.task('install', ['git-check'], function() {
-  return bower.commands.install()
-    .on('log', function(data) {
-      gutil.log('bower', gutil.colors.cyan(data.id), data.message);
-    });
+  // return bower.commands.install()
+  //   .on('log', function(data) {
+  //     gutil.log('bower', gutil.colors.cyan(data.id), data.message);
+  //   });
 });
 
 gulp.task('git-check', function(done) {
@@ -169,7 +169,7 @@ gulp.task('testServerJSWithCoverage', function (done) {
 
 gulp.task('build', function () {
     if (process.env.NODE_ENV === 'production') {
-        runSeq(['buildJSProduction']);  // removed 'buildCSSProduction'
+        // runSeq(['buildJSProduction']);  // removed 'buildCSSProduction'
     } else {
         runSeq(['buildJS', 'sass']);
     }
