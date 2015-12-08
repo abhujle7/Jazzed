@@ -29,7 +29,9 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 		event: {
 			id: null,
 			name: null
-		}
+		},
+		date: null,
+		time: null
 	}
 
 
@@ -39,9 +41,12 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 
 	$scope.submitPoll = function () {
 		console.log($scope.event, roomId, $scope.data)
+		console.log('inside submit poll', roomId, $scope.event)
 		PollsFactory.addPoll($scope.data, roomId, $scope.event)
 		// $state.go('app.tab.chat', {id: roomId})
+		console.log('inside submit after added')
 		$ionicHistory.goBack(-2);
+		console.log('inside submit after ihist')
 	}
 	
 	$scope.updatePoll = function () {
@@ -58,6 +63,13 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 			return true;
 		}
 		return false;
+	}
+
+	$scope.eventDate = function () {
+		if (!$scope.event.date) {
+			return false;
+		}
+		return true;
 	}
 
 	// $scope.currentPollAttending = function (pollObj) {

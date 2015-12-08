@@ -1,19 +1,19 @@
-app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup) {
+app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, $rootScope) {
 
 	$scope.rooms = RoomsFactory.all();
 	$scope.events = EventFactory.all();
-	
+	var currentRoomId = $rootScope.currentRoom;
+	console.log('in events ctrl room id', currentRoomId)
 
 	var currEventId;
 	$scope.data = {
 		name: null,
 		description: null,
-		day: null,
 		time: null,
 		date: null,
 		location: null,
 		locationName: null,
-		group_id: null
+		group_id: currentRoomId
 	};
 
 	// $scope.createEvent = function() {
@@ -25,7 +25,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	}
 	
 	$scope.createEvent = function() {
-		$state.go('app.tab.createNewEvent');
+		$state.go('app.tab.chat-createNewEvent');
 	}
 
 	$scope.submitEvent = function() {
@@ -42,9 +42,10 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 			date: null,
 			location: null,
 			locationName: null,
-			group_id: null
+			group_id: currentRoomId
 		}
-		$state.go('app.tab.events')
+		$ionicHistory.goBack();
+		// $state.go('app.tab.events')
 	}
 
 

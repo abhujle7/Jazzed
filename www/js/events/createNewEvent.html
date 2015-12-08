@@ -11,7 +11,7 @@
 			</label>
 			<label class="item item-input">
 				<span class="input-label">Date</span>
-				<input type="date" ng-model="data.day">
+				<input type="date" ng-model="data.date">
 			</label>
 			<label class="item item-input">
 				<span class="input-label">Time</span>
@@ -21,7 +21,7 @@
 				<span class="input-label">Location</span>
 				<input type="text" ng-model="data.locationName">
 			</label>
-			<label class="item item-input item-select">
+			<label ng-hide="true" class="item item-input item-select">
 				<span class="input-label">Group</span>
 				<select ng-model="data.group_id">
 					<option ng-repeat="room in rooms">{{room.$id}}</option>

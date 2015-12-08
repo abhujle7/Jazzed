@@ -1,7 +1,8 @@
 app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory, $ionicScrollDelegate, currentRoomId, $ionicPopover, $rootScope, $interval) {
 
   $ionicScrollDelegate.scrollBottom();
-
+  $rootScope.currentRoom = $stateParams.id;
+  console.log('id of room', $rootScope.currentRoom)
   var currUser = AuthFactory.getCurrentUser().uid
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
   var userObj = $firebaseObject(userRef)
@@ -129,7 +130,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.createEvent = function() {
-      $state.go('app.tab.createNewEvent');
+      $state.go('app.tab.chat-createNewEvent');
   }
 
   $scope.goToSeatgeek = function() {
