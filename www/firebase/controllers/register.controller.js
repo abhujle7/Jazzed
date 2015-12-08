@@ -5,6 +5,7 @@ app.controller('RegisterCtrl', function($scope, AuthFactory, $state, $ionicPopup
     // .then(function (modal) {
     // $scope.modal = modal;
     // });
+
     $scope.emails = AuthFactory.existingEmails();
     $scope.phones = AuthFactory.existingPhones();
 
