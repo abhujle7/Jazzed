@@ -11,9 +11,11 @@
                     <ion-item ng-repeat="poll in polls | filter: IM.textMessage" ng-click="goToPollDetail(poll)"><span>Poll for {{poll.event.name}}</span><span> Ends {{currentPollDate(poll)}} </span><span> Attending: {{currentPollAttending(poll)}} </span><span> Not Attending: {{currentPollNotAttending(poll)}} </span></ion-item>
                 </ion-list>
                 <ion-list ng-if="listVisibility">
-                Saved Events
-                    <ion-item ng-repeat="event in events | filter: IM.textMessage" ng-click="goToPoll(event)">{{event.name}}</ion-item>
+                <p>Know what you want to do?</p>
                     <ion-item ng-click="createEvent()">Create Custom Event</ion-item>
+                Modify a Previous Event
+                    <ion-item ng-repeat="event in events | filter: IM.textMessage" ng-click="goToPoll(event)">{{event.name}}</ion-item>
+                    <p>Search for an activity</p>
                     <ion-item ng-click="goToShowtimes()">Movies</ion-item>
                     <ion-item ng-click="goToYelp()">Restaurants/Nightlife</ion-item>
                     <ion-item ng-click="goToSeatgeek()">Concerts/Sports</ion-item>
