@@ -10,6 +10,7 @@ app.config(function($stateProvider) {
     },
     resolve: {
       eventDetails: function ($stateParams, EventFactory) {
+        console.log('this is in resolve params', $stateParams.eventid)
         return EventFactory.get($stateParams.eventid)
       },
       pollDetails: function ($stateParams, PollsFactory) {

@@ -66,6 +66,23 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.polls = PollsFactory.all()
+
+  // $scope.getGroupSpecificPolls = function (pollsArray) {
+  //     var groupPolls = [];
+  //     console.log('this is pollsArray', pollsArray, pollsArray[0].groups)
+  //   for (var i = 0; i < pollsArray.length; i++) {
+  //     console.log('in for', pollsArray, pollsArray[i])
+  //     if (pollsArray[i].groups == currentRoomId) {
+  //       console.log('in if', pollsArray[i].groups)
+  //       groupPolls.push(pollsArray[i])
+  //     }
+  //   }
+  //   console.log('this is groupPolls', groupPolls)
+  //   return groupPolls;
+  // };
+
+  // $scope.groupPolls = $scope.getGroupSpecificPolls($scope.polls);
+
   $scope.events = EventFactory.all()
   $scope.listVisibility = false;
   $scope.pollVisibility = false;
@@ -135,11 +152,12 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     $state.go('app.tab.chat-polls', {id: currentRoomId, eventid: event.$id})
   }
 
+
   $scope.goToViewMembers = function() {
     $state.go('app.tab.chat-members', {id: currentRoomId})
   }
 
-  var template = '<style>.popover { height:210px; width: 150px; }</style><ion-popover-view><ion-header-bar><h1 class="title">Group Settings</h1></ion-header-bar><ion-content><div class="list"><label class="item" ng-click="revealPolls()">View Live Polls</label><label class="item" ng-click="revealList()">Suggest Event</label><label class="item" ng-click="goToViewMembers()">View Members</label></div></ion-content></ion-popover-view>';
+  var template = '<style>.popover { height:200px; width: 180px; }</style><ion-popover-view><ion-header-bar><h1 class="title">Group Settings</h1></ion-header-bar><ion-content><div class="list"><label class="item" ng-click="revealPolls()"><h3>View Live Polls</h3></label><label class="item" ng-click="revealList()"><h3>Suggest Event</h3></label><label class="item" ng-click="goToViewMembers()"><h3>View & Add Members</h3></label></div></ion-content></ion-popover-view>';
 
 
   $scope.popover = $ionicPopover.fromTemplate(template, {

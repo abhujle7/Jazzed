@@ -2,7 +2,6 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 
 	$scope.rooms = RoomsFactory.all();
 	$scope.events = EventFactory.all();
-
 	
 
 	var currEventId;

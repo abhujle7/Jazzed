@@ -1,6 +1,6 @@
 app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHistory, AuthFactory, ChatFactory, $firebaseObject) {
 	
-	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com');
+	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/');
 	var pollsRef = new Firebase('https://boiling-fire-3161.firebaseio.com/polls/');
   var polls = $firebaseArray(pollsRef);
   var currentUser = AuthFactory.getCurrentUser();
