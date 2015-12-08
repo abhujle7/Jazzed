@@ -1,3 +1,5 @@
+var yelp = require('./variables')
+
 module.exports = {
   "DATABASE_URI": "mongodb://localhost:27017/jazzed",
   "SESSION_SECRET": "Optimus Prime is my real dad",
@@ -15,5 +17,6 @@ module.exports = {
     "clientID": "INSERT_GOOGLE_CLIENTID_HERE",
     "clientSecret": "INSERT_GOOGLE_CLIENT_SECRET_HERE",
     "callbackURL": "INSERT_GOOGLE_CALLBACK_HERE"
-  }
+  },
+  "YELP": yelp
 };
