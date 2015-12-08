@@ -2,22 +2,22 @@
 	<ion-content>
 		<div class="list">
 			<label class="item">
-				<span>Event: {{event.name}}</span>
+				<span class="heading">Event: </span><span> {{event.name}}</span>
+			</label>
+			<label class="item item-text-wrap">
+				<span class="heading">Description: </span><span class="item-text-wrap">{{event.description}}</span>
 			</label>
 			<label class="item">
-				<span>Description: {{event.description}}</span>
-			</label>
-			<label class="item">
-				<span>When: {{event.date}}{{event.time}}</span>
+				<span class="heading">When: </span><span> {{event.date}}{{event.time}}</span>
 			</label>
 			<label ng-show="eventLocation()" class="item">
-				<span>Location: {{event.location.name}}</span>
+				<span class="heading">Location: </span><span>{{event.location.name}}</span>
 			</label>
 			<label ng-hide="eventLocation()" class="item item-input">
 				<input type="text" placeholder="Location Name" ng-model="data.location">
 			</label>
 			
-			<label>End Poll at:</label>
+			<label class="heading">End Poll at:</label>
 			<label class="item item-input">
 				<input type="date" ng-model="data.expiration.date">
 			</label>

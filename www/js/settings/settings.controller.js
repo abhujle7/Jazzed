@@ -1,7 +1,7 @@
 // angular.module('starter.controllers', [])
 
 app.controller('SettingsCtrl', function($scope, $state, $firebaseObject, AuthFactory, $ionicActionSheet) {
-	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com')
+	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/')
 	var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + AuthFactory.getCurrentUser().uid)
 	var currentUser = $firebaseObject(userRef)
 	$scope.user = currentUser;

@@ -168,9 +168,9 @@ gulp.task('testServerJSWithCoverage', function (done) {
 });
 
 gulp.task('build', function () {
-    if (process.env.NODE_ENV === 'production') {
-        // runSeq(['buildJSProduction']);  // removed 'buildCSSProduction'
-    } else {
+    // if (process.env.NODE_ENV === 'production') {
+    //     // runSeq(['buildJSProduction']);  // removed 'buildCSSProduction'
+    // } else {
         runSeq(['buildJS', 'sass']);
-    }
+    // }
 });

@@ -2,8 +2,9 @@ app.controller('EventDetailCtrl', function($scope, $state, eventDetails, EventFa
 	
 	$scope.currentEvent = eventDetails;
 	$scope.rooms = RoomsFactory.all();
+	console.log($scope.currentEvent);
 
-
+	$scope.defaultDate = new Date($scope.currentEvent.date);
 	$scope.data = {
 		name: null,
 		description: null,
