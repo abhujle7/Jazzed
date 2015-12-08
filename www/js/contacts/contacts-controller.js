@@ -21,23 +21,25 @@ app.controller('ContactsCtrl', function($scope, AuthFactory, $firebaseObject){
 	        $scope.contacts = (function() {
 		        var arr = [];
 		        for (var i = 0; i < userContacts.length; i++) {
-		            var number = parsePhone(userContacts[i])
-		            if (phoneToUserHash[number]) {
-		                var uid = phoneToUserHash[number];
-		                userRef.child(uid).on("value", function(snapshot) {
-		                    var name = snapshot.val().name
-		                    var phone = number
-		                    var photo = snapshot.val().photo
-		                    arr.push({
-		                        name: name,
-		                        phone: phone,
-		                        photo: photo
-		                    })
-		                })
-		            }
+		        	if (userContacts[i]) {
+			            var number = parsePhone(userContacts[i])
+			            if (phoneToUserHash[number]) {
+			                var uid = phoneToUserHash[number];
+			                userRef.child(uid).on("value", function(snapshot) {
+			                    var name = snapshot.val().name
+			                    var phone = number
+			                    var photo = snapshot.val().photo
+			                    arr.push({
+			                        name: name,
+			                        phone: phone,
+			                        photo: photo
+			                    })
+			                })
+			            }	
+		        	}
 		        }
 		        return arr
-		    })()    
+		    })()
 	    }
 
 	    function onError(contactError) {
