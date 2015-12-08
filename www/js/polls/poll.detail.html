@@ -1,34 +1,39 @@
-<ion-view view-title="Vote in Poll {{event.name}}">
-	<p>HEELOOOO</p>
+<ion-view view-title="Vote in Poll for {{event.name}}">
 	<ion-content>
 		<div class="list">
 			<label class="item">
-				<span>Event: {{event.name}}</span>
+				<span class="heading">Event: </span><span> {{event.name}}</span>
 			</label>
 			<label class="item">
-				<span>Description: {{event.description}}</span>
+				<span class="heading">Description: </span><span class="item-text-wrap">{{event.description}}</span>
 			</label>
 			<label class="item">
-				<span>When: {{event.date}}{{event.time}}</span>
+				<span class="heading">When: </span><span> {{event.date}}{{event.time}}</span>
 			</label>
 			<label ng-show="eventLocation()" class="item">
-				<span>Location: {{event.location.name}}</span>
+				<span class="heading">Location: </span><span>{{event.location.name}}</span>
 			</label>
 			<label ng-hide="eventLocation()" class="item item-input">
 				<input type="text" placeholder="Location Name" ng-model="data.location">
 			</label>
 			
-			<label>Poll Ends At:</label>
+			<label class="heading">Poll Ends At:</label>
 			<label class="item">
-				<span>Date: {{currentPoll.expiration.date}}</span>
+				<span class="heading">Date: </span><span>{{currentPollFormattedDate}}</span>
 			</label>
 			<label class="item">
-				<span>Time: {{currentPoll.expiration.time}}</span>
+				<span class="heading">Time: </span><span>{{currentPollFormattedTime}}</span>
+			</label>
+			<label class="item">
+				<span class="heading">Currently Attending: </span><span>{{currentPoll.responses.attending}} participants</span>
+			</label>
+			<label class="item">
+				<span class="heading">Not Attending: </span><span>{{currentPoll.responses.notAttending}} participants</span>
 			</label>
 
-			<ion-radio class="item item-input" ng-model="data.responses.attending" ng-value="1">Attending
+			<ion-radio class="item item-input" ng-model="data.responses.attending" ng-value="1">Click to Attend Event
 			</ion-radio>
-			<ion-radio class="item item-input" ng-model="data.responses.notAttending" ng-value="1">Not Attending
+			<ion-radio class="item item-input" ng-model="data.responses.notAttending" ng-value="1">Click to Decline Event
 			</ion-radio>
 		</div> 
 		<button class="button button-positive" ng-click="updatePoll()">
