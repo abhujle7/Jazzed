@@ -3,9 +3,16 @@
 	font-weight: bold;
 }
 
+* {
+	font-family: Lato;
+}
+.orange {
+	color: white;
+	background-color: #E97C30;
+}
+
 .mvheading {
 	text-align: center;
-	font-family: Lobster;
 }
 
 .mvresults {
@@ -38,5 +45,3 @@
 	margin-bottom: 10px;
 	margin-top: 3px;
 }
-
-@import 'css/mvresults.css'
