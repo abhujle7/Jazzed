@@ -1,6 +1,5 @@
-app.controller('ContactsCtrl', function($scope, contacts, ContactsFactory, AuthFactory, $firebaseObject){
-    document.addEventListener("deviceready", ContactsFactory.onDeviceReady, false)
-    var userContacts = contacts;
+app.controller('ContactsCtrl', function($scope, AuthFactory, $firebaseObject){
+    var userContacts = []
     var phoneToUserHash = AuthFactory.phoneToUser();
     var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users')
     function parsePhone(number) {
@@ -10,93 +9,48 @@ app.controller('ContactsCtrl', function($scope, contacts, ContactsFactory, AuthF
         }
         return digits
     }
-    $scope.contacts = (function() {
-        var arr = [];
-        for (var i = 0; i < userContacts.length; i++) {
-            var number = parsePhone(userContacts[i])
-            if (phoneToUserHash[number]) {
-                var uid = phoneToUserHash[number];
-                userRef.child(uid).on("value", function(snapshot) {
-                    var name = snapshot.val().name
-                    var phone = number
-                    var photo = snapshot.val().photo
-                    arr.push({
-                        name: name,
-                        phone: phone,
-                        photo: photo
-                    })
-                })
-            }
-        }
-        return arr
-    })()    
+    $scope.contacts;
+    document.addEventListener("deviceready", onDeviceReady, false)
+	function onDeviceReady () {
+	    function onSuccess(contacts) {
+	        userContacts = _(contacts)
+	            .pluck('phoneNumbers')
+	            .flatten()
+	            .pluck('value')
+	            .value();
+	        $scope.contacts = (function() {
+		        var arr = [];
+		        for (var i = 0; i < userContacts.length; i++) {
+		            var number = parsePhone(userContacts[i])
+		            if (phoneToUserHash[number]) {
+		                var uid = phoneToUserHash[number];
+		                userRef.child(uid).on("value", function(snapshot) {
+		                    var name = snapshot.val().name
+		                    var phone = number
+		                    var photo = snapshot.val().photo
+		                    arr.push({
+		                        name: name,
+		                        phone: phone,
+		                        photo: photo
+		                    })
+		                })
+		            }
+		        }
+		        return arr
+		    })()    
+	    }
+
+	    function onError(contactError) {
+	        alert('onError!');
+	    }
+
+	    var options      = new ContactFindOptions();
+	    options.filter   = "";
+	    options.multiple = true;
+	    options.desiredFields = ['phoneNumbers', 'displayName', 'name']
+	    // options.hasPhoneNumber = true; //android only
+	    var fields       = ['displayName', 'phoneNumbers'];
+	    navigator.contacts.find(fields, onSuccess, onError, options)
+	 } 
 
 });
-
-
-
-
-
-
-// app.controller('ContactsCtrl', function($scope, ContactsFactory, AuthFactory, RoomsFactory, ChatFactory, registerListener){
-// 	var userContacts = function() {
-// 		return ContactsFactory.getPromise().then(null, console.error)
-// 	}
-// 	var phoneToUserHash = AuthFactory.phoneToUser();
-// 	var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users')
-// 	function parsePhone(number) {
-// 		var digits = number.replace(/\D/g, "");
-// 		if (digits[0] == '1') {
-// 			digits = digits.slice(1)
-// 		}
-// 		return digits
-// 	}
-// 	$scope.contacts = (function() {
-// 		console.log(userContacts())
-// 		var arr = [];
-// 		for (var i = 0; i < userContacts.length; i++) {
-// 			var number = parsePhone(userContacts[i])
-// 			if (phoneToUserHash[number]) {
-// 				var uid = phoneToUserHash[number];
-// 				userRef.child(uid).on("value", function(snapshot) {
-// 					var name = snapshot.val().name
-// 					var phone = number
-// 					var photo = snapshot.val().photo
-// 					arr.push({
-// 						name: name,
-// 						phone: phone,
-// 						photo: photo,
-// 						uid: uid
-// 					})
-// 				})
-// 			}
-// 		}
-// 		return arr
-// 		// .filter(function(member) {
-// 		// 	return !isContactMember(member.uid)
-// 		// })
-// 	})()
-
-// 	// $scope.addMember = function(id) {
-// 	// 	return RoomsFactory.addMember(id, currentRoomId)
-// 	// }
-
-// 	// $scope.isContactMember = function(uid) {
-// 	// 	if (ChatFactory.getMembers().indexOf(uid) > -1) {
-// 	// 		return true
-// 	// 	}
-// 	// 	else {
-// 	// 		return false
-// 	// 	}
-// 	// }
-
-// });
-
-
-
-
-
-
-
-
-
