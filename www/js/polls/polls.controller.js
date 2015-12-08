@@ -33,8 +33,8 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 	$scope.submitPoll = function () {
 		console.log('fuck this asdflkaslkfjklasdjflksd', $scope.event, roomId, $scope.data)
 		PollsFactory.addPoll($scope.data, roomId, $scope.event)
-		// $state.go('app.tab.chat.id', {id: roomId})
-		$ionicHistory.goBack();
+		// $state.go('app.tab.chat', {id: roomId})
+		$ionicHistory.goBack(-2);
 	}
 	
 	$scope.updatePoll = function () {
