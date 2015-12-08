@@ -66,6 +66,23 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.polls = PollsFactory.all()
+
+  // $scope.getGroupSpecificPolls = function (pollsArray) {
+  //     var groupPolls = [];
+  //     console.log('this is pollsArray', pollsArray, pollsArray[0].groups)
+  //   for (var i = 0; i < pollsArray.length; i++) {
+  //     console.log('in for', pollsArray, pollsArray[i])
+  //     if (pollsArray[i].groups == currentRoomId) {
+  //       console.log('in if', pollsArray[i].groups)
+  //       groupPolls.push(pollsArray[i])
+  //     }
+  //   }
+  //   console.log('this is groupPolls', groupPolls)
+  //   return groupPolls;
+  // };
+
+  // $scope.groupPolls = $scope.getGroupSpecificPolls($scope.polls);
+
   $scope.events = EventFactory.all()
   $scope.listVisibility = false;
   $scope.pollVisibility = false;
