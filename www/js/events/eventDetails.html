@@ -5,24 +5,28 @@
 		</div>	 -->
 		<div class="list">
 			<label class="item item-input">
+				<span class="input-label">Event Name</span>
 				<input type="text" ng-model="data.name" ng-init="data.name=currentEvent.name">
 			</label>
 			<label class="item item-input">
+				<span class="input-label">Description</span>
 				<input type="text" ng-model="data.description" ng-init="data.description=currentEvent.description">
 			</label>
 			<label class="item item-input">
-				<input type="date" ng-model="data.day">
+				<span class="input-label">Date</span>
+				<input type="date" ng-model="data.day" ng-init="data.day=defaultDate">
 			</label>
 			<label class="item item-input">
-				<input type="time" ng-model="data.time">
+				<span class="input-label">Time</span>
+				<!-- {{defaultDate}} HELOHELHOELOL -->
+				<input type="time" ng-model="data.time" ng-init="data.time=defaultDate">
 			</label>
 			<label class="item item-input">
+				<span class="input-label">Location</span>
 				<input type="text" ng-model="data.location.name"  ng-init="data.location.name=currentEvent.location.name">
 			</label>
  			<label class="item item-input item-select">
-				<div class='input-label'>
-					Groups
-				</div>
+				<span class="input-label">Group</span>
 				<select ng-model="data.group_id" ng-init="data.group_id=rooms[0].$id" ng-options="room.$id as room.name for room in rooms">
 				</select>
 			</label>
@@ -36,8 +40,5 @@
 	</ion-content>
 </ion-view>
 
-<!-- "Dec 12, 2020 12:12 AM" -->
-<!-- need to refactor to store time in milliseconds so easy to format -->
 
-			<!-- <select ng-model="data.group_id" ng-init="data.group_id=currentEvent.groups || room[2].name" ng-options="room.$id as room.name for room in rooms">
-				</select> -->
+<!-- <select ng-model="data.group_id" ng-init="data.group_id=rooms[0].$id" ng-options="room.$id as room.name for room in rooms"> -->
