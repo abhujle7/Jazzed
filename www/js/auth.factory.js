@@ -1,5 +1,5 @@
 app.factory("AuthFactory", function($firebaseAuth) {
-    var ref = new Firebase('https://boiling-fire-3161.firebaseio.com')
+    var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/')
     var auth = $firebaseAuth(ref);
     var users = ref.child('users')
     var emails = []
