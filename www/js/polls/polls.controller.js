@@ -1,9 +1,10 @@
 app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory, $ionicHistory, PollsFactory, eventDetails, $interval, $firebase, $stateParams, pollDetails) {
-	console.log('inside pollsctrl')
 	$scope.rooms = RoomsFactory.all();
 	$scope.polls = PollsFactory.all();
 	$scope.event = eventDetails;
 	$scope.currentPoll = pollDetails
+	$scope.currentPollFormattedDate = moment.unix($scope.currentPoll.expiration.date).format("MM/DD/YYYY")
+	$scope.currentPollFormattedTime = moment.unix($scope.currentPoll.expiration.time).format("hh:mm A")
 	var roomId = $scope.event.groups
 	var pollId = $stateParams.pollid
 	var pollsRef = new Firebase('https://boiling-fire-3161.firebaseio.com/polls/');
@@ -31,16 +32,17 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 	}
 
 	$scope.submitPoll = function () {
-		console.log('fuck this asdflkaslkfjklasdjflksd', $scope.event, roomId, $scope.data)
+		console.log($scope.event, roomId, $scope.data)
 		PollsFactory.addPoll($scope.data, roomId, $scope.event)
-		// $state.go('app.tab.chat.id', {id: roomId})
-		$ionicHistory.goBack();
+		// $state.go('app.tab.chat', {id: roomId})
+		$ionicHistory.goBack(-2);
 	}
 	
 	$scope.updatePoll = function () {
 		pollId = $stateParams.pollid
 		PollsFactory.updatePoll(pollId, $scope.data);
-		$ionicHistory.goBack();
+		$state.go('app.tab.chat', {id: roomId})
+		// $ionicHistory.goBack();
 	}
 	$scope.eventLocation = function () {
 		if (!$scope.event.location) {
@@ -52,7 +54,19 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 		return false;
 	}
 
-	
+	// $scope.currentPollAttending = function (pollObj) {
+ //    if (!pollObj.responses.attending) {
+ //      return 0;
+ //    }
+ //    return pollObj.responses.attending;
+ //  }
+
+ //   $scope.currentPollNotAttending = function (pollObj) {
+ //    if (!pollObj.responses.notAttending) {
+ //      return 0;
+ //    }
+ //    return pollObj.responses.notAttending;
+ //  }
 
 	// $interval(function(){
 	      

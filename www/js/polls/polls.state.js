@@ -2,6 +2,7 @@ app.config(function($stateProvider) {
   $stateProvider
   .state('app.tab.chat-polls', {
     url: '/chat/:id/polls/:eventid',
+    cache: false,
     views: {
       'roomsView': {
         templateUrl: 'js/polls/createNewPoll.html',

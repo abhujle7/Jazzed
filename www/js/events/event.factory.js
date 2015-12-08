@@ -19,7 +19,7 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
           name: event.locationName,
           coordinates: event.location
         },
-        groups: event.group_id
+        group: event.group_id
       })
       .then(function(data) { 
         var currEventId = data.key()

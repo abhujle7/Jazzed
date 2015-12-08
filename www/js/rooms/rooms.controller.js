@@ -7,6 +7,10 @@ app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) 
     // .then(function (modal) {
     // $scope.modal = modal;
     // });
+    $scope.getLastMsg = function (roomObj) {
+        var msgRef = new Firebase('https://boiling-fire-3161.firebaseio.com/messages/' + roomObj.$id)
+        
+    }
     var userRooms = RoomsFactory.findUserRooms()
 
     var allRooms = RoomsFactory.all();

@@ -1,4 +1,4 @@
-app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory, $ionicScrollDelegate, currentRoomId, $ionicPopover, $rootScope) {
+app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory, $ionicScrollDelegate, currentRoomId, $ionicPopover, $rootScope, $interval) {
 
   $ionicScrollDelegate.scrollBottom();
 
@@ -10,6 +10,60 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     textMessage: ""
   };
 
+  //takes in pollobj finds associated date and time and converts and returns them
+  $scope.pollDateExpired = false;
+  $scope.pollTimeExpired = false;
+
+  $scope.currentPollDate = function (pollObj) {
+    var diff = moment.unix(pollObj.expiration.date).fromNow();
+    return diff;
+    // var daysLeft = moment().unix() - pollObj.expiration.date
+    // var endDay = moment().unix(pollObj.expiration.date).format("MM/DD/YYYY")
+    // return (moment.unix(pollObj.expiration.date)).fromNow(true);
+    // return moment.unix(daysLeft).format("MM/DD/YYYY")
+    // var currDay = moment();
+    // var endDay = moment(pollObj.expiration.date)
+    // var diff = currDay.diff(endDay, 'days')
+    // return moment.unix(diff)
+    // return moment.unix(daysLeft)
+    // return moment().unix() - moment.unix(pollObj.expiration.date).format("MM/DD/YYYY")
+  }
+
+  // $scope.currentPollDate = function (pollObj) {
+  //   return $interval(function () {
+  //     console.log('in interval')
+  //   var daysLeft = moment().unix() - pollObj.expiration.date
+  //   if (daysLeft > 0) {
+  //     console.log('in while')
+  //     return moment.unix(daysLeft).format("MM/DD/YYYY")
+  //   }
+  //   $scope.pollDateExpired = true;
+  //   }, 10000);
+  // }
+
+ // $scope.currentPollTime = function (pollObj) {
+ //    return $interval(function () {
+ //    var timeLeft = moment().unix() - pollObj.expiration.time
+ //    while (timeLeft > 0) {
+ //      return moment.unix(timeLeft).format("MM/DD/YYYY")
+ //    }
+ //    $scope.pollTimeExpired = true;
+ //    }, 1000);
+ //  }
+
+  $scope.currentPollAttending = function (pollObj) {
+    if (!pollObj.responses.attending) {
+      return 0;
+    }
+    return pollObj.responses.attending;
+  }
+
+   $scope.currentPollNotAttending = function (pollObj) {
+    if (!pollObj.responses.notAttending) {
+      return 0;
+    }
+    return pollObj.responses.notAttending;
+  }
 
   $scope.polls = PollsFactory.all()
   $scope.events = EventFactory.all()
@@ -81,11 +135,11 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     $state.go('app.tab.chat-polls', {id: currentRoomId, eventid: event.$id})
   }
 
-  $scope.goToAddContacts = function() {
-    $state.go('app.tab.contacts', {roomid: currentRoomId})
+  $scope.goToViewMembers = function() {
+    $state.go('app.tab.chat-members', {id: currentRoomId})
   }
 
-  var template = '<ion-popover-view><ion-header-bar><h1 class="title">Group Settings</h1></ion-header-bar><ion-content><div class="list"><label class="item" ng-click="revealPolls()">View Live Polls</label><label class="item" ng-click="revealList()">Suggest Event</label><label class="item" ng-click="goToAddContacts()">Invite Contacts to Group</label></div></ion-content></ion-popover-view>';
+  var template = '<ion-popover-view><ion-header-bar><h1 class="title">Group Settings</h1></ion-header-bar><ion-content><div class="list"><label class="item" ng-click="revealPolls()">View Live Polls</label><label class="item" ng-click="revealList()">Suggest Event</label><label class="item" ng-click="goToViewMembers()">View Members</label></div></ion-content></ion-popover-view>';
 
 
   $scope.popover = $ionicPopover.fromTemplate(template, {

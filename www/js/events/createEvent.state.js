@@ -2,6 +2,7 @@ app.config(function($stateProvider) {
 	$stateProvider
 	.state('app.tab.createNewEvent', {
 		url: '/createNewEvent',
+		cache: false,
 		views: {
 			'eventsView': {
 				cache: false,

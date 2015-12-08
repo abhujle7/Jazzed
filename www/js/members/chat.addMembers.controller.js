@@ -1,4 +1,4 @@
-app.controller('ContactsCtrl', function($scope, AuthFactory, $firebaseObject){
+app.controller('AddMembersCtrl', function($scope, AuthFactory, $firebaseObject, RoomsFactory, currentRoomId){
     var userContacts = []
     var phoneToUserHash = AuthFactory.phoneToUser();
     var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users')
@@ -51,6 +51,10 @@ app.controller('ContactsCtrl', function($scope, AuthFactory, $firebaseObject){
 	    // options.hasPhoneNumber = true; //android only
 	    var fields       = ['displayName', 'phoneNumbers'];
 	    navigator.contacts.find(fields, onSuccess, onError, options)
-	 } 
+	}
+
+	$scope.addMember = function(id) {
+		return RoomsFactory.addMember(id, currentRoomId)
+	}
 
 });
