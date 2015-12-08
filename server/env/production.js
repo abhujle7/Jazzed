@@ -23,5 +23,11 @@ module.exports = {
         "clientID": process.env.GOOGLE_CLIENT_ID,
         "clientSecret": process.env.GOOGLE_CLIENT_SECRET,
         "callbackURL": process.env.CALLBACK_URL
+    },
+    "YELP": {
+        key: process.env.YELP_KEY,
+        secret: process.env.YELP_SECRET,
+        token: process.env.YELP_TOKEN,
+        tsecret: process.env.YELP_TSECRET
     }
 };

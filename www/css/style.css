@@ -6,6 +6,19 @@
 * {
 	font-family: Lato;
 }
+
+/*for chat.html*/
+.center {
+	text-align: center;
+	padding: 10px;
+	color: #E97C30;
+	padding-top: 15px;
+	font-weight: bold;
+}
+
+
+/*for movie results*/
+
 .orange {
 	color: white;
 	background-color: #E97C30;
@@ -31,6 +44,7 @@
 	font-weight: bold;
 	margin-left: 10px;
 	font-size: 1.2em;
+	color: grey;
 }
 
 .shift {
@@ -56,7 +70,7 @@
   background: linear-gradient(top, #f9d835, #f3961c);
 }
 
-/* creates triangle */
+/* creates triangle 
 .triangle-isosceles:after {
   content: "";
   display: block; /* reduce the damage in FF3.0 */
