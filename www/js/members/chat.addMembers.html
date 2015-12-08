@@ -4,7 +4,7 @@
         <ion-list>
             <ion-item ng-repeat="contact in contacts">
                 <h2>{{contact.name}}</h2>
-                <p>{{contact.phone}}</p>
+                <button class="button button-icon ion-plus" ng-click="addMember(contact.uid)"></button>
             </ion-item>
         </ion-list>
     </ion-content>
