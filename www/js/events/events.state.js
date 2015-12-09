@@ -8,6 +8,14 @@ app.config(function($stateProvider) {
         templateUrl: 'js/events/events.html',
         controller: 'EventsCtrl'
       }
+    },
+    resolve: {
+      rooms: function(RoomsFactory) {
+        return RoomsFactory.all();
+      },
+      events: function(EventFactory) {
+        return EventFactory.all();
+      }
     }
   })
 });
