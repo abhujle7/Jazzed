@@ -1,4 +1,4 @@
-app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, events, rooms) {
+app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, events, rooms, eventsSync, currentUserRoomsSync) {
 
 
 	$scope.rooms = rooms;
@@ -8,7 +8,7 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 	
 	
 	var currEventId;
-	// $scope.arrRooms = [];
+	$scope.arrRooms = [];
 
 	$scope.data = {
 		name: null,
@@ -34,6 +34,17 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 	//then I query $scope.events and get an array back where events have that group id
 		//I do this for every room id
 	//then I make an ng-repeat of ion-slides
+
+	currentUserRoomsSync.forEach(function(room) {
+		EventFactory.getByRoom(room.$id)
+		.then(function(eventInGroup) {
+			// console.log("event in group", eventInGroup);
+			$scope.arrRooms.push(eventInGroup)
+			$scope.arrRooms[$scope.arrRooms.length -1].group = room.name;
+			console.log("the array is filled with", $scope.arrRooms);
+		})
+	})	
+
 
 	$scope.editEvent = function(event) {
 		$state.go('app.tab.eventDetails',{eventId: event.$id});
