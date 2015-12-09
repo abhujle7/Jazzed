@@ -1,4 +1,4 @@
-app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory, $firebaseObject) {
+app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory, $firebaseObject, $q) {
 
   var roomsRef = new Firebase('https://boiling-fire-3161.firebaseio.com/groups/')
   var roomsArr = $firebaseArray(roomsRef);
@@ -11,7 +11,15 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
 
   return {
     all: function() {
-      return roomsArr;
+      var deferred = $q.defer();
+      roomsArr.$loaded()
+      .then(function(roomsList) {
+        deferred.resolve(roomsList)
+      })
+      .catch(function(error) {
+        console.error("Error", error);
+      })
+      return deferred.promise;
     },
    
     get: function(roomId) {
