@@ -7,17 +7,24 @@ app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ion
 
 
 	return {
-    all: function() {
-      var deferred = $q.defer();
-      events.$loaded()
-      .then(function(eventsList) {
-        deferred.resolve(eventsList)
-      })
-      .catch(function(error) {
-        console.error("Error", error);
-      })
-      return deferred.promise;
+    all: function () {
+      return events;
     },
+
+
+
+    // function() {
+    //   var deferred = $q.defer();
+    //   events.$loaded()
+    //   .then(function(eventsList) {
+    //     console.log(eventsList)
+    //     deferred.resolve(eventsList)
+    //   })
+    //   .catch(function(error) {
+    //     console.error("Error", error);
+    //   })
+    //   return deferred.promise;
+    // },
     addEvent: function(event) {
       return events.$add({
         name: event.name,

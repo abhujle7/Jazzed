@@ -50,9 +50,11 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 		
 	}
 	$scope.submitEvent = function() {
-		$scope.hours = $scope.data.time.getHours();
-		$scope.minutes = $scope.data.time.getMinutes();
-		$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
+		if ($scope.data.time) {
+			$scope.hours = $scope.data.time.getHours();
+			$scope.minutes = $scope.data.time.getMinutes();
+			$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
+		}
 
 		EventFactory.addEvent($scope.data)
 		$scope.data = {
