@@ -30,6 +30,23 @@
 	width: 100px;
 }
 
+/*user settings page*/
+.profile-heading {
+	font-size: 2em;
+	text-align: center;
+	font-family: Lobster;
+}
+
+.user-picture {
+	border-radius: 250px;
+	margin: 0 auto;
+	margin-left: 30px;
+}
+
+.down {
+	margin-top: 20px;
+}
+
 
 /*for chat.html*/
 .center {
@@ -85,7 +102,6 @@
 
 .down {
 	margin-top: 10px;
-
 }
 
 /*for movie search*/
@@ -118,7 +134,7 @@
 	font-weight: bold;
 	margin-left: 10px;
 	font-size: 1.4em;
-	color: #7bdfff;
+	color: CornflowerBlue;
 }
 
 .shift {
@@ -148,6 +164,13 @@
 	color: CornflowerBlue;
 	font-weight: bold;
 	font-size: 1.2em;
+}
+
+/*for seatgeek results*/
+.seatgeek-heading {
+	color: CornflowerBlue;
+	font-size: 1.2em;
+	font-weight: bold;
 }
 
 
