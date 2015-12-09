@@ -1,4 +1,4 @@
-app.controller('YelpCtrl', function($scope, YelpFactory, $state, $stateParams) {
+app.controller('YelpCtrl', function($scope, YelpFactory, $state, $stateParams, $filter) {
 
 	$scope.search = function(data) {
 		return YelpFactory.get(data)

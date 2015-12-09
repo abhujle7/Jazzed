@@ -20,6 +20,7 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 		group_id: currentRoomId
 	};
 
+	$scope.data.day = new Date()
 	// rooms.forEach(function(room) {
 	// 	$scope.arrRooms.push(EventFactory.getByRoom(room.$id));
 	// })

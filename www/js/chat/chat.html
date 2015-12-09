@@ -18,8 +18,8 @@
                     <ion-item ng-repeat="event in events" ng-click="goToPoll(event)">{{event.name}}</ion-item>
                     <p class="center">Search for an activity</p>
                     <ion-item ng-click="goToShowtimes()">Movies</ion-item>
-                    <ion-item ng-click="goToYelp()">Restaurants/Nightlife</ion-item>
                     <ion-item ng-click="goToSeatgeek()">Concerts/Sports</ion-item>
+                    <ion-item ng-click="goToYelp()">Restaurants/Nightlife</ion-item>
                 </ion-list>
             <ion-item ng-hide="chats" class="textCenter">
                 <i class="icon ion-loading-c"></i> Loading Chats

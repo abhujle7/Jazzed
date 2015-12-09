@@ -7,7 +7,7 @@ app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup
 	$scope.data = {
 		name: $scope.event.name,
 		description: null,
-		day: null,
+		day: new Date,
 		time: null,
 		date: $scope.event.date || null,
 		location: null,
