@@ -7,7 +7,7 @@
     <ion-content>
         <ion-list ng-show="roomName">
                 <div class="messages" ng-if="pollVisibility">
-                Live Polls
+                <h4 class="mvheading">Live Polls</h4>
                     <ion-item class="item item-thumbnail-left item-text-wrap" ng-repeat="poll in polls | filter: IM.textMessage" ng-click="goToPollDetail(poll)"><img ng-src="http://lorempixel.com/400/200/sports/{{$index}}" alt="Event Picture"><span class="heading">Poll for: {{poll.event.name}}</span><br><span> Ends {{currentPollDate(poll)}} </span><br><span> Attending: {{currentPollAttending(poll)}} </span><span> Not Attending: {{currentPollNotAttending(poll)}} </span></ion-item>
                 </div>
                 <ion-list ng-if="listVisibility">
