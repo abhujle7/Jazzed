@@ -1,4 +1,4 @@
-app.controller('SearchCtrl', function($scope, SportsFactory, $state) {
+app.controller('SearchCtrl', function($scope, SportsFactory, $state, $stateParams) {
 
 	$scope.search = function(eventInfo) {
 		if (eventInfo.date) {
@@ -8,7 +8,7 @@ app.controller('SearchCtrl', function($scope, SportsFactory, $state) {
 		 return SportsFactory.get(eventInfo)
 		 	.then(function(data) {
 		 		$scope.searching;
-				$state.go('app.tab.results')
+				$state.go('app.tab.results', {id: $stateParams.id})
 		 	})
 	}
 
