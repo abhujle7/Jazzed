@@ -2,7 +2,6 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
 
   $ionicScrollDelegate.scrollBottom();
   $rootScope.currentRoom = $stateParams.id;
-  console.log('id of room', $rootScope.currentRoom)
   var currUser = AuthFactory.getCurrentUser().uid
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
   var userObj = $firebaseObject(userRef)
@@ -67,7 +66,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.polls = PollsFactory.all()
-
+  // var polls = PollsFactory.all();
   // $scope.getGroupSpecificPolls = function (pollsArray) {
   //     var groupPolls = [];
   //     console.log('this is pollsArray', pollsArray, pollsArray[0].groups)
@@ -82,7 +81,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   //   return groupPolls;
   // };
 
-  // $scope.groupPolls = $scope.getGroupSpecificPolls($scope.polls);
+  // $scope.groupPolls = $scope.getGroupSpecificPolls(polls);
 
   $scope.events = EventFactory.all()
   $scope.listVisibility = false;
@@ -115,7 +114,6 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   var roomName = ChatFactory.getSelectedRoomName();
   
   if (roomName) {
-      console.log('roomName is', roomName)
       $scope.roomName = roomName;
       $scope.chats = ChatFactory.all();
   }

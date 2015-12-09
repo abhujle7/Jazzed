@@ -1,12 +1,11 @@
-app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, rooms, events) {
+app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, events, rooms) {
 
 
 	$scope.rooms = rooms;
 	$scope.events = events;
 	var currentRoomId = $rootScope.currentRoom;
 
-	console.log("rooms are", rooms);
-	console.log("events are", events);
+	
 	
 	var currEventId;
 	// $scope.arrRooms = [];
@@ -72,14 +71,11 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 
 
 	$scope.submitAndPoll = function () {
-		console.log('hello?', $scope.events)
 		EventFactory.addEvent($scope.data).then(function(eventId) {
 			currEventId = eventId;
-			console.log('first')
 		})
 		.then(function () {
 		$state.go('app.tab.chat-polls', {eventid: currEventId, id: $scope.data.group_id})
-		console.log('second')
 		})
 	}
 	$scope.saveEventPopup = function () {

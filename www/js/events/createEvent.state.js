@@ -9,11 +9,17 @@ app.config(function($stateProvider) {
 				templateUrl: 'js/events/createNewEvent.html',
 				controller: 'EventsCtrl'
 			}
+		},
+		resolve: {
+			// groupDetails: function ($stateParams, RoomsFactory) {
+			// 	return RoomsFactory.get($stateParams.id)
+			// }
+			rooms: function(RoomsFactory) {
+        		return null;
+      		},
+			 events: function() {
+        		return null;
+      		}
 		}
-		// resolve: {
-		// 	groupDetails: function ($stateParams, RoomsFactory) {
-		// 		return RoomsFactory.get($stateParams.id)
-		// 	}
-		// }
 	})
 })
