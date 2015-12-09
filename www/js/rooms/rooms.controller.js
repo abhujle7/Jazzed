@@ -1,4 +1,4 @@
-app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) {
+app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state, userRoomsR) {
 
     // $ionicModal.fromTemplateUrl('js/login/login.html', {
     //     scope: $scope,
@@ -12,6 +12,7 @@ app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) 
         
     }
     var userRooms = RoomsFactory.findUserRooms()
+    var userRooms = userRoomsR;
 
     var allRooms = RoomsFactory.all();
 

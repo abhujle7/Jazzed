@@ -11,6 +11,9 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
 
   return {
     all: function() {
+      return roomsArr;
+    },
+    allResolved: function() {
       var deferred = $q.defer();
       roomsArr.$loaded()
       .then(function(roomsList) {
@@ -63,7 +66,15 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
       return id
     },
     findUserRooms: function() {
-      return currUserRoomsArr;
+      var deferred = $q.defer();
+      currUserRoomsArr.$loaded()
+      .then(function(roomsList) {
+        deferred.resolve(roomsList)
+      })
+      .catch(function(error) {
+        console.error("Error", error);
+      })
+      return deferred.promise;
     }
   };
 });

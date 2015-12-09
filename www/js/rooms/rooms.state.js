@@ -8,6 +8,11 @@ app.config(function($stateProvider) {
         templateUrl: 'js/rooms/rooms.html',
         controller: 'RoomsCtrl'
       }
+    },
+    resolve: {
+      userRoomsR: function(RoomsFactory) {
+          return RoomsFactory.findUserRooms();
+      }
     }
     // resolve: {
     //     "currentAuth": ["Auth",

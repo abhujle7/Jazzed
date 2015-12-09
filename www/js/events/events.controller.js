@@ -1,15 +1,15 @@
-app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, rooms, events) {
+app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, rooms, events, userRooms) {
 
 
 	$scope.rooms = rooms;
 	$scope.events = events;
 	var currentRoomId = $rootScope.currentRoom;
 
-	console.log("rooms are", rooms);
-	console.log("events are", events);
+	// console.log("rooms are", rooms);
+	// console.log("events are", events);
 	
 	var currEventId;
-	// $scope.arrRooms = [];
+	$scope.arrEvents = [];
 
 	$scope.data = {
 		name: null,
@@ -27,8 +27,22 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 
 	// console.log("the array of rooms by group Id is", $scope.arrRooms);
 
-	// console.log("the first room id is", rooms[0].$id);
+	console.log("the first room id is", userRooms);
 	// console.log(EventFactory.getByRoom(rooms[0].$id));
+
+
+
+
+	// userRooms.forEach(function(room) {
+		EventFactory.getByRoom(userRooms[1].$id)
+		.then(function(eventInGroup) {
+			// console.log("event in group", eventInGroup);
+			$scope.arrEvents.push(eventInGroup)
+			console.log("the array is filled with", $scope.arrEvents);
+		})
+	// })	
+
+
 
 	//GOAL: GET AN ARRAY OF ARRAYS THAT HOLD ROOMS BY GROUP ID
 	//first grab an array of room id's

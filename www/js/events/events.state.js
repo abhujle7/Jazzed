@@ -11,10 +11,13 @@ app.config(function($stateProvider) {
     },
     resolve: {
       rooms: function(RoomsFactory) {
-        return RoomsFactory.all();
+        return RoomsFactory.allResolved();
       },
       events: function(EventFactory) {
-        return EventFactory.all();
+        return EventFactory.allResolved();
+      },
+      userRooms: function(RoomsFactory) {
+        return RoomsFactory.findUserRooms();
       }
     }
   })

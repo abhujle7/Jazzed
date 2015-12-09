@@ -8,6 +8,9 @@ app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ion
 
 	return {
     all: function() {
+      return events;
+    },
+    allResolved: function() {
       var deferred = $q.defer();
       events.$loaded()
       .then(function(eventsList) {
@@ -40,10 +43,26 @@ app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ion
       return events.$getRecord(eventId)
     },
     getByRoom: function(roomId) {
-      ref.orderByChild("time").endAt(roomId, function(snapshot) {
-        console.log("the snapshot is", snapshot);
+      var deferred = $q.defer();
+      var arr = [];
+      console.log("the room id is", roomId);
+      ref.orderByChild("groups").startAt(roomId).endAt(roomId).on("child_added", function(snapshot) {
+        console.log(snapshot.val());
+        arr.push(snapshot.val());
       })
+      deferred.resolve(arr);
+      return deferred.promise;
     },
+    // getByRoom: function(roomId) {
+    //   var deferred = $q.defer();
+    //   var arr = [];
+    //   ref.orderByChild("time").startAt(roomId).endAt(roomId).on("child_added", function(snapshot) {
+    //     console.log(snapshot)
+    //     arr.push(snapshot.val());
+    //   })
+    //   deferred.resolve(arr);
+    //   return deferred.promise;
+    // },
     save: function(event) {
       events.$save(event).then(function(ref) {
         $ionicHistory.goBack()
