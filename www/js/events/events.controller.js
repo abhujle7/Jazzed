@@ -33,13 +33,26 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 
 
 
-	// userRooms.forEach(function(room) {
-		EventFactory.getByRoom(userRooms[1].$id)
+
+	//this should be userRooms
+	rooms.forEach(function(room) {
+		EventFactory.getByRoom(room.$id)
 		.then(function(eventInGroup) {
 			// console.log("event in group", eventInGroup);
 			$scope.arrEvents.push(eventInGroup)
 			console.log("the array is filled with", $scope.arrEvents);
 		})
+	})	
+
+
+	// userRooms.forEach(function(room) {
+	// 	EventFactory.getByRoom("-K4ypa4dvfRTCK9QEx-X")
+	// 	// EventFactory.getByRoom(userRooms[0].$id)
+	// 	.then(function(eventInGroup) {
+	// 		// console.log("event in group", eventInGroup);
+	// 		$scope.arrEvents.push(eventInGroup)
+	// 		console.log("the array is filled with", $scope.arrEvents);
+	// 	})
 	// })	
 
 

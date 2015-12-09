@@ -6,13 +6,18 @@
       <ion-slide>
         <div class="box blue"><h1>Group 1</h1>
             <ion-list>
-                <ion-item ng-repeat="event in events" ng-click="editEvent(event)">
+            <ion-item ng-repeat="events in arrEvents">
+              <p>{{event}}</p>
+            </ion-item>
+
+
+     <!--            <ion-item ng-repeat="event in events" ng-click="editEvent(event)">
                     <a class="item item-thumbnail-left item-text-wrap" href="#">
                         <img ng-src="http://lorempixel.com/400/200/sports/{{$index}}" alt="Event Picture">
                         <h2>{{event.name}}</h2>
                         <p>Meet at {{event.location.name || "TBD"}} on {{event.date || "TBD"}}</p>
                     </a>
-                </ion-item>
+                </ion-item> -->
             </ion-list>
         </div>
       </ion-slide>
