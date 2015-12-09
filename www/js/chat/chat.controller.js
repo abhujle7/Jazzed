@@ -84,6 +84,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   // $scope.groupPolls = $scope.getGroupSpecificPolls(polls);
 
   $scope.events = EventFactory.all()
+  console.log('in chat ctrl events..', $scope.events)
   $scope.listVisibility = false;
   $scope.pollVisibility = false;
   $scope.chatVisibility = true;
