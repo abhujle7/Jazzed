@@ -3,6 +3,8 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 
 	$scope.rooms = rooms;
 	$scope.events = events;
+	var currentRoomId = $rootScope.currentRoom;
+
 	console.log("rooms are", rooms);
 	console.log("events are", events);
 	
@@ -12,12 +14,11 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	$scope.data = {
 		name: null,
 		description: null,
-		day: null,
 		time: null,
 		date: null,
 		location: null,
 		locationName: null,
-		group_id: null
+		group_id: currentRoomId
 	};
 
 	// rooms.forEach(function(room) {
@@ -40,7 +41,7 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 	}
 	
 	$scope.createEvent = function() {
-		$state.go('app.tab.createNewEvent');
+		$state.go('app.tab.chat-createNewEvent');
 	}
 
 	$scope.submitEvent = function() {
@@ -57,9 +58,10 @@ app.controller('EventsCtrl', function($scope, $state, EventFactory, RoomsFactory
 			date: null,
 			location: null,
 			locationName: null,
-			group_id: null
+			group_id: currentRoomId
 		}
-		$state.go('app.tab.events')
+		$ionicHistory.goBack();
+		// $state.go('app.tab.events')
 	}
 
 

@@ -29,7 +29,7 @@ app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ion
           name: event.locationName,
           coordinates: event.location
         },
-        group: event.group_id
+        groups: event.group_id
       })
       .then(function(data) { 
         var currEventId = data.key()
