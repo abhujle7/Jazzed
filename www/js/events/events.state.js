@@ -15,6 +15,9 @@ app.config(function($stateProvider) {
       },
       events: function(EventFactory) {
         return EventFactory.all();
+      },
+      currentUserRoomsSync: function(RoomsFactory) {
+        return RoomsFactory.findUserRoomsSync();
       }
     }
   })

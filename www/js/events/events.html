@@ -1,12 +1,10 @@
 <ion-view view-title="Events">
   <ion-content>
-
-    <ion-list>
-      <!--   <ion-item ui-sref="app.tab.createNewEvent">
-            <p>Create a new Event</p>
-        </ion-item> -->
-        <ion-item ng-repeat="event in events" ng-click="editEvent(event)">
-            <label>{{getGroupName(event)}}</label>
+    <ion-list ng-repeat="groups in arrRooms">
+        <div class="item item-divider">
+            {{groups.group}}
+        </div>
+        <ion-item ng-repeat="event in groups">
             <a class="item item-thumbnail-left item-text-wrap" href="#">
                 <img ng-src="http://lorempixel.com/400/200/sports/{{$index}}" alt="Event Picture">
                 <h2>{{event.name}}</h2>
@@ -18,3 +16,7 @@
   </ion-content>
 </ion-view>
 
+<!--     <ion-list>
+        <ion-item ng-repeat="event in events" ng-click="editEvent(event)">
+        </ion-item>
+    </ion-list> -->

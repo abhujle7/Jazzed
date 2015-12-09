@@ -17,9 +17,12 @@ app.config(function($stateProvider) {
 			rooms: function(RoomsFactory) {
         		return null;
       		},
-			 events: function() {
+			events: function() {
         		return null;
-      		}
+      		},
+		    currentUserRoomsSync: function(RoomsFactory) {
+		      return null;
+		    }
 		}
 	})
 })

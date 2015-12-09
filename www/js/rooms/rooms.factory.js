@@ -66,6 +66,17 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
     },
     findUserRooms: function() {
       return currUserRoomsArr;
+    },
+    findUserRoomsSync: function() {
+      var deferred = $q.defer();
+      currUserRooms.$loaded()
+      .then(function(roomsList) {
+        deferred.resolve(roomsList)
+      })
+      .catch(function(error) {
+        console.error("Error", error);
+      })
+      return deferred.promise;
     }
   };
 });
