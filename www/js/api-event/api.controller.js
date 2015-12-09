@@ -1,4 +1,4 @@
-app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup, $state) {
+app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup, $state, $ionicHistory) {
 	$scope.event = ApiFactory.get();
 
 	$scope.data = {
@@ -18,18 +18,21 @@ app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup
 
 	$scope.saveEventPopup = function () {
 		$ionicPopup.show({
-			title: 'Would you like to create a new poll for this event?',
+			title: 'Would you like to create a new poll for this event or save it for future use?',
 			scope: $scope,
 			buttons: [
 				{
-				text: 'Yes, I want to create a live poll',
+				text: 'Poll',
+				type: 'button-positive',
 				onTap: $scope.submitAndPoll
 				},
 				{
-				text: 'No, just save this event for future use',
+				text: 'Save',
+				type: 'button-calm',
 				onTap: $scope.submitEvent
 				},
-				{text: 'Cancel'}
+				{text: 'Exit',
+				type: 'button-assertive'}
 			]
 		})
 	}
@@ -55,5 +58,9 @@ app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup
 		EventFactory.addEvent($scope.data);
 		$scope.data.description = null;
 		$state.go('app.tab.events')
+	}
+
+	$scope.goBack = function () {
+		$ionicHistory.goBack();
 	}
 })

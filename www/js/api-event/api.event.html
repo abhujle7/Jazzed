@@ -1,32 +1,33 @@
 <ion-view view-title="New Event">
 	<ion-content>
 		<div class="list">
-			<p>Name: {{event.name}}</p>
-			<p>Location: {{event.location}}</p>
-			<p>Date: {{event.date}}</p>
+			<p class="first">Name: {{event.name}}</p>
+			<p class="right-large">Location: {{event.location}}</p>
+			<p class="right-large">Date: {{event.date}}</p>
 			<label ng-show="!event.date" class="item item-input">
 				<input type="date" ng-model="data.day">
 			</label>
-			<p ng-show="!event.date">Time: </p>
+			<p ng-show="!event.date" class="right-large down">Time: </p>
 			<label ng-show="!event.date"class="item item-input">
 				<input type="time" ng-model="data.time">
 			</label>
 			<label class="item item-input">
-				<input type="text" placeholder="Description" ng-model="data.description">
+				<span class="input-label">Description</span>
+				<input type="text" ng-model="data.description">
 			</label>
  		<label class="item item-input item-select">
 				<div class='input-label'>
-					group
+					Group
 				</div>
 				<select ng-model="data.group_id">
 					<option ng-repeat="room in rooms">{{room.name}}</option>
 				</select>
 			</label>
 		</div>
-		<button class="button button-positive" ng-click="saveEventPopup()">
+		<button class="button button-calm save-button" ng-click="saveEventPopup()">
 			Save
 		</button>
-		<button class="button button-positive" ng-click="goBack()">
+		<button class="button button-assertive" ng-click="goBack()">
 			Cancel
 		</button>
 	</ion-content>

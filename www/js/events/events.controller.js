@@ -80,18 +80,22 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 	}
 	$scope.saveEventPopup = function () {
 		$ionicPopup.show({
-			title: 'Would you like to create a new poll for this event?',
+			title: 'Would you like to create a new poll for this event or save it for future use?',
 			scope: $scope,
 			buttons: [
 				{
-				text: 'Yes, I want to create a live poll',
+				text: 'Poll',
+				type: 'button-positive',
 				onTap: $scope.submitAndPoll
 				},
 				{
-				text: 'No, just save this event for future use',
+				text: 'Save',
+				type: 'button-calm',
 				onTap: $scope.submitEvent
 				},
-				{text: 'Cancel'}
+				{text: 'Exit',
+				type: 'button-assertive',
+				}
 			]
 		})
 	}

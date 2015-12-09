@@ -1,8 +1,8 @@
-<ion-view view-title="Search">
+<ion-view view-title="Yelp Search">
 	<ion-content class="padding">
 	<form name="yelp">
 		<h1></h1>
-		<h4>Search for top restaurants, nightlife, and other businesses!</h4>
+		<h4 class="mvheading">Search for top restaurants, nightlife, and other businesses!</h4>
 		<label class="item item-input">
 			<span class="input-label">Find</span>
   			<input type="text" ng-model="find.query" required placeholder="e.g. Chinese Food, Sports Bar...">
@@ -11,7 +11,7 @@
 			<span class="input-label">Location</span>
   			<input type="text" ng-model="find.location"  required placeholder="Zip Code or City (e.g. 10001, San Francisco)">
 		</label>
-		<button class="button button-assertive" ng-click="search(find)" ng-disabled="yelp.$invalid">
+		<button class="button button-calm submit-button" ng-click="search(find)" ng-disabled="yelp.$invalid">
 			  Search
 		</button>
 	</ion-content>

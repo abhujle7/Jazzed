@@ -156,7 +156,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     $state.go('app.tab.chat-members', {id: currentRoomId})
   }
 
-  var template = '<style>.popover { height:200px; width: 180px; }</style><ion-popover-view><ion-header-bar><h1 class="title">Group Settings</h1></ion-header-bar><ion-content><div class="list"><label class="item" ng-click="revealPolls()"><h3>View Live Polls</h3></label><label class="item" ng-click="revealList()"><h3>Suggest Event</h3></label><label class="item" ng-click="goToViewMembers()"><h3>View & Add Members</h3></label></div></ion-content></ion-popover-view>';
+  var template = '<style>.popover { height:200px; width: 180px; }</style><ion-popover-view><ion-header-bar><h1 class="title corn-blue">Group Settings</h1></ion-header-bar><ion-content><div class="list"><label class="item" ng-click="revealPolls()"><h3 class="grey">View Live Polls</h3></label><label class="item" ng-click="revealList()"><h3 class="grey">Suggest Event</h3></label><label class="item" ng-click="goToViewMembers()"><h3 class="grey">View & Add Members</h3></label></div></ion-content></ion-popover-view>';
 
 
   $scope.popover = $ionicPopover.fromTemplate(template, {

@@ -6,7 +6,6 @@ module.exports = function (app) {
     // common way of setting application variables.
 
     app.use(function(req, res, next) {
-         console.log(req.path)
          next();
     })
 
