@@ -181,6 +181,11 @@
 	font-weight: bold;
 }
 
+.phone {
+	text-decoration: underline;
+	color: blue;
+}
+
 
 /* creates triangle 
 .triangle-isosceles:after {

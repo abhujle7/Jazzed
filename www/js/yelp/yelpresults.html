@@ -5,7 +5,7 @@
 	<ul ng-repeat="result in results">
 		<a id="yelp-link" class="shift" ng-href="{{result.mobile_url}}">{{result.name}}</a> 
 		<li class="shift">Address: {{result.location.display_address}}</li>
-		<li class="shift">Phone: {{result.display_phone}}</li>
+		<li class="shift"><span>Phone: </span><span class="phone">{{result.display_phone}}</li>
 		<span class="shift">Average Rating: </span><img src="{{result.rating_img_url}}">
 		<li class="shift">Sample Review: {{result.snippet_text}}</li>
 		<button class="button button-small button-calm confirm" ng-click="apiEvent(result.name, result.location.display_address)">Create Event</button>
