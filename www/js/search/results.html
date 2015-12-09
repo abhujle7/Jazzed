@@ -1,7 +1,7 @@
 <ion-view view-title="Event Results">
 <h1 ng-show="results.length">Results</h1>
-	<h2 class="mvheading" ng-show="!results.length">No results found! Try again.</h2>
-	<h4 class="mvheading" ng-show="results.length">Here are some events that match your search!</h4>
+	<h2 class="mvheading error" ng-show="!results.length">No results found! Try again.</h2>
+	<h4 class="mvheading center" ng-show="results.length">Here are some events that match your search!</h4>
 <ul ng-repeat="result in results">
 <li class="first corn-blue">{{result.title}}</li>
 <li class="shift">{{result.datetime_local}}</li>

@@ -1,7 +1,7 @@
 <ion-view view-title="Yelp Results">
 	<h1 ng-show="results.length">Businesses</h1>
-	<h2 class="mvheading" ng-show="!results.length">No results found! Try again.</h2>
-	<h4 class="mvheading" ng-show="results.length">Here are some nearby businesses that match your search!</h4>
+	<h2 class="mvheading error" ng-show="!results.length">No results found! Try again.</h2>
+	<h4 class="mvheading center" ng-show="results.length">Here are some nearby businesses that match your search!</h4>
 	<ul ng-repeat="result in results">
 		<a id="yelp-link" class="shift" ng-href="{{result.mobile_url}}">{{result.name}}</a> 
 		<li class="shift">Address: {{result.location.display_address}}</li>
