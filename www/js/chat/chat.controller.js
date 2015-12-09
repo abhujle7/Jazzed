@@ -133,15 +133,15 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.goToSeatgeek = function() {
-    $state.go('app.tab.search')
+    $state.go('app.tab.search', {id: currentRoomId})
   }
 
   $scope.goToShowtimes = function() {
-    $state.go('app.tab.movies')
+    $state.go('app.tab.movies', {id: currentRoomId})
   }
 
   $scope.goToYelp = function() {
-    $state.go('app.tab.yelp')
+    $state.go('app.tab.yelp', {id: currentRoomId})
   }
 
   $scope.goToPollDetail = function (pollObj) {

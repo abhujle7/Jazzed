@@ -1,5 +1,7 @@
-app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup, $state, $ionicHistory) {
+app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup, $state, $ionicHistory, $rootScope) {
 	$scope.event = ApiFactory.get();
+
+	var currentRoomId = $rootScope.currentRoom
 
 	$scope.data = {
 		name: $scope.event.name,
@@ -9,7 +11,7 @@ app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup
 		date: $scope.event.date || null,
 		location: null,
 		locationName: $scope.event.location,
-		group_id: null
+		group_id: currentRoomId
 	};
 
 	$scope.data.name = $scope.event.name;
@@ -49,12 +51,12 @@ app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup
 
 	$scope.submitEvent = function() {
 		if ($scope.data.time) {
-		$scope.hours = $scope.data.time.getHours();
-		$scope.minutes = $scope.data.time.getMinutes();
-		$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
-		$scope.data.time = null;
-		$scope.data.day = null;
-	}
+			$scope.hours = $scope.data.time.getHours();
+			$scope.minutes = $scope.data.time.getMinutes();
+			$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
+			$scope.data.time = null;
+			$scope.data.day = null;
+		}
 		EventFactory.addEvent($scope.data);
 		$scope.data.description = null;
 		$state.go('app.tab.events')

@@ -1,4 +1,4 @@
-app.controller('MoviesCtrl', function($scope, $state, MoviesFactory) {
+app.controller('MoviesCtrl', function($scope, $state, MoviesFactory, $stateParams) {
 	$scope.search = function(data) {
 		var days;
 		data.date = moment(data.date)
@@ -7,7 +7,7 @@ app.controller('MoviesCtrl', function($scope, $state, MoviesFactory) {
 		return MoviesFactory.get(data.zipcode, movieDays)
 		 	.then(function(movies) {
 		 		$scope.data;
-				$state.go('app.tab.mvresults')
+				$state.go('app.tab.mvresults', {id: $stateParams.id})
 		 	})
 	}
 })
