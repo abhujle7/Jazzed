@@ -1,12 +1,22 @@
-app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHistory, AuthFactory) {
+app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ionicHistory, AuthFactory) {
 	
-	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/');
-	var events = $firebaseArray(ref.child('events'));
+	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/events');
+	var events = $firebaseArray(ref);
+  // var eventGroupId = $firebaseArray(ref.child('events').child('groups'));
 	var currentUser = AuthFactory.getCurrentUser().uid;
+
 
 	return {
     all: function() {
-      return events;
+      var deferred = $q.defer();
+      events.$loaded()
+      .then(function(eventsList) {
+        deferred.resolve(eventsList)
+      })
+      .catch(function(error) {
+        console.error("Error", error);
+      })
+      return deferred.promise;
     },
     addEvent: function(event) {
       return events.$add({
@@ -29,10 +39,18 @@ app.factory('EventFactory', function($state, $firebase, $firebaseArray, $ionicHi
     get: function (eventId) {
       return events.$getRecord(eventId)
     },
+    getByRoom: function(roomId) {
+      ref.orderByChild("time").endAt(roomId, function(snapshot) {
+        console.log("the snapshot is", snapshot);
+      })
+    },
     save: function(event) {
       events.$save(event).then(function(ref) {
         $ionicHistory.goBack()
       })
+    },
+    resolve: {
+
     }
   }
 })
