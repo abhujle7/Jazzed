@@ -7,13 +7,14 @@
     <ion-content>
         <ion-list ng-show="roomName">
                 <div class="messages" ng-if="pollVisibility">
-                <h4 class="mvheading">Live Polls</h4>
+                <h3 ng-show="polls.length" class="mvheading">Live Polls</h3>
+                <h3 ng-show="!polls.length" class="mvheading">No live polls at the time. Why don't you create one?</h3>
                     <ion-item class="item item-thumbnail-left item-text-wrap" ng-repeat="poll in polls | filter: IM.textMessage" ng-click="goToPollDetail(poll)"><img ng-src="http://lorempixel.com/400/200/sports/{{$index}}" alt="Event Picture"><span class="heading">Poll for: {{poll.event.name}}</span><br><span> Ends {{currentPollDate(poll)}} </span><br><span> Attending: {{currentPollAttending(poll)}} </span><span> Not Attending: {{currentPollNotAttending(poll)}} </span></ion-item>
                 </div>
                 <ion-list ng-if="listVisibility">
                 <p class="center">Already know what you want to do?</p>
                     <ion-item ng-click="createEvent()">Create A New Custom Event</ion-item>
-                <p class="center">Suggest A Saved Event</p>
+                <p class="center" ng-show="events.length">Suggest A Saved Event</p>
                     <ion-item ng-repeat="event in events" ng-click="goToPoll(event)">{{event.name}}</ion-item>
                     <p class="center">Search for an activity</p>
                     <ion-item ng-click="goToShowtimes()">Movies</ion-item>

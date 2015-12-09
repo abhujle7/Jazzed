@@ -1,4 +1,4 @@
-<ion-view view-title="Vote in Poll for {{event.name}}">
+<ion-view view-title="Vote in Poll">
 	<ion-content>
 		<div class="list">
 			<label class="item">
@@ -17,12 +17,9 @@
 				<input type="text" placeholder="Location Name" ng-model="data.location">
 			</label>
 			
-			<label class="heading">Poll Ends At:</label>
-			<label class="item">
-				<span class="heading">Date: </span><span>{{currentPollFormattedDate}}</span>
-			</label>
-			<label class="item">
-				<span class="heading">Time: </span><span>{{currentPollFormattedTime}}</span>
+		
+			<label class="item"><span class="heading">Poll Ends At:</span>
+				<span>{{currentPollFormattedDate}}, {{currentPollFormattedTime}}</span>
 			</label>
 			<label class="item">
 				<span class="heading">Currently Attending: </span><span>{{currentPoll.responses.attending}} participants</span>
@@ -36,10 +33,10 @@
 			<ion-radio class="item item-input" ng-model="data.responses.notAttending" ng-value="1">Click to Decline Event
 			</ion-radio>
 		</div> 
-		<button class="button button-positive" ng-click="updatePoll()">
+		<button class="button button-positive save-button" ng-click="updatePoll()">
 			Submit
 		</button>
-		<button class="button button-positive" ng-click="goBack()">
+		<button class="button button-assertive" ng-click="goBack()">
 			Cancel
 		</button>
 	</ion-content>

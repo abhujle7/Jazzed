@@ -1,7 +1,7 @@
 <ion-view id="header" view-title="Theater Results">
 <h1 ng-show="results.length">Results</h1>
-<h2 class="mvheading" ng-show="!results.length">No nearby theaters found. Please try a different zipcode!</h2>
-<h4 class="mvheading" ng-show="results.length">Here are some nearby theaters. Click on one to see movies and showtimes.</h4>
+<h2 class="grey error" ng-show="!results.length">No nearby theaters found. Please try a different zipcode!</h2>
+<h4 class="grey center" ng-show="results.length">Here are some nearby theaters. Click on one to see movies and showtimes.</h4>
 <ul ng-repeat="(theaterIndex, theater) in results">
 	<li class="theater" ng-click="showFull(theaterIndex)">{{theater.name}}</li>
 	<li class="shift">Address: {{theater.address}}</li>

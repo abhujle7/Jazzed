@@ -2,6 +2,7 @@ app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup
 	$scope.event = ApiFactory.get();
 
 	var currentRoomId = $rootScope.currentRoom
+	var currEventId;
 
 	$scope.data = {
 		name: $scope.event.name,
@@ -39,13 +40,14 @@ app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup
 		})
 	}
 
+
 	$scope.submitAndPoll = function () {
-		console.log($scope.data)
 		EventFactory.addEvent($scope.data).then(function(eventId) {
+			console.log(eventId)
 			currEventId = eventId;
 		})
 		.then(function () {
-		$state.go('app.tab.polls', {eventid: currEventId})
+		$state.go('app.tab.chat-polls', {eventid: currEventId, id: $scope.data.group_id})
 		})
 	}
 
