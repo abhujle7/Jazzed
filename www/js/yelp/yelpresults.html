@@ -1,5 +1,5 @@
 <ion-view view-title="Yelp Results">
-	<h1>Businesses</h1>
+	<h1 ng-show="results.length">Businesses</h1>
 	<h2 class="mvheading" ng-show="!results.length">No results found! Try again.</h2>
 	<h4 class="mvheading" ng-show="results.length">Here are some nearby businesses that match your search!</h4>
 	<ul ng-repeat="result in results">
