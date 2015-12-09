@@ -155,14 +155,14 @@
 .triangle-isosceles:after {
   content: "";
   display: block; /* reduce the damage in FF3.0 */
-  position: absolute;
+ /* position: absolute;
   bottom: -15px;
   left: 50px;
   width: 0;
   border-width: 15px 15px 0;
   border-style: solid;
   border-color: #f3961c transparent;
-}
+}*/
 
 .messages {
     margin:0;
