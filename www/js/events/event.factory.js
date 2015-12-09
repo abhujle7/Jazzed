@@ -47,9 +47,13 @@ app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ion
       return events.$getRecord(eventId)
     },
     getByRoom: function(roomId) {
-      ref.orderByChild("time").endAt(roomId, function(snapshot) {
-        console.log("the snapshot is", snapshot);
+      var deferred = $q.defer();
+      var arr = [];
+      ref.orderByChild("groups").startAt(roomId).endAt(roomId).on("child_added", function(snapshot) {
+        arr.push(snapshot.val());
       })
+      deferred.resolve(arr);
+      return deferred.promise;
     },
     save: function(event) {
       events.$save(event).then(function(ref) {

@@ -2,7 +2,7 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 
 
 	$scope.rooms = rooms;
-	$scope.events = events;
+	// $scope.events = events;
 	var currentRoomId = $rootScope.currentRoom;
 
 	
@@ -20,23 +20,22 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 		group_id: currentRoomId
 	};
 
-	// rooms.forEach(function(room) {
-	// 	$scope.arrRooms.push(EventFactory.getByRoom(room.$id));
-	// })
+	$scope.arrRooms = [];
+	rooms.forEach(function(room) {
+		EventFactory.getByRoom(room.$id)
+		.then(function(arrEvents) {
+				arrEvents.forEach(function(event) {
+					event.$id = event.$$hashKey;
+				})
+				$scope.arrRooms.push(arrEvents)
+				$scope.arrRooms[$scope.arrRooms.length -1].group = room.name;
 
-	// console.log("the array of rooms by group Id is", $scope.arrRooms);
-
-	// console.log("the first room id is", rooms[0].$id);
-	// console.log(EventFactory.getByRoom(rooms[0].$id));
-
-	//GOAL: GET AN ARRAY OF ARRAYS THAT HOLD ROOMS BY GROUP ID
-	//first grab an array of room id's
-	//then I query $scope.events and get an array back where events have that group id
-		//I do this for every room id
-	//then I make an ng-repeat of ion-slides
+				console.log("the array is filled with", $scope.arrRooms);
+		})
+	})	
 
 	$scope.editEvent = function(event) {
-		$state.go('app.tab.eventDetails',{eventId: event.$id});
+		$state.go('app.tab.eventDetails',{eventId: event.$$hashKey});
 	}
 	
 	$scope.createEvent = function() {
