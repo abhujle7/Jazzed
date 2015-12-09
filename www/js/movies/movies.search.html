@@ -7,10 +7,10 @@
 	</label>
 	<label class="item item-input">
 		<span class="input-label">Date</span>
-  		<input type="date" ng-model="data.date">
+  		<input class="search" type="date" ng-model="data.date">
 	</label>
 	</form>
-	<button class="button orange" ng-click="search(data)" ng-disabled="movie.$invalid">
+	<button class="button button-calm submit-button" ng-click="search(data)" ng-disabled="movie.$invalid">
   Search
 </button>
 </ion-content>
