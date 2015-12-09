@@ -44,6 +44,12 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 		$state.go('app.tab.chat-createNewEvent');
 	}
 
+	$scope.getGroupName = function (eventObj) {
+		var roomId = eventObj.groups;
+		var group = RoomsFactory.get(roomId)
+		return group.name;
+		
+	}
 	$scope.submitEvent = function() {
 		$scope.hours = $scope.data.time.getHours();
 		$scope.minutes = $scope.data.time.getMinutes();
