@@ -50,7 +50,7 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
             if (minutes.length < 2) {
               minutes += "0";
             }
-            chatsList[i].userFriendlyTime = date.getHours() + ":" + minutes;
+            chatsList[i].userFriendlyTime = moment().format('MMMM Do, h:mm a');
           }
         })
     },

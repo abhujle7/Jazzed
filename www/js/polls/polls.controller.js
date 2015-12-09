@@ -3,7 +3,6 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 	$scope.polls = PollsFactory.all();
 	$scope.event = eventDetails;
 	$scope.currentPoll = pollDetails
-	console.log('in polls ctrl and this is eventDetials', eventDetails)
 	$scope.currentPollFormattedDate;
 	$scope.currentPollFormattedTime;
 	
