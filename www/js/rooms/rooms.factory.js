@@ -11,6 +11,9 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
 
   return {
     all: function() {
+      return roomsArr;
+    },
+    allRooms: function() {
       var deferred = $q.defer();
       roomsArr.$loaded()
       .then(function(roomsList) {
@@ -21,7 +24,6 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
       })
       return deferred.promise;
     },
-   
     get: function(roomId) {
       return roomsArr.$getRecord(roomId);
     },
