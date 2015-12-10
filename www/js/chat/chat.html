@@ -28,8 +28,8 @@
                 <h4>No messages in this room. Send message to start.</h4>
             </ion-item>
             <div class="messages">
-            <ion-item class="item-text-wrap" ng-if="!listVisibility && !pollVisibility" ng-repeat="chat in chats | orderBy:'!timestamp':true">
-                <p><h4>{{chat.from}} :</h4><h3 am-time-ago="chat.timestamp" class="item-note">{{chat.userFriendlyTime}}
+            <ion-item class="item-text-wrap" ng-if="!listVisibility && !pollVisibility" ng-repeat="chat in chats | orderBy:'timestamp'">
+                <p><h4>{{chat.from}} :</h4><h3 am-time-ago="chat.timestamp" class="item-note">{{chat.timestamp | userFriendlyTime}}
                 </h3></p>
                 
                 <p>{{chat.message}}</p>

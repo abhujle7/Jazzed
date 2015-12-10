@@ -42,17 +42,6 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
     selectRoom: function (roomId) {
         selectedRoomId = roomId;
         chats = $firebaseArray(ref.child('messages').child(selectedRoomId));
-
-        chats.$loaded(function(chatsList) {
-          for (var i = 0; i < chatsList.length; i++) {
-            var date = new Date(chatsList[i].timestamp);
-            var minutes = String(date.getMinutes());
-            if (minutes.length < 2) {
-              minutes += "0";
-            }
-            chatsList[i].userFriendlyTime = moment(date).format('MMMM Do, h:mm a');
-          }
-        })
     },
     send: function (message) {
         if (message) {
@@ -62,26 +51,7 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
                 message: message,
                 timestamp: Firebase.ServerValue.TIMESTAMP
             };
-            chats.$add(chatMessage).then(function (data) {
- 
-
-              chats.$loaded(function(chatsList) {
-                  var i = chatsList.length - 1;
-                  var date = new Date(chatsList[i].timestamp);
-                  var minutes = String(date.getMinutes());
-                  if (minutes.length < 2) {
-                    minutes += "0";
-                  }
-                  chatsList[i].userFriendlyTime = moment(date).format('MMMM Do, h:mm a');
-                  // chatsList[i].userFriendlyTime = date.getHours() + ":" + minutes;
-              })
-              // var date = new Date(data.timestamp);
-              // var minutes = String(date.getMinutes());
-              // if (minutes.length < 2) {
-              //   minutes += "0";
-              // }
-              // data.userFriendlyTime = date.getHours() + ":" + minutes;
-            })
+            chats.$add(chatMessage)
             .catch(function(error) {
               console.error("Error:", error);
             })

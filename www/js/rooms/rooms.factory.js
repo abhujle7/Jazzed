@@ -43,7 +43,6 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
         })
         return id;
       })
-        //state.go to chat detail with new id
     },
     addMember: function(id, roomId) {
       var contactRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + id)

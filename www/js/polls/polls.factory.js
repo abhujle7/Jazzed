@@ -17,10 +17,6 @@ app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHi
       pollData.creator = user;
       pollData.expiration.date = moment(pollData.expiration.date).unix();
       pollData.expiration.time = moment(pollData.expiration.time).unix();
-      console.log('this is the date', pollData.expiration.date)
-      console.log('this is the time', pollData.expiration.time)
-      console.log('this is the moment', moment().unix())
-      console.log('this is the combined datetime', pollData.expiration.date + pollData.expiration.time)
       pollData.live = true;
       pollData.groups = roomId;
       pollData.event.id = eventObj.$id;
