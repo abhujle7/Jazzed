@@ -2,7 +2,7 @@ app.factory('SportsFactory', function($http) {
 	var data;
 	return {
 		get: function(info) {
-			var baseUrl = 'http://api.seatgeek.com/2/events?'
+			var baseUrl = 'https://api.seatgeek.com/2/events?'
 			if (info.performer) {
 				var person = info.performer.toLowerCase().split(' ').join('-');
 				baseUrl += '&q=' + person
