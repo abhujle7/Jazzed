@@ -6,10 +6,6 @@ var schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Group'
 	}],
-	creator: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
-	}],
 	name: {
 		type: String,
 		required: true

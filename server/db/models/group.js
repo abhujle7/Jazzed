@@ -10,12 +10,6 @@ var schema = new mongoose.Schema({
 		type: String
 		//default picture
 	},
-	users: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User',
-		//add sparse: true
-			//user inside group can only be added to same group once			
-	}],
 	events: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Event'

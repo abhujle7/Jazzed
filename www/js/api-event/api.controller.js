@@ -42,11 +42,23 @@ app.controller('ApiCtrl', function($scope, ApiFactory, EventFactory, $ionicPopup
 
 
 	$scope.submitAndPoll = function () {
+		if ($scope.data.time) {
+			$scope.hours = $scope.data.time.getHours();
+			$scope.minutes = $scope.data.time.getMinutes();
+			$scope.data.date = moment(new Date($scope.data.day).setHours($scope.hours, $scope.minutes, 0, 0)).format('lll')
+		}
 		EventFactory.addEvent($scope.data).then(function(eventId) {
-			console.log(eventId)
 			currEventId = eventId;
-		})
-		.then(function () {
+			$scope.data = {
+				name: null,
+				description: null,
+				day: null,
+				time: null,
+				date: null,
+				location: null,
+				locationName: null,
+				group_id: currentRoomId
+			}
 		$state.go('app.tab.chat-polls', {eventid: currEventId, id: $scope.data.group_id})
 		})
 	}
