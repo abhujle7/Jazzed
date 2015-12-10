@@ -5,7 +5,7 @@ app.factory('MoviesFactory', function($http) {
 			if (zip.toString().length < 5) {
 				zip = '0' + zip
 			}
-			return $http.get('/api/movies/' + zip + '?date=' + days)
+			return $http.get('https://immense-woodland-7432.herokuapp.com/api/movies/' + zip + '?date=' + days)
 				.then(function(response) {
 					movies = response.data.slice(0, 10)
 					return movies
