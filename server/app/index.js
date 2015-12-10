@@ -4,6 +4,12 @@ var express = require('express');
 var app = express();
 module.exports = app;
 
+app.get('/', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
 // Pass our express application pipeline into the configuration
 // function located at server/app/configure/index.js
 require('./configure')(app);
