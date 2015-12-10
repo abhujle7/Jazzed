@@ -9,24 +9,13 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   $scope.IM = {
     textMessage: ""
   };
-
-  //takes in pollobj finds associated date and time and converts and returns them
+  
   $scope.pollDateExpired = false;
   $scope.pollTimeExpired = false;
 
   $scope.currentPollDate = function (pollObj) {
     var diff = moment.unix(pollObj.expiration.date).fromNow();
     return diff;
-    // var daysLeft = moment().unix() - pollObj.expiration.date
-    // var endDay = moment().unix(pollObj.expiration.date).format("MM/DD/YYYY")
-    // return (moment.unix(pollObj.expiration.date)).fromNow(true);
-    // return moment.unix(daysLeft).format("MM/DD/YYYY")
-    // var currDay = moment();
-    // var endDay = moment(pollObj.expiration.date)
-    // var diff = currDay.diff(endDay, 'days')
-    // return moment.unix(diff)
-    // return moment.unix(daysLeft)
-    // return moment().unix() - moment.unix(pollObj.expiration.date).format("MM/DD/YYYY")
   }
 
   // $scope.currentPollDate = function (pollObj) {
@@ -66,25 +55,8 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.polls = PollsFactory.all()
-  // var polls = PollsFactory.all();
-  // $scope.getGroupSpecificPolls = function (pollsArray) {
-  //     var groupPolls = [];
-  //     console.log('this is pollsArray', pollsArray, pollsArray[0].groups)
-  //   for (var i = 0; i < pollsArray.length; i++) {
-  //     console.log('in for', pollsArray, pollsArray[i])
-  //     if (pollsArray[i].groups == currentRoomId) {
-  //       console.log('in if', pollsArray[i].groups)
-  //       groupPolls.push(pollsArray[i])
-  //     }
-  //   }
-  //   console.log('this is groupPolls', groupPolls)
-  //   return groupPolls;
-  // };
-
-  // $scope.groupPolls = $scope.getGroupSpecificPolls(polls);
 
   $scope.events = EventFactory.all()
-  console.log('in chat ctrl events..', $scope.events)
   $scope.listVisibility = false;
   $scope.pollVisibility = false;
   $scope.chatVisibility = true;
@@ -120,7 +92,7 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.sendMessage = function (msg) {
-      ChatFactory.send(msg);
+      ChatFactory.send(msg, currentRoomId);
       $scope.IM.textMessage = "";
   }
 
@@ -176,5 +148,10 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     $scope.popover.remove();
   });
 
+})
+.filter('userFriendlyTime', function() {
+  return function(time) {
+    return moment(time).calendar()
+  }
 })
 

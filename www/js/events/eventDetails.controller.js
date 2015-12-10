@@ -29,11 +29,9 @@ app.controller('EventDetailCtrl', function($scope, $state, eventDetails, EventFa
 			if ($scope.data[key] && key != "location") {
 				eventDetails[key] = $scope.data[key];
 			} else if ($scope.data[key]) {
-				console.log("swapped location and the key is", key, "and the data is", $scope.data[key]);
 				eventDetails.location = $scope.data.location;
 			}
 		}
-		console.log("event is", eventDetails);
 		EventFactory.save(eventDetails);
 	}
 
@@ -46,23 +44,3 @@ app.controller('EventDetailCtrl', function($scope, $state, eventDetails, EventFa
 		$ionicHistory.goBack();
 	}
  })
-
-	// console.log("current event is", $scope.currentEvent);
-	// for (var i = 0; i < $scope.rooms.length; i++) {
-	// 	console.log($scope.rooms[i].$id);
-	// 	console.log($scope.currentEvent.group);
-	// 	// console.log("the room is", $scope.rooms[i].$id);
-	// 	// console.log("the object group value is", $scope.currentEvent.group);
-	// 	var a = String($scope.rooms[i].$id)
-	// 	// var b = String($scope.currentEvent.groups)
-	// 	var b = new RegExp($scope.currentEvent.groups);
-	// 	// console.log($scope.rooms[i].$id == $scope.currentEvent.groups);
-	// 	console.log(b.test(a));
-	// 	if (String($scope.rooms[i].$id) == String($scope.currentEvent.groups)) {
-	// 		// $scope.numRooms = i;
-
-	// 		$scope.numRooms = $scope.rooms[i].name;
-	// 		console.log("i found the roo yayayayaym", $scope.numRooms);
-	// 		break;
-	// 	}
-	// }

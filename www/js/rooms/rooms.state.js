@@ -9,10 +9,5 @@ app.config(function($stateProvider) {
         controller: 'RoomsCtrl'
       }
     }
-    // resolve: {
-    //     "currentAuth": ["Auth",
-    //         function (Auth) {
-    //             return Auth.$waitForAuth();
-    // }]}
   })
 });
