@@ -10,7 +10,6 @@ app.config(function($stateProvider) {
             },
             'menu-left': {
                 templateUrl: 'js/sidemenu.html'
-                // controller: 'MenuCtrl'
             }
 		}
 	})

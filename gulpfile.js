@@ -134,7 +134,7 @@ gulp.task('testBrowserJS', function (done) {
 });
 
 gulp.task('buildJS', ['lintJS'], function () {
-    return gulp.src(['./www/js/app.js', './www/js/**/*.js', './www/firebase/**/*.js'])
+    return gulp.src(['./www/js/app.js', './www/js/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(concat('main.js'))
