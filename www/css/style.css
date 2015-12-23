@@ -92,7 +92,7 @@
 .first {
 	font-size: 1.2em;
 	font-weight: bold;
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-left: 10px;
 }
 .right-large {
@@ -116,6 +116,7 @@
 .mvheading {
 	text-align: center;
 	color: CornflowerBlue;
+	margin-top: 10px;
 }
 
 .mvresults {
