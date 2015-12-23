@@ -1,7 +1,7 @@
 app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFactory, AuthFactory, $firebaseObject, EventFactory, $state, PollsFactory, $ionicScrollDelegate, currentRoomId, $ionicPopover, $rootScope, $interval) {
 
   $ionicScrollDelegate.scrollBottom();
-  $rootScope.currentRoom = $stateParams.id;
+  $rootScope.currentRoom = $stateParams.id; //should be able to replace with currentRoomId
   var currUser = AuthFactory.getCurrentUser().uid
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
   var userObj = $firebaseObject(userRef)
@@ -54,9 +54,12 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     return pollObj.responses.notAttending;
   }
 
-  $scope.polls = PollsFactory.all()
+  // $scope.polls = PollsFactory.all()
+  $scope.polls = PollsFactory.getByRoom(currentRoomId)
 
-  $scope.events = EventFactory.all()
+  // $scope.events = EventFactory.all()
+  $scope.events = EventFactory.getByRoom(currentRoomId)
+ 
   $scope.listVisibility = false;
   $scope.pollVisibility = false;
   $scope.chatVisibility = true;
@@ -117,11 +120,11 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
   $scope.goToPollDetail = function (pollObj) {
-    $state.go('app.tab.chat-pollDetail', {pollid: pollObj.$id, eventid: pollObj.event.id, id: currentRoomId})
+    $state.go('app.tab.chat-pollDetail', {pollid: pollObj.id, eventid: pollObj.event.id, id: currentRoomId})
   }
 
   $scope.goToPoll = function (event) {
-    $state.go('app.tab.chat-polls', {id: currentRoomId, eventid: event.$id})
+    $state.go('app.tab.chat-polls', {id: currentRoomId, eventid: event.id})
   }
 
 

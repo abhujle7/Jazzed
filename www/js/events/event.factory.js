@@ -1,6 +1,6 @@
 app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ionicHistory, AuthFactory) {		
 			
-	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/events');		
+	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/events/');		
 	var events = $firebaseArray(ref);		
   // var eventGroupId = $firebaseArray(ref.child('events').child('groups'));		
 	var currentUser = AuthFactory.getCurrentUser().uid;		
@@ -33,9 +33,18 @@ app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ion
       return events.$getRecord(eventId)		
     },		
     getByRoom: function(roomId) {		
-      ref.orderByChild("time").endAt(roomId, function(snapshot) {		
-        console.log("the snapshot is", snapshot);		
-      })		
+      var groupSpecific = [];
+      ref.once("value", function(events) {
+        events.forEach(function (event) {
+          var eventDetails = event.val()
+          var eventId = event.key()
+          eventDetails.id = eventId
+          if (eventDetails.groups == roomId) {
+            groupSpecific.push(eventDetails)
+          }
+        })
+      })
+      return groupSpecific;
     },		
     save: function(event) {		
       events.$save(event).then(function(ref) {		
