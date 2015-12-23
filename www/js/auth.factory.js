@@ -18,17 +18,21 @@ app.factory("AuthFactory", function($firebaseAuth) {
     })
     return {
       signUp: function(credentials) {
+        console.log('this is cred in fac', credentials)
         return auth.$createUser({email: credentials.email, password: credentials.password})
         .then(function(user) {
+          console.log('this is user in fac', user)
           user.name = credentials.name;
           user.phone = credentials.phone;
           user.email = credentials.email;
+          console.log('this is user in fac post mods', user)
           users.child(user.uid).set({
             name: user.name,
             phone: user.phone,
             email: user.email,
             photo: 'https://stampaspot.com/Pics/default.jpeg'
           })
+          console.log('is it failing before here')
           emails.push(credentials.email)
           phoneNums.push(credentials.phone)
           phoneToUserHash[credentials.phone.replace(/\D/, "")] = user.uid

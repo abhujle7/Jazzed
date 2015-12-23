@@ -13,7 +13,6 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 	var roomId = $scope.event.groups
 	var pollId = $stateParams.pollid
 	var pollsRef = new Firebase('https://boiling-fire-3161.firebaseio.com/polls/');
-
 	
 	$scope.data = {
 		location: null,  //if event has location, display and void this field in poll
