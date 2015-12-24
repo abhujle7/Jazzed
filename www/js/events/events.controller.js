@@ -1,11 +1,16 @@
-app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, events, rooms) {
+app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, events, rooms, AuthFactory, $firebaseArray, roomIds, userSpecificEvents) {
 
 
 	$scope.rooms = rooms;
-	$scope.events = events;
+	// $scope.events = events;
+	// console.log('this is events', events)
+  	
+  	var currUser = AuthFactory.getCurrentUser().uid
+  	var userGroupsRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser + '/groups/')
+  	var userGroups = $firebaseArray(userGroupsRef)
 	var currentRoomId = $rootScope.currentRoom;
 
-	
+	$scope.events = userSpecificEvents;
 	
 	var currEventId;
 

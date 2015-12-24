@@ -19,6 +19,12 @@ app.config(function($stateProvider) {
       		},		
 			 events: function() {		
         		return null;		
+      		},
+      		roomIds: function() {
+        		return null;
+      		},
+      		userSpecificEvents: function(EventFactory) {
+        		return null;
       		}		
 		}		
 	})		
