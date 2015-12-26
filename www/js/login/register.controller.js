@@ -11,6 +11,7 @@ app.controller('RegisterCtrl', function($scope, AuthFactory, $state, $ionicPopup
 
 
     $scope.signUp = function(credentials) {
+        console.log('in controller signup', credentials)
         if ($scope.emails.indexOf(credentials.email) !== -1) {
             $scope.error = $ionicPopup.alert({
                 title: 'Invalid email',
@@ -24,6 +25,7 @@ app.controller('RegisterCtrl', function($scope, AuthFactory, $state, $ionicPopup
             })   
         }
         else {
+            console.log('in controller else', credentials)
             AuthFactory.signUp(credentials)
             .then(function(user) {
                 $state.go('app.tab.rooms', {uid: user.uid})
