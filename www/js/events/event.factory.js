@@ -11,16 +11,18 @@ app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ion
       return events;		
     },		
 
-    addEvent: function(event) {		
-      return events.$add({		
-        name: event.name,		
-        description: event.description,		
-        date: event.date,		
-        time: event.time,		
-        creator: currentUser,		
+    addEvent: function(event) {	
+      console.log("event is", event);
+      return events.$add({
+        name: event.name || null,
+        description: event.description || null,
+        image: event.image || null,	
+        date: event.date || null,	
+        time: event.time || null,	
+        creator: currentUser ,		
         location: {		
-          name: event.locationName,		
-          coordinates: event.location		
+          name: event.locationName || null,		
+          coordinates: event.location	|| null	
         },		
         groups: event.group_id		
       })		
