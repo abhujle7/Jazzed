@@ -12,6 +12,7 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 	$scope.data = {
 		name: null,
 		description: null,
+		image: null,
 		time: null,
 		date: null,
 		location: null,
@@ -36,6 +37,7 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 		
 	}
 	$scope.submitEvent = function() {
+		console.log("I submitted the  event here", $scope.data);
 		if ($scope.data.time) {
 			$scope.hours = $scope.data.time.getHours();
 			$scope.minutes = $scope.data.time.getMinutes();
