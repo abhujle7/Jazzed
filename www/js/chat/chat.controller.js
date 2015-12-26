@@ -18,28 +18,6 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
     return diff;
   }
 
-  // $scope.currentPollDate = function (pollObj) {
-  //   return $interval(function () {
-  //     console.log('in interval')
-  //   var daysLeft = moment().unix() - pollObj.expiration.date
-  //   if (daysLeft > 0) {
-  //     console.log('in while')
-  //     return moment.unix(daysLeft).format("MM/DD/YYYY")
-  //   }
-  //   $scope.pollDateExpired = true;
-  //   }, 10000);
-  // }
-
- // $scope.currentPollTime = function (pollObj) {
- //    return $interval(function () {
- //    var timeLeft = moment().unix() - pollObj.expiration.time
- //    while (timeLeft > 0) {
- //      return moment.unix(timeLeft).format("MM/DD/YYYY")
- //    }
- //    $scope.pollTimeExpired = true;
- //    }, 1000);
- //  }
-
   $scope.currentPollAttending = function (pollObj) {
     if (!pollObj.responses.attending) {
       return 0;
