@@ -9,7 +9,6 @@ app.controller('RegisterCtrl', function($scope, AuthFactory, $state, $ionicPopup
     $scope.emails = AuthFactory.existingEmails();
     $scope.phones = AuthFactory.existingPhones();
 
-
     $scope.signUp = function(credentials) {
         console.log('in controller signup', credentials)
         if ($scope.emails.indexOf(credentials.email) !== -1) {
@@ -42,7 +41,8 @@ app.controller('RegisterCtrl', function($scope, AuthFactory, $state, $ionicPopup
         else {
             AuthFactory.signIn(credentials)
             .then(function(user) {
-                $state.go('app.tab.rooms', {uid: user.uid})
+                $state.go('app.tab.rooms', {uid: user.uid});
+                // $state.go('app.tab.events', {uid: user.uid})
             })    
         }
     }

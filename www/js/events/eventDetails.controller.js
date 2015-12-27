@@ -8,6 +8,7 @@ app.controller('EventDetailCtrl', function($scope, $state, eventDetails, EventFa
 	$scope.data = {
 		name: null,
 		description: null,
+		image: null,
 		day: null,
 		time: null,
 		date: null,
