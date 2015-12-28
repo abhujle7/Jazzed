@@ -1,4 +1,4 @@
-app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ionicHistory, AuthFactory, RoomsFactory) {		
+app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ionicHistory, AuthFactory, RoomsFactory, $timeout) {		
 			
 	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/events/');		
 	var events = $firebaseArray(ref);		
@@ -51,45 +51,16 @@ app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ion
       })		
     },
     getUserSpecificEvents: function () {
-      var deferred = $q.defer();
       var userEvents = [];
-      var roomIds = RoomsFactory.getUserSpecificRoomIds();
-      console.log('before foreeeeeach')
-      events.forEach(function (event) {
-        console.log('in foreach')
-        if (roomIds.indexOf(event.groups) > -1) {
-          console.log('in if')
-          userEvents.push(event);
-        }
-        deferred.resolve(userEvents);
-      })
-      console.log('this is user events', userEvents)
-      return deferred.promise;
-      // ref.once("value", function (allEvents) {
-      //   allEvents.forEach(function (event) {
-      //     var eventDetail = event.val();
-
-      //   })
-      // })
-
-      // // var deferred = $q.defer();
-      // var userSpecificEvents = [];
-      // var roomIds = RoomsFactory.getUserSpecificRoomIds();
-      // console.log('this is roomids in fac', roomIds)
-      // return ref.once("value", function (allEvents) {
-      //   allEvents.forEach(function (event) {
-      //     var eventDetail = event.val();
-      //     console.log('this is an event in fac', eventDetail)
-      //     if (roomIds.indexOf(eventDetail.groups) > -1) {
-      //       userSpecificEvents.push(event);
-      //     }
-      //   })
-      //   console.log('this is userspecevents in once', userSpecificEvents)
-      //   return userSpecificEvents;
-      //   // deferred.resolve(userSpecificEvents);
-      // })      
-      // // console.log('this is array in fac', userSpecificEvents)
-      // // return deferred.promise;
+      var roomIds = RoomsFactory.getUserSpecificRoomIds();      
+        return events.$loaded().then(function(allEvents) {
+            allEvents.forEach(function (event) {
+            if (roomIds.indexOf(event.groups) > -1) {
+              userEvents.push(event);
+            }
+          })
+        return userEvents;
+        })
     }
   }		
 })
