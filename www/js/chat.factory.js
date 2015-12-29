@@ -6,6 +6,7 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
   var user = AuthFactory.getCurrentUser().uid
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + user)
   var userObj = $firebaseObject(userRef)
+  var lastChat;
 
   return {
     all: function() {
@@ -30,7 +31,7 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
     },
     getSelectedRoomName: function () {
       var selectedRoom;
-      if (selectedRoomId && selectedRoomId != null) {
+      if (selectedRoomId) {
           selectedRoom = RoomsFactory.get(selectedRoomId);
           if (selectedRoom)
               return selectedRoom.name;
@@ -55,10 +56,18 @@ app.factory('ChatFactory', function($firebase, RoomsFactory, $firebaseArray, $fi
             .catch(function(error) {
               console.error("Error:", error);
             })
+            lastChat = chatMessage;
+            lastChat.roomId = selectedRoomId;
         }
     },
     getMembers: function() {
       return $firebaseArray(ref.child('messages').child(selectedRoomId).child('members'))
+    },
+    getLastChat: function () {
+      if (lastChat) {
+        return lastChat;
+      }
+      return null;
     }
   };
 });

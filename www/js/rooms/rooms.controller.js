@@ -1,9 +1,25 @@
-app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) {
+app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state, roomIds, $firebaseArray) {
+
+    var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/')
 
     $scope.getLastMsg = function (roomObj) {
-        console.log('in func, roomobj', roomObj)
-        var msgRef = new Firebase('https://boiling-fire-3161.firebaseio.com/messages/' + roomObj.$id)
-        console.log('this is last msg', msgRef)
+        // var chats = $firebaseArray(ref.child('messages').child(roomObj.$id));
+        // var lastChat = chats[chats.length-1]
+        // console.log('last chat',   lastChat)
+        // return lastChat;
+        // return chats.once('value', function(chats) {
+        //     var chatsDetail = chats.val()
+        //     var messages = chatsDetail;
+        //     console.log('these are the messages', messages)
+        //     return messages;
+        // })
+
+
+    // var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/messages/' + roomId);     
+
+    //     console.log('in func, roomobj', roomObj)
+    //     var msgRef = new Firebase('https://boiling-fire-3161.firebaseio.com/messages/' + roomObj.$id)
+    //     console.log('this is last msg', msgRef)
     }
     var userRooms = RoomsFactory.findUserRooms()
 

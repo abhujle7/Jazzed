@@ -22,10 +22,10 @@
 				<span>{{currentPollFormattedDate}}, {{currentPollFormattedTime}}</span>
 			</label>
 			<label class="item">
-				<span class="heading">Currently Attending: </span><span>{{currentPoll.responses.attending}} participants</span>
+				<span class="heading">Currently Attending: </span><span>{{attending()}} participants</span>
 			</label>
 			<label class="item">
-				<span class="heading">Not Attending: </span><span>{{currentPoll.responses.notAttending}} participants</span>
+				<span class="heading">Not Attending: </span><span>{{notAttending()}} participants</span>
 			</label>
 
 			<ion-radio class="item item-input" ng-model="data.responses.attending" ng-value="1">Click to Attend Event

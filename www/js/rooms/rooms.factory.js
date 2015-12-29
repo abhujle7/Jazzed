@@ -76,6 +76,13 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
         })
       })
       return userSpecificGroupIds;
+    },
+    getLastMessage: function () {
+      userGroupsRef.once("value", function (allGroups) {
+        allGroups.forEach(function (group) {
+          
+        })
+      })
     }
   };
 });
