@@ -41,17 +41,25 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
  //  }
 
   $scope.currentPollAttending = function (pollObj) {
-    if (!pollObj.responses.attending) {
+    if (!pollObj.responses2.attending2) {
       return 0;
     }
-    return pollObj.responses.attending;
+    return Object.keys(pollObj.responses2.attending2).length
+    // if (!pollObj.responses.attending) {
+    //   return 0;
+    // }
+    // return pollObj.responses.attending;
   }
 
    $scope.currentPollNotAttending = function (pollObj) {
-    if (!pollObj.responses.notAttending) {
+    if (!pollObj.responses2.notAttending2) {
       return 0;
     }
-    return pollObj.responses.notAttending;
+    return Object.keys(pollObj.responses2.notAttending2).length
+    // if (!pollObj.responses.notAttending) {
+    //   return 0;
+    // }
+    // return pollObj.responses.notAttending;
   }
 
   // $scope.polls = PollsFactory.all()

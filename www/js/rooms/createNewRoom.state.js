@@ -8,6 +8,11 @@ app.config(function($stateProvider) {
         templateUrl: 'js/rooms/createNewRoom.html',
         controller: 'RoomsCtrl'
       }
+    },
+    resolve: {
+      roomIds: function() {
+        return null;
+      }
     }
   })
 });

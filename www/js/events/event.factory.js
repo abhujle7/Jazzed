@@ -1,10 +1,9 @@
-app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ionicHistory, AuthFactory) {		
+app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ionicHistory, AuthFactory, RoomsFactory, $timeout) {		
 			
 	var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/events/');		
 	var events = $firebaseArray(ref);		
   // var eventGroupId = $firebaseArray(ref.child('events').child('groups'));		
 	var currentUser = AuthFactory.getCurrentUser().uid;		
-		
 		
 	return {		
     all: function () {		
@@ -52,9 +51,18 @@ app.factory('EventFactory', function($state, $q, $firebase, $firebaseArray, $ion
       events.$save(event).then(function(ref) {		
         $ionicHistory.goBack()		
       })		
-    },		
-    resolve: {		
-		
-    }		
+    },
+    getUserSpecificEvents: function () {
+      var userEvents = [];
+      var roomIds = RoomsFactory.getUserSpecificRoomIds();      
+        return events.$loaded().then(function(allEvents) {
+            allEvents.forEach(function (event) {
+            if (roomIds.indexOf(event.groups) > -1) {
+              userEvents.push(event);
+            }
+          })
+        return userEvents;
+        })
+    }
   }		
 })

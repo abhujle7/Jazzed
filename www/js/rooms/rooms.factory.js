@@ -8,6 +8,7 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
   var currUserRooms = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser + '/groups')
   var userRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser)
   var currUserRoomsArr = $firebaseArray(currUserRooms)
+  var userGroupsRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser + '/groups/')
 
   return {
     all: function() {
@@ -65,6 +66,23 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
     },
     findUserRooms: function() {
       return currUserRoomsArr;
+    },
+    getUserSpecificRoomIds: function () {
+      var userSpecificGroupIds = [];
+      userGroupsRef.once("value", function (allGroups) {
+        allGroups.forEach(function (group) {
+          var groupId = group.key();
+          userSpecificGroupIds.push(groupId);
+        })
+      })
+      return userSpecificGroupIds;
+    },
+    getLastMessage: function () {
+      userGroupsRef.once("value", function (allGroups) {
+        allGroups.forEach(function (group) {
+          
+        })
+      })
     }
   };
 });
