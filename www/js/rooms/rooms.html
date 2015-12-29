@@ -7,7 +7,7 @@
             <ion-item class="item-icon-left" ng-repeat="room in rooms" type="item-text-wrap" ng-click="openRoom(room.$id)">
                 <i class="icon {{room.icon}}"></i>
                 <h2>{{room.name}}</h2>
-                <span>helloo{{getLastMsg(room)}}</span>
+                <span>{{getLastMsg(room.$id).from}}: {{getLastMsg(room.$id).message}}</span>
             </ion-item>
         </ion-list>
         <ion-list ng-hide="rooms.length">

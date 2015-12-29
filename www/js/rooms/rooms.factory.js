@@ -77,12 +77,15 @@ app.factory('RoomsFactory', function($firebaseArray, $firebaseAuth, AuthFactory,
       })
       return userSpecificGroupIds;
     },
-    getLastMessage: function () {
-      userGroupsRef.once("value", function (allGroups) {
-        allGroups.forEach(function (group) {
-          
+    getLastMessage: function (roomId) {
+      var messageRef = new Firebase('https://boiling-fire-3161.firebaseio.com/messages/' + roomId);
+      var messages = []
+      messageRef.on("value", function (allMessages) {
+        allMessages.forEach(function (message) {
+          messages.push(message.val())
         })
       })
+      return messages[messages.length - 1]
     }
   };
 });
