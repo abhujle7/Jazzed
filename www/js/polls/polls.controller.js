@@ -4,12 +4,18 @@ app.controller('PollsCtrl', function($scope, $state, EventFactory, RoomsFactory,
 	$scope.event = eventDetails;
 	$scope.currentPoll = pollDetails
 	$scope.attending = function () {
+		if (!pollDetails.responses2) {
+			return 0;
+		}
 		if (!pollDetails.responses2.attending2) {
       		return 0;
     	}
     	return Object.keys(pollDetails.responses2.attending2).length
 	}
 	$scope.notAttending = function () {
+		if (!pollDetails.responses2) {
+			return 0;
+		}
 		if (!pollDetails.responses2.notAttending2) {
       		return 0;
     	}
