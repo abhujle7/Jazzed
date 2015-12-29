@@ -41,6 +41,9 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
  //  }
 
   $scope.currentPollAttending = function (pollObj) {
+    if (!pollObj.responses2) {
+      return 0;
+    }
     if (!pollObj.responses2.attending2) {
       return 0;
     }
@@ -52,10 +55,13 @@ app.controller('ChatCtrl', function($scope, ChatFactory, $stateParams, RoomsFact
   }
 
    $scope.currentPollNotAttending = function (pollObj) {
-    if (!pollObj.responses2.notAttending2) {
-      return 0;
-    }
-    return Object.keys(pollObj.responses2.notAttending2).length
+      if (!pollObj.responses2) {
+        return 0;
+      }
+      if (!pollObj.responses2.notAttending2) {
+        return 0;
+      }
+      return Object.keys(pollObj.responses2.notAttending2).length
     // if (!pollObj.responses.notAttending) {
     //   return 0;
     // }
