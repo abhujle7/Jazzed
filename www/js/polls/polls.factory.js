@@ -38,6 +38,7 @@ app.factory('PollsFactory', function($state, $firebase, $firebaseArray, $ionicHi
       if (data.responses.notAttending) {
          pollsRef.child(id).child('responses2').child('notAttending2').push(user)
       }
+      console.log('')
     },
     expirePoll: function (id) {
       pollsRef.child(id).update({live: false})

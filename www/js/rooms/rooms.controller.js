@@ -1,8 +1,9 @@
-app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state) {
+app.controller('RoomsCtrl', function($scope, RoomsFactory, ChatFactory, $state, roomIds, $firebaseArray) {
 
-    $scope.getLastMsg = function (roomObj) {
-        var msgRef = new Firebase('https://boiling-fire-3161.firebaseio.com/messages/' + roomObj.$id)
-        
+    var ref = new Firebase('https://boiling-fire-3161.firebaseio.com/')
+
+    $scope.getLastMsg = function(roomId) {
+        return RoomsFactory.getLastMessage(roomId)
     }
     var userRooms = RoomsFactory.findUserRooms()
 

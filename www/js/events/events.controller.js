@@ -1,17 +1,23 @@
-app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, events, rooms) {
+app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, RoomsFactory, $ionicHistory, $ionicPopup, events, rooms, AuthFactory, $firebaseArray, roomIds, userSpecificEvents) {
 
 
 	$scope.rooms = rooms;
-	$scope.events = events;
+	// $scope.events = events;
+	// console.log('this is events', events)
+  	
+  	var currUser = AuthFactory.getCurrentUser().uid
+  	var userGroupsRef = new Firebase('https://boiling-fire-3161.firebaseio.com/users/' + currUser + '/groups/')
+  	var userGroups = $firebaseArray(userGroupsRef)
 	var currentRoomId = $rootScope.currentRoom;
 
-	
+	$scope.events = userSpecificEvents;
 	
 	var currEventId;
 
 	$scope.data = {
 		name: null,
 		description: null,
+		image: null,
 		time: null,
 		date: null,
 		location: null,
@@ -36,6 +42,7 @@ app.controller('EventsCtrl', function($scope, $state, $rootScope, EventFactory, 
 		
 	}
 	$scope.submitEvent = function() {
+		console.log("I submitted the  event here", $scope.data);
 		if ($scope.data.time) {
 			$scope.hours = $scope.data.time.getHours();
 			$scope.minutes = $scope.data.time.getMinutes();
