@@ -1,4 +1,5 @@
 <ion-view view-title="Yelp Results">
+	<ion-scroll direction="xy" style="width: 500px; height: 600px">
 	<h1 ng-show="results.length">Businesses</h1>
 	<h2 class="mvheading error" ng-show="!results.length">No results found! Try again.</h2>
 	<h4 class="mvheading center" ng-show="results.length">Here are some nearby businesses that match your search!</h4>
@@ -9,4 +10,5 @@
 		<span class="shift">Average Rating: </span><img src="{{result.rating_img_url}}">
 		<li class="shift">Sample Review: {{result.snippet_text}}</li>
 		<button class="button button-small button-calm confirm" ng-click="apiEvent(result.name, result.location.display_address)">Create Event</button>
+	</ion-scroll>
 </ion-view>
