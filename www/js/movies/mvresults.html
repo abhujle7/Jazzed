@@ -1,4 +1,5 @@
 <ion-view id="header" view-title="Theater Results">
+<ion-scroll direction="xy" style="width: 500px; height: 600px">
 <h1 ng-show="results.length">Results</h1>
 <h2 class="grey error" ng-show="!results.length">No nearby theaters found. Please try a different zipcode!</h2>
 <h4 class="grey center" ng-show="results.length">Here are some nearby theaters. Click on one to see movies and showtimes.</h4>
@@ -15,4 +16,5 @@
 		<button class="button button-small button-calm confirm" ng-click="apiEvent(movie.name, theater.name)">Create Event</button>
 	</ul>
 </ul>
+</ion-scroll>
 </ion-view>
