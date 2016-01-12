@@ -1,12 +1,14 @@
 <ion-view view-title="Event Results">
-<h1 ng-show="results.length">Results</h1>
-	<h2 class="mvheading error" ng-show="!results.length">No results found! Try again.</h2>
-	<h4 class="mvheading center" ng-show="results.length">Here are some events that match your search!</h4>
-<ul ng-repeat="result in results">
-<li class="first corn-blue">{{result.title}}</li>
-<li class="shift">{{result.datetime_local}}</li>
-<li class="shift">{{result.venue.name}}, {{result.venue.city}}</li>
-<a class="shift button button-small button-positive" ng-href={{result.url}}>Buy Tickets</a>
-<button class="shift button button-small button-calm" ng-click="apiEvent(result.title, result.venue.name, result.datetime_local)">Create Event</button>
-</ul>
+	<ion-scroll direction="xy" style="width: 500px; height: 600px">
+	<h1 ng-show="results.length">Results</h1>
+		<h2 class="mvheading error" ng-show="!results.length">No results found! Try again.</h2>
+		<h4 class="mvheading center" ng-show="results.length">Here are some events that match your search!</h4>
+	<ul ng-repeat="result in results">
+	<li class="first corn-blue">{{result.title}}</li>
+	<li class="shift">{{result.datetime_local}}</li>
+	<li class="shift">{{result.venue.name}}, {{result.venue.city}}</li>
+	<a class="shift button button-small button-positive" ng-href={{result.url}}>Buy Tickets</a>
+	<button class="shift button button-small button-calm" ng-click="apiEvent(result.title, result.venue.name, result.datetime_local)">Create Event</button>
+	</ul>
+	</ion-scroll>
 </ion-view>

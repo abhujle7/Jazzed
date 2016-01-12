@@ -7,12 +7,16 @@
             <ion-item class="item-icon-left" ng-repeat="room in rooms" type="item-text-wrap" ng-click="openRoom(room.$id)">
                 <i class="icon {{room.icon}}"></i>
                 <h2>{{room.name}}</h2>
+<<<<<<< HEAD
                 <span ng-show="getLastMsg(room.$id)">{{getLastMsg(room.$id).from}}: {{getLastMsg(room.$id).message}}</span>
             </ion-item>
         </ion-list>
         <ion-list ng-hide="rooms.length">
             <ion-item class="textCenter">
                 <i class="icon ion-loading-c"></i> Loading Rooms
+=======
+                <span ng-if="getLastMsg(room.$id)">{{getLastMsg(room.$id).from}}: {{getLastMsg(room.$id).message}}</span>
+>>>>>>> e629acc9c1bf45e58618c3d2335d6c389dec3609
             </ion-item>
         </ion-list>
     </ion-content>
